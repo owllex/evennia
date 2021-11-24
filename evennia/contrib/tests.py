@@ -106,6 +106,7 @@ recog10 = "Mr Sender"
 emote = 'With a flair, /me looks at /first and /colliding sdesc-guy. She says "This is a test."'
 case_emote = "/me looks at /first, then /FIRST, /First and /Colliding twice."
 
+
 class TestRPSystem(EvenniaTest):
     maxDiff = None
 
@@ -195,11 +196,15 @@ class TestRPSystem(EvenniaTest):
                 "#9": "A nice sender of emotes",
             },
         )
-        self.assertEqual(rpsystem.parse_sdescs_and_recogs(
-            speaker, candidates, emote, case_sensitive=False), result)
+        self.assertEqual(
+            rpsystem.parse_sdescs_and_recogs(speaker, candidates, emote, case_sensitive=False),
+            result,
+        )
         self.speaker.recog.add(self.receiver1, recog01)
-        self.assertEqual(rpsystem.parse_sdescs_and_recogs(
-            speaker, candidates, emote, case_sensitive=False), result)
+        self.assertEqual(
+            rpsystem.parse_sdescs_and_recogs(speaker, candidates, emote, case_sensitive=False),
+            result,
+        )
 
     def test_send_emote(self):
         speaker = self.speaker
@@ -246,18 +251,18 @@ class TestRPSystem(EvenniaTest):
             self.out0,
             "|bSender|n looks at |bthe first receiver of emotes.|n, then "
             "|bTHE FIRST RECEIVER OF EMOTES.|n, |bThe first receiver of emotes.|n and "
-            "|bAnother nice colliding sdesc-guy for tests|n twice."
+            "|bAnother nice colliding sdesc-guy for tests|n twice.",
         )
         self.assertEqual(
             self.out1,
             "|bA nice sender of emotes|n looks at |bReceiver1|n, then |bReceiver1|n, "
-            "|bReceiver1|n and |bAnother nice colliding sdesc-guy for tests|n twice."
+            "|bReceiver1|n and |bAnother nice colliding sdesc-guy for tests|n twice.",
         )
         self.assertEqual(
             self.out2,
             "|bA nice sender of emotes|n looks at |bthe first receiver of emotes.|n, "
             "then |bTHE FIRST RECEIVER OF EMOTES.|n, |bThe first receiver of "
-            "emotes.|n and |bReceiver2|n twice."
+            "emotes.|n and |bReceiver2|n twice.",
         )
 
     def test_rpsearch(self):
@@ -277,7 +282,7 @@ class TestRPSystem(EvenniaTest):
         result = rpsystem.regex_tuple_from_key_alias(self.speaker)
         t2 = time.time()
         # print(f"t1: {t1 - t0}, t2: {t2 - t1}")
-        self.assertLess(t2-t1, 10**-4)
+        self.assertLess(t2 - t1, 10 ** -4)
         self.assertEqual(result, (Anything, self.speaker, self.speaker.key))
 
 
@@ -3359,10 +3364,12 @@ class TestBuildingMenu(CommandTest):
 
 from evennia.contrib import mux_comms_cmds as comms  # noqa
 
+
 class TestLegacyMuxComms(CommandTest):
     """
     Test the legacy comms contrib.
     """
+
     def setUp(self):
         super(CommandTest, self).setUp()
         self.call(
@@ -3436,7 +3443,9 @@ class TestLegacyMuxComms(CommandTest):
             receiver=self.account,
         )
 
+
 from evennia.contrib import cooldowns
+
 
 @patch("evennia.contrib.cooldowns.time.time", return_value=0)
 class TestCooldowns(EvenniaTest):
@@ -3544,4 +3553,3 @@ class TestCooldowns(EvenniaTest):
         self.assertEqual(self.handler.time_left("a"), 4)
         self.assertNotIn("b", self.handler.data)
         self.assertNotIn("c", self.handler.data)
-
