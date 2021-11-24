@@ -1,5 +1,39 @@
 """
-Module for tracking cooldowns on an object.
+Cooldown contrib module.
+
+Evennia contrib - owllex, 2021
+
+This contrib provides a simple cooldown handler that can be attached to any
+typeclassed Object or Account. A cooldown is a lightweight persistent
+asynchronous timer that you can query to see if it is ready.
+
+Cooldowns are good for modelling rate-limited actions, like how often a
+character can perform a given command.
+
+Cooldowns are completely asynchronous and must be queried to know their
+state. They do not fire callbacks, so are not a good fit for use cases
+where something needs to happen on a specific schedule (use delay or
+a TickerHandler for that instead).
+
+Installation:
+
+To use, simply add the following property to the typeclass definition of
+any object type that you want to support cooldowns. It will expose a
+new `cooldowns` property that persists data to the object's attribute
+storage. You can set this on your base `Object` typeclass to enable cooldown
+tracking on every kind of object, or just put it on your `Character`
+typeclass.
+
+By default the CooldownHandler will use the `cooldowns` property, but you
+can customize this if desired by passing a different value for the
+db_attribute parameter.
+
+    from evennia.contrib.cooldowns import Cooldownhandler
+    from evennia.utils.utils import lazy_property
+
+    @lazy_property
+    def cooldowns(self):
+        return CooldownHandler(self, db_attribute="cooldowns")
 """
 
 import math
@@ -61,7 +95,7 @@ class CooldownHandler:
         Args:
             any (str): One or more cooldown names to check.
         Returns:
-            (bool): True if all cooldowns have expired or does not exist.
+            (bool): True if each cooldown has expired or does not exist.
         """
         return self.time_left(*args) <= 0
 
