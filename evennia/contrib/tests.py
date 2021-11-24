@@ -3452,7 +3452,6 @@ class TestCooldowns(EvenniaTest):
     def setUp(self):
         super().setUp()
         self.handler = cooldowns.CooldownHandler(self.char1)
-        self.handler.data = {}
 
     def test_empty(self, mock_time):
         self.assertEqual(self.handler.all, [])
