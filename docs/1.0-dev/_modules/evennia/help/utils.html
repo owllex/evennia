@@ -47,13 +47,17 @@
 <span class="sd">This is used primarily by the default `help` command.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
 <span class="c1"># these are words that Lunr normally ignores but which we want to find</span>
 <span class="c1"># since we use them (e.g. as command names).</span>
 <span class="c1"># Lunr&#39;s default ignore-word list is found here:</span>
 <span class="c1"># https://github.com/yeraydiazdiaz/lunr.py/blob/master/lunr/stop_word_filter.py</span>
-<span class="n">_LUNR_STOP_WORD_FILTER_EXCEPTIONS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;about&quot;</span><span class="p">,</span> <span class="s2">&quot;might&quot;</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">)</span>
+<span class="n">_LUNR_STOP_WORD_FILTER_EXCEPTIONS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;about&quot;</span><span class="p">,</span> <span class="s2">&quot;might&quot;</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="s2">&quot;who&quot;</span><span class="p">,</span> <span class="s2">&quot;say&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">settings</span><span class="o">.</span><span class="n">LUNR_STOP_WORD_FILTER_EXCEPTIONS</span>
+<span class="p">)</span>
+
 
 <span class="n">_LUNR</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">_LUNR_EXCEPTION</span> <span class="o">=</span> <span class="kc">None</span>
@@ -61,11 +65,9 @@
 <span class="n">_LUNR_GET_BUILDER</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">_LUNR_BUILDER_PIPELINE</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="n">_RE_HELP_SUBTOPICS_START</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="sa">r</span><span class="s2">&quot;^\s*?#\s*?subtopics\s*?$&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
+<span class="n">_RE_HELP_SUBTOPICS_START</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^\s*?#\s*?subtopics\s*?$&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
 <span class="n">_RE_HELP_SUBTOPIC_SPLIT</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^\s*?(\#{2,6}\s*?\w+?[a-z0-9 \-\?!,\.]*?)$&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
-<span class="n">_RE_HELP_SUBTOPIC_PARSE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="sa">r</span><span class="s2">&quot;^(?P&lt;nesting&gt;\#{2,6})\s*?(?P&lt;name&gt;.*?)$&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
+<span class="n">_RE_HELP_SUBTOPIC_PARSE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(?P&lt;nesting&gt;\#{2,6})\s*?(?P&lt;name&gt;.*?)$&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
 
 <span class="n">MAX_SUBTOPIC_NESTING</span> <span class="o">=</span> <span class="mi">5</span>
 
@@ -99,7 +101,8 @@
         <span class="kn">from</span> <span class="nn">lunr</span> <span class="kn">import</span> <span class="n">get_default_builder</span> <span class="k">as</span> <span class="n">_LUNR_GET_BUILDER</span>
         <span class="kn">from</span> <span class="nn">lunr</span> <span class="kn">import</span> <span class="n">stop_word_filter</span>
         <span class="kn">from</span> <span class="nn">lunr.stemmer</span> <span class="kn">import</span> <span class="n">stemmer</span>
-        <span class="kn">from</span> <span class="nn">lunr.trimmer</span> <span class="kn">import</span> <span class="n">trimmer</span>
+
+        <span class="c1"># from lunr.trimmer import trimmer</span>
 
         <span class="c1"># pre-create a lunr index-builder pipeline where we&#39;ve removed some of</span>
         <span class="c1"># the stop-words from the default in lunr.</span>
@@ -113,7 +116,8 @@
                 <span class="k">pass</span>
 
         <span class="n">custom_stop_words_filter</span> <span class="o">=</span> <span class="n">stop_word_filter</span><span class="o">.</span><span class="n">generate_stop_word_filter</span><span class="p">(</span><span class="n">stop_words</span><span class="p">)</span>
-        <span class="n">_LUNR_BUILDER_PIPELINE</span> <span class="o">=</span> <span class="p">(</span><span class="n">trimmer</span><span class="p">,</span> <span class="n">custom_stop_words_filter</span><span class="p">,</span> <span class="n">stemmer</span><span class="p">)</span>
+        <span class="c1"># _LUNR_BUILDER_PIPELINE = (trimmer, custom_stop_words_filter, stemmer)</span>
+        <span class="n">_LUNR_BUILDER_PIPELINE</span> <span class="o">=</span> <span class="p">(</span><span class="n">custom_stop_words_filter</span><span class="p">,</span> <span class="n">stemmer</span><span class="p">)</span>
 
     <span class="n">indx</span> <span class="o">=</span> <span class="p">[</span><span class="n">cnd</span><span class="o">.</span><span class="n">search_index_entry</span> <span class="k">for</span> <span class="n">cnd</span> <span class="ow">in</span> <span class="n">candidate_entries</span><span class="p">]</span>
     <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">indx</span><span class="p">[</span><span class="n">ix</span><span class="p">][</span><span class="s2">&quot;key&quot;</span><span class="p">]:</span> <span class="n">cand</span> <span class="k">for</span> <span class="n">ix</span><span class="p">,</span> <span class="n">cand</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">candidate_entries</span><span class="p">)}</span>
@@ -131,12 +135,7 @@
     <span class="n">builder</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
     <span class="n">builder</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">_LUNR_BUILDER_PIPELINE</span><span class="p">)</span>
 
-    <span class="n">search_index</span> <span class="o">=</span> <span class="n">_LUNR</span><span class="p">(</span>
-        <span class="n">ref</span><span class="o">=</span><span class="s2">&quot;key&quot;</span><span class="p">,</span>
-        <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">,</span>
-        <span class="n">documents</span><span class="o">=</span><span class="n">indx</span><span class="p">,</span>
-        <span class="n">builder</span><span class="o">=</span><span class="n">builder</span>
-    <span class="p">)</span>
+    <span class="n">search_index</span> <span class="o">=</span> <span class="n">_LUNR</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">,</span> <span class="n">documents</span><span class="o">=</span><span class="n">indx</span><span class="p">,</span> <span class="n">builder</span><span class="o">=</span><span class="n">builder</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">matches</span> <span class="o">=</span> <span class="n">search_index</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">)[:</span><span class="n">suggestion_maxnum</span><span class="p">]</span>
@@ -216,7 +215,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">topic</span><span class="p">,</span> <span class="o">*</span><span class="n">subtopics</span> <span class="o">=</span> <span class="n">_RE_HELP_SUBTOPICS_START</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">structure</span> <span class="o">=</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">topic</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)}</span>
+    <span class="n">structure</span> <span class="o">=</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">topic</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)}</span>
 
     <span class="k">if</span> <span class="n">subtopics</span><span class="p">:</span>
         <span class="n">subtopics</span> <span class="o">=</span> <span class="n">subtopics</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -234,12 +233,13 @@
         <span class="k">if</span> <span class="n">subtopic_match</span><span class="p">:</span>
             <span class="c1"># a new sub(-sub..) category starts.</span>
             <span class="n">mdict</span> <span class="o">=</span> <span class="n">subtopic_match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
-            <span class="n">subtopic</span> <span class="o">=</span> <span class="n">mdict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-            <span class="n">new_nesting</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mdict</span><span class="p">[</span><span class="s1">&#39;nesting&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">subtopic</span> <span class="o">=</span> <span class="n">mdict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">new_nesting</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mdict</span><span class="p">[</span><span class="s2">&quot;nesting&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span>
 
             <span class="k">if</span> <span class="n">new_nesting</span> <span class="o">&gt;</span> <span class="n">MAX_SUBTOPIC_NESTING</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Can have max </span><span class="si">{</span><span class="n">MAX_SUBTOPIC_NESTING</span><span class="si">}</span><span class="s2"> levels of nested help subtopics.&quot;</span><span class="p">)</span>
+                    <span class="sa">f</span><span class="s2">&quot;Can have max </span><span class="si">{</span><span class="n">MAX_SUBTOPIC_NESTING</span><span class="si">}</span><span class="s2"> levels of nested help subtopics.&quot;</span>
+                <span class="p">)</span>
 
             <span class="n">nestdiff</span> <span class="o">=</span> <span class="n">new_nesting</span> <span class="o">-</span> <span class="n">current_nesting</span>
             <span class="k">if</span> <span class="n">nestdiff</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -267,9 +267,7 @@
                     <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dct</span><span class="p">:</span>
                         <span class="n">dct</span> <span class="o">=</span> <span class="n">dct</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">dct</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-                            <span class="kc">None</span><span class="p">:</span> <span class="n">part</span>
-                        <span class="p">}</span>
+                        <span class="n">dct</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">part</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">structure</span></div>
 </pre></div>
 
@@ -305,7 +303,6 @@
 <h3>Versions</h3>
 <ul>
   <li><a href="utils.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>

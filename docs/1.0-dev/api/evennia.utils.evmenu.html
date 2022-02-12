@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="evennia.utils.evmore" href="evennia.utils.evmore.html" />
+    <link rel="prev" title="evennia.utils.evform" href="evennia.utils.evform.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,7 +29,17 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.evmore.html" title="evennia.utils.evmore"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.evform.html" title="evennia.utils.evform"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.utils.html" accesskey="U">evennia.utils</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.utils.evmenu</a></li> 
       </ul>
         <div class="develop">develop branch</div>
@@ -235,7 +247,7 @@ Text for Node1. Enter a message!
 
 ## options
 
-    # Starting the option-line with &gt;
+    # Beginner-Tutorial the option-line with &gt;
     # allows to perform different actions depending on
     # what is inserted.
 
@@ -362,7 +374,7 @@ commands the caller can use.</p>
 
 <dl class="py attribute">
 <dt id="evennia.utils.evmenu.CmdEvMenuNode.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '__nomatch_command', 'category': 'menu', 'key': '__noinput_command', 'tags': '', 'text': '\n    Menu options.\n    '}</em><a class="headerlink" href="#evennia.utils.evmenu.CmdEvMenuNode.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '__nomatch_command', 'category': 'menu', 'key': '__noinput_command', 'no_prefix': ' __nomatch_command', 'tags': '', 'text': '\n    Menu options.\n    '}</em><a class="headerlink" href="#evennia.utils.evmenu.CmdEvMenuNode.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -761,29 +773,33 @@ given, the decorated node must itself provide a way to continue from the node!</
 </dl>
 <p class="rubric">Example</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">select</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="n">selection</span><span class="p">,</span> <span class="n">available_choices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">    Args:</span>
-<span class="s1">        caller (Object or Account): User of the menu.</span>
-<span class="s1">        selection (str): What caller chose in the menu</span>
-<span class="s1">        available_choices (list): The keys of elements available on the *current listing</span>
-<span class="s1">            page*.</span>
-<span class="s1">        **kwargs: Kwargs passed on from the node.</span>
-<span class="s1">    Returns:</span>
-<span class="s1">        tuple, str or None: A tuple (nextnodename, **kwargs) or just nextnodename.  Return</span>
-<span class="s1">            **None** to go back to the listnode.</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This will be called by all auto-generated options except any &#39;extra_options&#39;</span>
+<span class="sd">    you return from the node (those you need to handle normally).</span>
 
-<span class="s1">    # (do something with **selection** here)</span>
+<span class="sd">    Args:</span>
+<span class="sd">        caller (Object or Account): User of the menu.</span>
+<span class="sd">        selection (str): What caller chose in the menu</span>
+<span class="sd">        available_choices (list): The keys of elements available on the *current listing</span>
+<span class="sd">            page*.</span>
+<span class="sd">        **kwargs: Kwargs passed on from the node.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple, str or None: A tuple (nextnodename, **kwargs) or just nextnodename.  Return</span>
+<span class="sd">            **None** to go back to the listnode.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
 
-<span class="s1">    return &quot;nextnode&quot;, **kwargs</span>
+    <span class="c1"># (do something with **selection** here)</span>
 
-<span class="s1">@list_node([&#39;foo&#39;, &#39;bar&#39;], select)</span>
-<span class="s1">def node_index(caller):</span>
-<span class="s1">    text = &quot;describing the list&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;nextnode&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
 
-<span class="s1">    # optional extra options in addition to the list-options</span>
-<span class="s1">    extra_options = []</span>
+<span class="nd">@list_node</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">],</span> <span class="n">select</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">node_index</span><span class="p">(</span><span class="n">caller</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;describing the list&quot;</span>
 
-<span class="s1">    return text, extra_options</span>
+    <span class="c1"># optional extra options in addition to the list-options</span>
+    <span class="n">extra_options</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">return</span> <span class="n">text</span><span class="p">,</span> <span class="n">extra_options</span>
 </pre></div>
 </div>
 <p class="rubric">Notes</p>
@@ -826,7 +842,7 @@ on the current node page.</p>
 
 <dl class="py attribute">
 <dt id="evennia.utils.evmenu.CmdGetInput.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '__noinput_command', 'category': 'general', 'key': '__nomatch_command', 'tags': '', 'text': '\n    Enter your data and press return.\n    '}</em><a class="headerlink" href="#evennia.utils.evmenu.CmdGetInput.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '__noinput_command', 'category': 'general', 'key': '__nomatch_command', 'no_prefix': ' __noinput_command', 'tags': '', 'text': '\n    Enter your data and press return.\n    '}</em><a class="headerlink" href="#evennia.utils.evmenu.CmdGetInput.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -941,7 +957,7 @@ single question.</p>
 
 <dl class="py attribute">
 <dt id="evennia.utils.evmenu.CmdYesNoQuestion.aliases">
-<code class="sig-name descname">aliases</code><em class="property"> = ['no', '__nomatch_command', 'a', 'abort', 'yes', 'n', 'y']</em><a class="headerlink" href="#evennia.utils.evmenu.CmdYesNoQuestion.aliases" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">aliases</code><em class="property"> = ['abort', 'yes', '__nomatch_command', 'n', 'no', 'a', 'y']</em><a class="headerlink" href="#evennia.utils.evmenu.CmdYesNoQuestion.aliases" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -967,7 +983,7 @@ single question.</p>
 
 <dl class="py attribute">
 <dt id="evennia.utils.evmenu.CmdYesNoQuestion.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': 'no __nomatch_command a abort yes n y', 'category': 'general', 'key': '__noinput_command', 'tags': '', 'text': '\n    Handle a prompt for yes or no. Press [return] for the default choice.\n\n    '}</em><a class="headerlink" href="#evennia.utils.evmenu.CmdYesNoQuestion.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': 'abort yes __nomatch_command n no a y', 'category': 'general', 'key': '__noinput_command', 'no_prefix': ' abort yes __nomatch_command n no a y', 'tags': '', 'text': '\n    Handle a prompt for yes or no. Press [return] for the default choice.\n\n    '}</em><a class="headerlink" href="#evennia.utils.evmenu.CmdYesNoQuestion.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1146,10 +1162,16 @@ Must be on the form <strong>callable(caller, raw_string, **kwargs)</strong>.</p>
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.utils.evform.html"
+                        title="previous chapter">evennia.utils.evform</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.utils.evmore.html"
+                        title="next chapter">evennia.utils.evmore</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.utils.evmenu.rst.txt"
+      <li><a href="../_sources/api/evennia.utils.evmenu.md.txt"
             rel="nofollow">Show Page Source</a></li>
     </ul>
    </div><h3>Links</h3>
@@ -1166,7 +1188,6 @@ Must be on the form <strong>callable(caller, raw_string, **kwargs)</strong>.</p>
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.utils.evmenu.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/api/evennia.utils.evmenu.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -1182,7 +1203,17 @@ Must be on the form <strong>callable(caller, raw_string, **kwargs)</strong>.</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.evmore.html" title="evennia.utils.evmore"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.evform.html" title="evennia.utils.evform"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.utils.html" >evennia.utils</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.utils.evmenu</a></li> 
       </ul>
         <div class="develop">develop branch</div>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Setting up PyCharm &#8212; Evennia 1.0-dev documentation</title>
+    <title>Setting up PyCharm with Evennia &#8212; Evennia 1.0-dev documentation</title>
     <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contribs" href="../Contribs/Contribs-Overview.html" />
+    <link rel="prev" title="Continuous Integration - TeamCity (linux)" href="Continuous-Integration-TeamCity.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,8 +29,15 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="../Contribs/Contribs-Overview.html" title="Contribs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Continuous-Integration-TeamCity.html" title="Continuous Integration - TeamCity (linux)"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Setting up PyCharm</a></li> 
+          <li class="nav-item nav-item-1"><a href="Coding-Overview.html" accesskey="U">Coding and development help</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Setting up PyCharm with Evennia</a></li> 
       </ul>
         <div class="develop">develop branch</div>
     </div>  
@@ -38,11 +47,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="setting-up-pycharm">
-<h1>Setting up PyCharm<a class="headerlink" href="#setting-up-pycharm" title="Permalink to this headline">¶</a></h1>
-</section>
-<section id="directions-for-setting-up-pycharm-with-evennia">
-<h1>Directions for setting up PyCharm with Evennia<a class="headerlink" href="#directions-for-setting-up-pycharm-with-evennia" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="setting-up-pycharm-with-evennia">
+<h1>Setting up PyCharm with Evennia<a class="headerlink" href="#setting-up-pycharm-with-evennia" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a> is a Python developer’s IDE from Jetbrains available
 for Windows, Mac and Linux. It is a commercial product but offer free trials, a scaled-down
 community edition and also generous licenses for OSS projects like Evennia.</p>
@@ -86,7 +92,7 @@ or runner for some reason (or just learn how they work!), see Run Configuration 
 you restart you have to detach from the old and then reattach to the new process that was created.</p>
 </div></blockquote>
 <blockquote>
-<div><p>To make the process less tedious you can apply a filter in settings to show only the server.py
+<div><p>To make the process less tedious you can apply a filter in settings to show only the <a class="reference external" href="http://server.py">server.py</a>
 process in the list. To do that navigate to: <code class="docutils literal notranslate"><span class="pre">Settings/Preferences</span> <span class="pre">|</span> <span class="pre">Build,</span> <span class="pre">Execution,</span> <span class="pre">Deployment</span> <span class="pre">|</span> <span class="pre">Python</span> <span class="pre">Debugger</span></code> and then in <code class="docutils literal notranslate"><span class="pre">Attach</span> <span class="pre">to</span> <span class="pre">process</span></code> field put in: <code class="docutils literal notranslate"><span class="pre">twistd.exe&quot;</span> <span class="pre">--nodaemon</span></code>. This is an
 example for windows, I don’t have a working mac/linux box.
 <img alt="Example process filter configuration" src="https://i.imgur.com/vkSheR8.png" /></p>
@@ -180,8 +186,7 @@ still running in interactive mode.</p>
 <script>$('#searchbox').show(0);</script>
 <p><h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Setting up PyCharm</a></li>
-<li><a class="reference internal" href="#directions-for-setting-up-pycharm-with-evennia">Directions for setting up PyCharm with Evennia</a><ul>
+<li><a class="reference internal" href="#">Setting up PyCharm with Evennia</a><ul>
 <li><a class="reference internal" href="#setting-up-the-project-interpreter">Setting up the project interpreter</a></li>
 <li><a class="reference internal" href="#attaching-pycharm-debugger-to-evennia">Attaching PyCharm debugger to Evennia</a></li>
 <li><a class="reference internal" href="#setting-up-an-evennia-run-configuration">Setting up an Evennia run configuration</a></li>
@@ -190,6 +195,12 @@ still running in interactive mode.</p>
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Continuous-Integration-TeamCity.html"
+                        title="previous chapter">Continuous Integration - TeamCity (linux)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../Contribs/Contribs-Overview.html"
+                        title="next chapter">Contribs</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
@@ -210,7 +221,6 @@ still running in interactive mode.</p>
 <h3>Versions</h3>
 <ul>
   <li><a href="Setting-up-PyCharm.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -226,8 +236,15 @@ still running in interactive mode.</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="../Contribs/Contribs-Overview.html" title="Contribs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Continuous-Integration-TeamCity.html" title="Continuous Integration - TeamCity (linux)"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Setting up PyCharm</a></li> 
+          <li class="nav-item nav-item-1"><a href="Coding-Overview.html" >Coding and development help</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Setting up PyCharm with Evennia</a></li> 
       </ul>
         <div class="develop">develop branch</div>
     </div>

@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="evennia.utils.logger" href="evennia.utils.logger.html" />
+    <link rel="prev" title="evennia.utils.funcparser" href="evennia.utils.funcparser.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,7 +29,17 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.logger.html" title="evennia.utils.logger"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.funcparser.html" title="evennia.utils.funcparser"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.utils.html" accesskey="U">evennia.utils</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.utils.gametime</a></li> 
       </ul>
         <div class="develop">develop branch</div>
@@ -220,12 +232,14 @@ to store in Attributes on the generated scheduling Script.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><em>script (Script)</em> – The created Script handling the sceduling.</p>
+<dd class="field-even"><p><em>Script</em> – The created Script handling the scheduling.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>schedule(func, min=5, sec=0) # Will call 5 minutes past the next (in-game) hour.
-schedule(func, hour=2, min=30, sec=0) # Will call the next (in-game) day at 02:30.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">schedule</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sec</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Will call 5 minutes past the next (in-game) hour.</span>
+<span class="n">schedule</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">sec</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Will call the next (in-game) day at 02:30.</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -257,10 +271,16 @@ the epoch set by <strong>settings.TIME_GAME_EPOCH</strong> will still apply.</p>
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.utils.funcparser.html"
+                        title="previous chapter">evennia.utils.funcparser</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.utils.logger.html"
+                        title="next chapter">evennia.utils.logger</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.utils.gametime.rst.txt"
+      <li><a href="../_sources/api/evennia.utils.gametime.md.txt"
             rel="nofollow">Show Page Source</a></li>
     </ul>
    </div><h3>Links</h3>
@@ -277,7 +297,6 @@ the epoch set by <strong>settings.TIME_GAME_EPOCH</strong> will still apply.</p>
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.utils.gametime.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/api/evennia.utils.gametime.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -293,7 +312,17 @@ the epoch set by <strong>settings.TIME_GAME_EPOCH</strong> will still apply.</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.logger.html" title="evennia.utils.logger"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.funcparser.html" title="evennia.utils.funcparser"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.utils.html" >evennia.utils</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.utils.gametime</a></li> 
       </ul>
         <div class="develop">develop branch</div>

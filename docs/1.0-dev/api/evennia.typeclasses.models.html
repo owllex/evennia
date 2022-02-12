@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="evennia.typeclasses.tags" href="evennia.typeclasses.tags.html" />
+    <link rel="prev" title="evennia.typeclasses.managers" href="evennia.typeclasses.managers.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,7 +29,17 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.typeclasses.tags.html" title="evennia.typeclasses.tags"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="evennia.typeclasses.managers.html" title="evennia.typeclasses.managers"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.typeclasses.html" accesskey="U">evennia.typeclasses</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.typeclasses.models</a></li> 
       </ul>
         <div class="develop">develop branch</div>
@@ -284,6 +296,13 @@ update here (unlikely, but marking just in case).</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="evennia.typeclasses.models.TypedObject.at_init">
+<code class="sig-name descname">at_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/models.html#TypedObject.at_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.models.TypedObject.at_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when this object is loaded into cache. This is  more reliable
+than to override <strong>__init__</strong>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="evennia.typeclasses.models.TypedObject.search">
 <em class="property">classmethod </em><code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/models.html#TypedObject.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.models.TypedObject.search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Overridden by class children. This implements a common API.</p>
@@ -356,8 +375,8 @@ one. If you supply a list, only those named attributes
 will be cleared.</p></li>
 <li><p><strong>run_start_hooks</strong> (<em>str</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – This is either None,
 to not run any hooks, “all” to run all hooks defined by
-at_first_start, or a string giving the name of the hook
-to run (for example ‘at_object_creation’). This will
+at_first_start, or a string with space-separated hook-names to run
+(for example ‘at_object_creation’). This will
 always be called without arguments.</p></li>
 <li><p><strong>no_default</strong> (<em>bool</em><em>, </em><em>optiona</em>) – If set, the swapper will not
 allow for swapping to a default typeclass in case the
@@ -748,10 +767,16 @@ developer’s responsibility.</p>
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.typeclasses.managers.html"
+                        title="previous chapter">evennia.typeclasses.managers</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.typeclasses.tags.html"
+                        title="next chapter">evennia.typeclasses.tags</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.typeclasses.models.rst.txt"
+      <li><a href="../_sources/api/evennia.typeclasses.models.md.txt"
             rel="nofollow">Show Page Source</a></li>
     </ul>
    </div><h3>Links</h3>
@@ -768,7 +793,6 @@ developer’s responsibility.</p>
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.typeclasses.models.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/api/evennia.typeclasses.models.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -784,7 +808,17 @@ developer’s responsibility.</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.typeclasses.tags.html" title="evennia.typeclasses.tags"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="evennia.typeclasses.managers.html" title="evennia.typeclasses.managers"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.typeclasses.html" >evennia.typeclasses</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.typeclasses.models</a></li> 
       </ul>
         <div class="develop">develop branch</div>

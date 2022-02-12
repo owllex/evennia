@@ -201,6 +201,120 @@
     <span class="n">value</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">__value_get</span><span class="p">,</span> <span class="n">__value_set</span><span class="p">,</span> <span class="n">__value_del</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="AttributeProperty"><a class="viewcode-back" href="../../../api/evennia.typeclasses.attributes.html#evennia.typeclasses.attributes.AttributeProperty">[docs]</a><span class="k">class</span> <span class="nc">AttributeProperty</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attribute property descriptor. Allows for specifying Attributes as Django-like &#39;fields&#39;</span>
+<span class="sd">    on the class level. Note that while one can set a lock on the Attribute,</span>
+<span class="sd">    there is no way to *check* said lock when accessing via the property - use</span>
+<span class="sd">    the full AttributeHandler if you need to do access checks.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    ::</span>
+
+<span class="sd">        class Character(DefaultCharacter):</span>
+<span class="sd">            foo = AttributeProperty(default=&quot;Bar&quot;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">attrhandler_name</span> <span class="o">=</span> <span class="s2">&quot;attributes&quot;</span>
+
+<div class="viewcode-block" id="AttributeProperty.__init__"><a class="viewcode-back" href="../../../api/evennia.typeclasses.attributes.html#evennia.typeclasses.attributes.AttributeProperty.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strattr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lockstring</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">autocreate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize an Attribute as a property descriptor.</span>
+
+<span class="sd">        Keyword Args:</span>
+<span class="sd">            default (any): A default value if the attr is not set.</span>
+<span class="sd">            category (str): The attribute&#39;s category. If unset, use class default.</span>
+<span class="sd">            strattr (bool): If set, this Attribute *must* be a simple string, and will be</span>
+<span class="sd">                stored more efficiently.</span>
+<span class="sd">            lockstring (str): This is not itself useful with the property, but only if</span>
+<span class="sd">                using the full AttributeHandler.get(accessing_obj=...) to access the</span>
+<span class="sd">                Attribute.</span>
+<span class="sd">            autocreate (bool): If an un-found Attr should lead to auto-creating the</span>
+<span class="sd">                Attribute (with the default value). If `False`, the property will</span>
+<span class="sd">                return the default value until it has been explicitly set. This means</span>
+<span class="sd">                less database accesses, but also means the property will have no</span>
+<span class="sd">                corresponding Attribute if wanting to access it directly via the</span>
+<span class="sd">                AttributeHandler (it will also not show up in `examine`).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_default</span> <span class="o">=</span> <span class="n">default</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_category</span> <span class="o">=</span> <span class="n">category</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_strattr</span> <span class="o">=</span> <span class="n">strattr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lockstring</span> <span class="o">=</span> <span class="n">lockstring</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_autocreate</span> <span class="o">=</span> <span class="n">autocreate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span></div>
+
+    <span class="k">def</span> <span class="nf">__set_name__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when descriptor is first assigned to the class. It is called with</span>
+<span class="sd">        the name of the field.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when the attrkey is retrieved from the instance.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrhandler_name</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">,</span>
+                <span class="n">default</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_default</span><span class="p">,</span>
+                <span class="n">category</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_category</span><span class="p">,</span>
+                <span class="n">strattr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_strattr</span><span class="p">,</span>
+                <span class="n">raise_exception</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_autocreate</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_autocreate</span><span class="p">:</span>
+                <span class="c1"># attribute didn&#39;t exist and autocreate is set</span>
+                <span class="bp">self</span><span class="o">.</span><span class="fm">__set__</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="fm">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when assigning to the property (and when auto-creating an Attribute).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="p">(</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrhandler_name</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">,</span>
+                <span class="n">value</span><span class="p">,</span>
+                <span class="n">category</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_category</span><span class="p">,</span>
+                <span class="n">lockstring</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_lockstring</span><span class="p">,</span>
+                <span class="n">strattr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_strattr</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__delete__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when running `del` on the field. Will remove/clear the Attribute.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attrhandler_name</span><span class="p">)</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_key</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_category</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="NAttributeProperty"><a class="viewcode-back" href="../../../api/evennia.typeclasses.attributes.html#evennia.typeclasses.attributes.NAttributeProperty">[docs]</a><span class="k">class</span> <span class="nc">NAttributeProperty</span><span class="p">(</span><span class="n">AttributeProperty</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    NAttribute property descriptor. Allows for specifying NAttributes as Django-like &#39;fields&#39;</span>
+<span class="sd">    on the class level.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    ::</span>
+
+<span class="sd">        class Character(DefaultCharacter):</span>
+<span class="sd">            foo = NAttributeProperty(default=&quot;Bar&quot;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">attrhandler_name</span> <span class="o">=</span> <span class="s2">&quot;nattributes&quot;</span></div>
+
+
 <div class="viewcode-block" id="Attribute"><a class="viewcode-back" href="../../../api/evennia.typeclasses.attributes.html#evennia.typeclasses.attributes.Attribute">[docs]</a><span class="k">class</span> <span class="nc">Attribute</span><span class="p">(</span><span class="n">IAttribute</span><span class="p">,</span> <span class="n">SharedMemoryModel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This attribute is stored via Django. Most Attributes will be using this class.</span>
@@ -282,7 +396,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">update_fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;db_lock_storage&quot;</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">__lock_storage_del</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">db_lock_storage</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db_lock_storage</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">update_fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;db_lock_storage&quot;</span><span class="p">])</span>
 
     <span class="n">lock_storage</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">__lock_storage_get</span><span class="p">,</span> <span class="n">__lock_storage_set</span><span class="p">,</span> <span class="n">__lock_storage_del</span><span class="p">)</span>
@@ -311,6 +425,7 @@
     <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Deleter. Allows for del attr.value. This removes the entire attribute.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span></div>
+
 
 <span class="c1">#</span>
 <span class="c1"># Handlers making use of the Attribute model</span>
@@ -1022,11 +1137,11 @@
 <span class="sd">            key (str or list, optional): the attribute identifier or</span>
 <span class="sd">                multiple attributes to get. if a list of keys, the</span>
 <span class="sd">                method will return a list.</span>
-<span class="sd">            category (str, optional): the category within which to</span>
-<span class="sd">                retrieve attribute(s).</span>
 <span class="sd">            default (any, optional): The value to return if an</span>
 <span class="sd">                Attribute was not defined. If set, it will be returned in</span>
 <span class="sd">                a one-item list.</span>
+<span class="sd">            category (str, optional): the category within which to</span>
+<span class="sd">                retrieve attribute(s).</span>
 <span class="sd">            return_obj (bool, optional): If set, the return is not the value of the</span>
 <span class="sd">                Attribute but the Attribute object itself.</span>
 <span class="sd">            strattr (bool, optional): Return the `strvalue` field of</span>
@@ -1173,8 +1288,8 @@
 <div class="viewcode-block" id="AttributeHandler.remove"><a class="viewcode-back" href="../../../api/evennia.typeclasses.attributes.html#evennia.typeclasses.attributes.AttributeHandler.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">raise_exception</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">category</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">raise_exception</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">accessing_obj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">default_access</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
@@ -1185,11 +1300,11 @@
 <span class="sd">            key (str or list, optional): An Attribute key to remove or a list of keys. If</span>
 <span class="sd">                multiple keys, they must all be of the same `category`. If None and</span>
 <span class="sd">                category is not given, remove all Attributes.</span>
+<span class="sd">            category (str, optional): The category within which to</span>
+<span class="sd">                remove the Attribute.</span>
 <span class="sd">            raise_exception (bool, optional): If set, not finding the</span>
 <span class="sd">                Attribute to delete will raise an exception instead of</span>
 <span class="sd">                just quietly failing.</span>
-<span class="sd">            category (str, optional): The category within which to</span>
-<span class="sd">                remove the Attribute.</span>
 <span class="sd">            accessing_obj (object, optional): An object to check</span>
 <span class="sd">                against the `attredit` lock. If not given, the check will</span>
 <span class="sd">                be skipped.</span>
@@ -1390,15 +1505,14 @@
         <span class="c1"># groups.  we need to split out any | - separated parts so we can</span>
         <span class="c1"># attach the line-break/ending extras all regexes require.</span>
         <span class="n">pattern_regex_string</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-            <span class="n">or_part</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;(?:[\n\r]*?)\Z&quot;</span>
-            <span class="k">for</span> <span class="n">or_part</span> <span class="ow">in</span> <span class="n">_RE_OR</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">pattern</span><span class="p">))</span>
+            <span class="n">or_part</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;(?:[\n\r]*?)\Z&quot;</span> <span class="k">for</span> <span class="n">or_part</span> <span class="ow">in</span> <span class="n">_RE_OR</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+        <span class="p">)</span>
 
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># Shell pattern syntax - convert $N to argN groups</span>
         <span class="c1"># for the shell pattern we make sure we have matching $N on both sides</span>
         <span class="n">pattern_args</span> <span class="o">=</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">_RE_NICK_RAW_ARG</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">pattern</span><span class="p">)]</span>
-        <span class="n">replacement_args</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">_RE_NICK_RAW_ARG</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">replacement</span><span class="p">)]</span>
+        <span class="n">replacement_args</span> <span class="o">=</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">_RE_NICK_RAW_ARG</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">replacement</span><span class="p">)]</span>
         <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">pattern_args</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="n">replacement_args</span><span class="p">):</span>
             <span class="c1"># We don&#39;t have the same amount of argN/$N tags in input/output.</span>
             <span class="k">raise</span> <span class="n">NickTemplateInvalid</span><span class="p">(</span><span class="s2">&quot;Nicks: Both in/out-templates must contain the same $N tags.&quot;</span><span class="p">)</span>
@@ -1407,7 +1521,8 @@
         <span class="n">pattern_regex_string</span> <span class="o">=</span> <span class="n">fnmatch</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
         <span class="n">pattern_regex_string</span> <span class="o">=</span> <span class="n">_RE_NICK_SPACE</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">s+&quot;</span><span class="p">,</span> <span class="n">pattern_regex_string</span><span class="p">)</span>
         <span class="n">pattern_regex_string</span> <span class="o">=</span> <span class="n">_RE_NICK_ARG</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
-            <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="s2">&quot;(?P&lt;arg</span><span class="si">%s</span><span class="s2">&gt;.+?)&quot;</span> <span class="o">%</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">pattern_regex_string</span><span class="p">)</span>
+            <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="s2">&quot;(?P&lt;arg</span><span class="si">%s</span><span class="s2">&gt;.+?)&quot;</span> <span class="o">%</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">pattern_regex_string</span>
+        <span class="p">)</span>
         <span class="c1"># we must account for a possible line break coming over the wire</span>
         <span class="n">pattern_regex_string</span> <span class="o">=</span> <span class="n">pattern_regex_string</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;(?:[\n\r]*?)\Z&quot;</span>
 
@@ -1434,8 +1549,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">match</span> <span class="o">=</span> <span class="n">template_regex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-        <span class="n">matchdict</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-                     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">matchdict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
         <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">outtemplate</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">matchdict</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">string</span></div>
 
@@ -1538,9 +1654,11 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">nick_regex</span><span class="p">,</span> <span class="n">nick_template</span> <span class="o">=</span> <span class="n">initialize_nick_templates</span><span class="p">(</span>
-            <span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span><span class="p">,</span> <span class="n">pattern_is_regex</span><span class="o">=</span><span class="n">pattern_is_regex</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="p">(</span><span class="n">nick_regex</span><span class="p">,</span> <span class="n">nick_template</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span><span class="p">),</span>
-                    <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+            <span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span><span class="p">,</span> <span class="n">pattern_is_regex</span><span class="o">=</span><span class="n">pattern_is_regex</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">pattern</span><span class="p">,</span> <span class="p">(</span><span class="n">nick_regex</span><span class="p">,</span> <span class="n">nick_template</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">replacement</span><span class="p">),</span> <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="NickHandler.remove"><a class="viewcode-back" href="../../../api/evennia.typeclasses.attributes.html#evennia.typeclasses.attributes.NickHandler.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s2">&quot;inputline&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1640,7 +1758,6 @@
 <h3>Versions</h3>
 <ul>
   <li><a href="attributes.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>

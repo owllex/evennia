@@ -400,8 +400,7 @@
         <span class="k">for</span> <span class="n">port</span> <span class="ow">in</span> <span class="n">SSH_PORTS</span><span class="p">:</span>
             <span class="n">pstring</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ifacestr</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
             <span class="n">factory</span> <span class="o">=</span> <span class="n">ssh</span><span class="o">.</span><span class="n">makeFactory</span><span class="p">(</span>
-                <span class="p">{</span><span class="s2">&quot;protocolFactory&quot;</span><span class="p">:</span> <span class="n">_ssh_protocol</span><span class="p">,</span>
-                 <span class="s2">&quot;protocolArgs&quot;</span><span class="p">:</span> <span class="p">(),</span> <span class="s2">&quot;sessions&quot;</span><span class="p">:</span> <span class="n">PORTAL_SESSIONS</span><span class="p">}</span>
+                <span class="p">{</span><span class="s2">&quot;protocolFactory&quot;</span><span class="p">:</span> <span class="n">_ssh_protocol</span><span class="p">,</span> <span class="s2">&quot;protocolArgs&quot;</span><span class="p">:</span> <span class="p">(),</span> <span class="s2">&quot;sessions&quot;</span><span class="p">:</span> <span class="n">PORTAL_SESSIONS</span><span class="p">}</span>
             <span class="p">)</span>
             <span class="n">factory</span><span class="o">.</span><span class="n">noisy</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="n">ssh_service</span> <span class="o">=</span> <span class="n">internet</span><span class="o">.</span><span class="n">TCPServer</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">factory</span><span class="p">,</span> <span class="n">interface</span><span class="o">=</span><span class="n">interface</span><span class="p">)</span>
@@ -519,7 +518,6 @@
 <h3>Versions</h3>
 <ul>
   <li><a href="portal.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../../../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>

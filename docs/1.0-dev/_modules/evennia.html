@@ -141,6 +141,7 @@
 <span class="n">GLOBAL_SCRIPTS</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">OPTION_CLASSES</span> <span class="o">=</span> <span class="kc">None</span>
 
+
 <span class="k">def</span> <span class="nf">_create_version</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Helper function for building the version string</span>
@@ -404,9 +405,6 @@
     <span class="c1"># delayed starts - important so as to not back-access evennia before it has</span>
     <span class="c1"># finished initializing</span>
     <span class="n">GLOBAL_SCRIPTS</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="kn">from</span> <span class="nn">.prototypes</span> <span class="kn">import</span> <span class="n">prototypes</span>
-    <span class="n">prototypes</span><span class="o">.</span><span class="n">load_module_prototypes</span><span class="p">()</span>
-    <span class="k">del</span> <span class="n">prototypes</span>
 
 
 <div class="viewcode-block" id="set_trace"><a class="viewcode-back" href="../api/evennia.html#evennia.set_trace">[docs]</a><span class="k">def</span> <span class="nf">set_trace</span><span class="p">(</span><span class="n">term_size</span><span class="o">=</span><span class="p">(</span><span class="mi">140</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">debugger</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">):</span>
@@ -508,7 +506,6 @@
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>

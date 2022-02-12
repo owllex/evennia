@@ -1,30 +1,62 @@
 # Core Concepts 
 
-This documentation cover more over-arching concepts of Evennia, often involving many [Core Components](../Components/Components-Overview) acting together.
+This documentation cover more over-arching concepts of Evennia, often involving many [Core Components](../Components/Components-Overview.md) acting together.
 
 ## General concepts
 
-- [Asynchronous processing](./Async-Process)
-- [On Soft-Code](./Soft-Code)
-- [Using MUX as standard for default commands](./Using-MUX-as-a-Standard)
+```{toctree}
+:maxdepth: 2
+
+Async-Process.md
+Soft-Code.md
+Using-MUX-as-a-Standard.md
+Messagepath.md
+OOB.md
+
+```
 
 ## Access 
 
-- [Multisession modes](./Multisession-modes)
-- [Permissions](./Building-Permissions)
-- [Banning](./Banning)
+```{toctree}
+:maxdepth: 2
+
+Multisession-modes.md
+Building-Permissions.md
+Guest-Logins.md
+Banning.md
+
+```
 
 ## Extending the Server 
-- [Custom Protocols](./Custom-Protocols)
-- [Bootstrap](./Bootstrap-&-Evennia)
-- [Creating new models](./New-Models)
+
+```{toctree}
+:maxdepth: 2
+
+Custom-Protocols.md
+Bootstrap-&-Evennia.md
+New-Models.md
+Zones.md
+
+```
 
 ## Text processing
+```{toctree}
+:maxdepth: 2
 
-- [Change the language of the server](./Internationalization)
-- [Server text-encoding](./Text-Encodings)
-- [Text tags](./TextTags)
+Internationalization.md
+Text-Encodings.md
+TextTags.md
+Change-Messages-Per-Receiver.md
+Clickable-Links.md
+Colors.md
+
+```
+
 
 ## Web features
+```{toctree}
+:maxdepth: 2
 
-- [Web features](./Web-Features)
+Web-Features.md
+```
+

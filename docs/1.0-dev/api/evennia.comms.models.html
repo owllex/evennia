@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="evennia.contrib" href="evennia.contrib.html" />
+    <link rel="prev" title="evennia.comms.managers" href="evennia.comms.managers.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,7 +29,17 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.contrib.html" title="evennia.contrib"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="evennia.comms.managers.html" title="evennia.comms.managers"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.comms.html" accesskey="U">evennia.comms</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.comms.models</a></li> 
       </ul>
         <div class="develop">develop branch</div>
@@ -572,6 +584,27 @@ class built by <strong>**create_forward_many_to_many_manager()**</strong> define
 </dd></dl>
 
 <dl class="py attribute">
+<dt id="evennia.comms.models.ChannelDB.db_date_created">
+<code class="sig-name descname">db_date_created</code><a class="headerlink" href="#evennia.comms.models.ChannelDB.db_date_created" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="evennia.comms.models.ChannelDB.db_key">
+<code class="sig-name descname">db_key</code><a class="headerlink" href="#evennia.comms.models.ChannelDB.db_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="evennia.comms.models.ChannelDB.db_lock_storage">
+<code class="sig-name descname">db_lock_storage</code><a class="headerlink" href="#evennia.comms.models.ChannelDB.db_lock_storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt id="evennia.comms.models.ChannelDB.db_tags">
 <code class="sig-name descname">db_tags</code><a class="headerlink" href="#evennia.comms.models.ChannelDB.db_tags" title="Permalink to this definition">¶</a></dt>
 <dd><p>Accessor to the related objects manager on the forward and reverse sides of
@@ -585,6 +618,13 @@ a many-to-many relation.</p>
 instances.</p>
 <p>Most of the implementation is delegated to a dynamically defined manager
 class built by <strong>**create_forward_many_to_many_manager()**</strong> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="evennia.comms.models.ChannelDB.db_typeclass_path">
+<code class="sig-name descname">db_typeclass_path</code><a class="headerlink" href="#evennia.comms.models.ChannelDB.db_typeclass_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -621,6 +661,129 @@ object the first time, the query is executed.</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt id="evennia.comms.models.SubscriptionHandler">
+<em class="property">class </em><code class="sig-prename descclassname">evennia.comms.models.</code><code class="sig-name descname">SubscriptionHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/comms/models.html#SubscriptionHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.comms.models.SubscriptionHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This handler manages subscriptions to the
+channel and hides away which type of entity is
+subscribing (Account or Object)</p>
+<dl class="py method">
+<dt id="evennia.comms.models.SubscriptionHandler.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/comms/models.html#SubscriptionHandler.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.comms.models.SubscriptionHandler.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the handler</p>
+<dl class="simple">
+<dt>Attr:</dt><dd><p>obj (ChannelDB): The channel the handler sits on.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.comms.models.SubscriptionHandler.has">
+<code class="sig-name descname">has</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entity</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/comms/models.html#SubscriptionHandler.has"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.comms.models.SubscriptionHandler.has" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the given entity subscribe to this channel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>entity</strong> (<em>str</em><em>, </em><em>Account</em><em> or </em><em>Object</em>) – The entity to return. If
+a string, it assumed to be the key or the #dbref
+of the entity.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><em>subscriber (Account, Object or None)</em> –</p>
+<dl class="simple">
+<dt>The given</dt><dd><p>subscriber.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.comms.models.SubscriptionHandler.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entity</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/comms/models.html#SubscriptionHandler.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.comms.models.SubscriptionHandler.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subscribe an entity to this channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>entity</strong> (<em>Account</em><em>, </em><em>Object</em><em> or </em><em>list</em>) – The entity or
+list of entities to subscribe to this channel.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<dl class="simple">
+<dt>No access-checking is done here, this must have</dt><dd><p>been done before calling this method. Also
+no hooks will be called.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.comms.models.SubscriptionHandler.remove">
+<code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entity</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/comms/models.html#SubscriptionHandler.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.comms.models.SubscriptionHandler.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a subscriber from the channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>entity</strong> (<em>Account</em><em>, </em><em>Object</em><em> or </em><em>list</em>) – The entity or
+entities to un-subscribe from the channel.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.comms.models.SubscriptionHandler.all">
+<code class="sig-name descname">all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/comms/models.html#SubscriptionHandler.all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.comms.models.SubscriptionHandler.all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all subscriptions to this channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p><em>subscribers (list)</em> –</p>
+<dl class="simple">
+<dt>The subscribers. This</dt><dd><p>may be a mix of Accounts and Objects!</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.comms.models.SubscriptionHandler.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#evennia.comms.models.SubscriptionHandler.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all subscriptions to this channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p><em>subscribers (list)</em> –</p>
+<dl class="simple">
+<dt>The subscribers. This</dt><dd><p>may be a mix of Accounts and Objects!</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.comms.models.SubscriptionHandler.online">
+<code class="sig-name descname">online</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/comms/models.html#SubscriptionHandler.online"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.comms.models.SubscriptionHandler.online" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all online accounts from our cache
+:returns: <em>subscribers (list)</em> –</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Subscribers who are online or</dt><dd><p>are puppeted by an online account.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.comms.models.SubscriptionHandler.clear">
+<code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/comms/models.html#SubscriptionHandler.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.comms.models.SubscriptionHandler.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all subscribers from channel.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -643,10 +806,16 @@ object the first time, the query is executed.</p>
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.comms.managers.html"
+                        title="previous chapter">evennia.comms.managers</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.contrib.html"
+                        title="next chapter">evennia.contrib</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.comms.models.rst.txt"
+      <li><a href="../_sources/api/evennia.comms.models.md.txt"
             rel="nofollow">Show Page Source</a></li>
     </ul>
    </div><h3>Links</h3>
@@ -663,7 +832,6 @@ object the first time, the query is executed.</p>
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.comms.models.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/api/evennia.comms.models.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -679,7 +847,17 @@ object the first time, the query is executed.</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.contrib.html" title="evennia.contrib"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="evennia.comms.managers.html" title="evennia.comms.managers"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.comms.html" >evennia.comms</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.comms.models</a></li> 
       </ul>
         <div class="develop">develop branch</div>

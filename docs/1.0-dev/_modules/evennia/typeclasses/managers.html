@@ -506,10 +506,13 @@
 <span class="sd">            dbref (str or int): The id to search for.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            object (TypedObject): The matched object.</span>
+<span class="sd">            Queryset: Queryset with 0 or 1 match.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">dbref</span><span class="p">)</span></div>
+        <span class="n">dbref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbref</span><span class="p">(</span><span class="n">dbref</span><span class="p">,</span> <span class="n">reqhash</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dbref</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">dbref</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">none</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="TypedObjectManager.get_dbref_range"><a class="viewcode-back" href="../../../api/evennia.typeclasses.managers.html#evennia.typeclasses.managers.TypedObjectManager.get_dbref_range">[docs]</a>    <span class="k">def</span> <span class="nf">get_dbref_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">min_dbref</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_dbref</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -553,7 +556,8 @@
                 <span class="n">typeclass</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="s2">&quot;db_typeclass_path&quot;</span><span class="p">),</span>
                 <span class="c1"># Calculate this class&#39; percentage of total composition</span>
                 <span class="n">percent</span><span class="o">=</span><span class="n">ExpressionWrapper</span><span class="p">(</span>
-                    <span class="p">((</span><span class="n">F</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">),</span> <span class="n">output_field</span><span class="o">=</span><span class="n">FloatField</span><span class="p">(),</span>
+                    <span class="p">((</span><span class="n">F</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">),</span>
+                    <span class="n">output_field</span><span class="o">=</span><span class="n">FloatField</span><span class="p">(),</span>
                 <span class="p">),</span>
             <span class="p">)</span>
             <span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s2">&quot;typeclass&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;percent&quot;</span><span class="p">)</span>
@@ -789,11 +793,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Annotated queryset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="nb">super</span><span class="p">(</span><span class="n">TypeclassManager</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">db_typeclass_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">db_typeclass_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -805,11 +805,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Queryset of values dictionaries, just filtered by typeclass first.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="nb">super</span><span class="p">(</span><span class="n">TypeclassManager</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">db_typeclass_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">db_typeclass_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">values_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -821,11 +817,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Queryset of value_list tuples, just filtered by typeclass first.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="nb">super</span><span class="p">(</span><span class="n">TypeclassManager</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">db_typeclass_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">db_typeclass_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_get_subclasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -930,7 +922,6 @@
 <h3>Versions</h3>
 <ul>
   <li><a href="managers.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>

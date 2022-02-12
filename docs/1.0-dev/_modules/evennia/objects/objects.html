@@ -64,9 +64,15 @@
 <span class="kn">from</span> <span class="nn">evennia.typeclasses.attributes</span> <span class="kn">import</span> <span class="n">ModelAttributeBackend</span><span class="p">,</span> <span class="n">NickHandler</span>
 <span class="kn">from</span> <span class="nn">evennia.typeclasses.models</span> <span class="kn">import</span> <span class="n">TypeclassBase</span>
 <span class="kn">from</span> <span class="nn">evennia.utils</span> <span class="kn">import</span> <span class="n">ansi</span><span class="p">,</span> <span class="n">create</span><span class="p">,</span> <span class="n">funcparser</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">search</span>
-<span class="kn">from</span> <span class="nn">evennia.utils.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">class_from_module</span><span class="p">,</span> <span class="n">is_iter</span><span class="p">,</span> <span class="n">lazy_property</span><span class="p">,</span>
-                                 <span class="n">list_to_string</span><span class="p">,</span> <span class="n">make_iter</span><span class="p">,</span> <span class="n">to_str</span><span class="p">,</span>
-                                 <span class="n">variable_from_module</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">evennia.utils.utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">class_from_module</span><span class="p">,</span>
+    <span class="n">is_iter</span><span class="p">,</span>
+    <span class="n">lazy_property</span><span class="p">,</span>
+    <span class="n">list_to_string</span><span class="p">,</span>
+    <span class="n">make_iter</span><span class="p">,</span>
+    <span class="n">to_str</span><span class="p">,</span>
+    <span class="n">variable_from_module</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">_INFLECT</span> <span class="o">=</span> <span class="n">inflect</span><span class="o">.</span><span class="n">engine</span><span class="p">()</span>
 <span class="n">_MULTISESSION_MODE</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">MULTISESSION_MODE</span>
@@ -80,13 +86,8 @@
 <span class="c1"># the sessid_max is based on the length of the db_sessid csv field (excluding commas)</span>
 <span class="n">_SESSID_MAX</span> <span class="o">=</span> <span class="mi">16</span> <span class="k">if</span> <span class="n">_MULTISESSION_MODE</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="k">else</span> <span class="mi">1</span>
 
-<span class="n">_MSG_CONTENTS_PARSER</span> <span class="o">=</span> <span class="n">funcparser</span><span class="o">.</span><span class="n">FuncParser</span><span class="p">(</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;you&quot;</span><span class="p">:</span> <span class="n">funcparser</span><span class="o">.</span><span class="n">funcparser_callable_you</span><span class="p">,</span>
-        <span class="s2">&quot;You&quot;</span><span class="p">:</span> <span class="n">funcparser</span><span class="o">.</span><span class="n">funcparser_callable_You</span><span class="p">,</span>
-        <span class="s2">&quot;conj&quot;</span><span class="p">:</span> <span class="n">funcparser</span><span class="o">.</span><span class="n">funcparser_callable_conjugate</span>
-    <span class="p">}</span>
-<span class="p">)</span>
+<span class="c1"># init the actor-stance funcparser for msg_contents</span>
+<span class="n">_MSG_CONTENTS_PARSER</span> <span class="o">=</span> <span class="n">funcparser</span><span class="o">.</span><span class="n">FuncParser</span><span class="p">(</span><span class="n">funcparser</span><span class="o">.</span><span class="n">ACTOR_STANCE_CALLABLES</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="ObjectSessionHandler"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.ObjectSessionHandler">[docs]</a><span class="k">class</span> <span class="nc">ObjectSessionHandler</span><span class="p">:</span>
@@ -259,13 +260,13 @@
     <span class="n">objects</span> <span class="o">=</span> <span class="n">ObjectManager</span><span class="p">()</span>
 
     <span class="c1"># populated by `return_apperance`</span>
-    <span class="n">appearance_template</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="si">{header}</span><span class="s1"></span>
-<span class="s1">|c</span><span class="si">{name}</span><span class="s1">|n</span>
-<span class="si">{desc}</span><span class="s1"></span>
-<span class="si">{exits}{characters}{things}</span><span class="s1"></span>
-<span class="si">{footer}</span><span class="s1"></span>
-<span class="s1">    &#39;&#39;&#39;</span>
+    <span class="n">appearance_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="si">{header}</span><span class="s2"></span>
+<span class="s2">|c</span><span class="si">{name}</span><span class="s2">|n</span>
+<span class="si">{desc}</span><span class="s2"></span>
+<span class="si">{exits}{characters}{things}</span><span class="s2"></span>
+<span class="si">{footer}</span><span class="s2"></span>
+<span class="s2">    &quot;&quot;&quot;</span>
 
     <span class="c1"># on-object properties</span>
 
@@ -356,7 +357,7 @@
 
     <span class="c1"># main methods</span>
 
-<div class="viewcode-block" id="DefaultObject.get_display_name"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.get_display_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_display_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">looker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DefaultObject.get_display_name"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.get_display_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_display_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">looker</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Displays the name of the object in a viewer-aware manner.</span>
 
@@ -377,7 +378,7 @@
 <span class="sd">            builders.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">locks</span><span class="o">.</span><span class="n">check_lockstring</span><span class="p">(</span><span class="n">looker</span><span class="p">,</span> <span class="s2">&quot;perm(Builder)&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">looker</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">locks</span><span class="o">.</span><span class="n">check_lockstring</span><span class="p">(</span><span class="n">looker</span><span class="p">,</span> <span class="s2">&quot;perm(Builder)&quot;</span><span class="p">):</span>
             <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">(#</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
 
@@ -445,13 +446,15 @@
 <span class="sd">            searchdata (str or obj): Primary search criterion. Will be matched</span>
 <span class="sd">                against `object.key` (with `object.aliases` second) unless</span>
 <span class="sd">                the keyword attribute_name specifies otherwise.</span>
-<span class="sd">                **Special strings:**</span>
-<span class="sd">                - `#&lt;num&gt;`: search by unique dbref. This is always</span>
-<span class="sd">                   a global search.</span>
+
+<span class="sd">                Special keywords:</span>
+
+<span class="sd">                - `#&lt;num&gt;`: search by unique dbref. This is always a global search.</span>
 <span class="sd">                - `me,self`: self-reference to this object</span>
 <span class="sd">                - `&lt;num&gt;-&lt;string&gt;` - can be used to differentiate</span>
 <span class="sd">                   between multiple same-named matches. The exact form of this input</span>
 <span class="sd">                   is given by `settings.SEARCH_MULTIMATCH_REGEX`.</span>
+
 <span class="sd">            global_search (bool): Search all objects globally. This overrules &#39;location&#39; data.</span>
 <span class="sd">            use_nicks (bool): Use nickname-replace (nicktype &quot;object&quot;) on `searchdata`.</span>
 <span class="sd">            typeclass (str or Typeclass, or list of either): Limit search only</span>
@@ -499,11 +502,9 @@
 <span class="sd">                error depending on the value of `quiet`.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Object: If finding a match an `quiet=False`</span>
-<span class="sd">            None: If not finding a unique match and `quiet=False`.</span>
-<span class="sd">            list: With 0, 1 or more matching objects if `quiet=True`</span>
-<span class="sd">            list: With 2 or more matching objects if `stacked` is a positive integer and</span>
-<span class="sd">                the matched stack has only object-copies.</span>
+<span class="sd">            Object, None or list: Will return an `Object` or `None` if `quiet=False`. Will return</span>
+<span class="sd">            a `list` with 0, 1 or more matches if `quiet=True`. If `stacked` is a positive integer,</span>
+<span class="sd">            this list may contain all stacked identical matches.</span>
 
 <span class="sd">        Notes:</span>
 <span class="sd">            To find Accounts, use eg. `evennia.account_search`. If</span>
@@ -579,12 +580,14 @@
                 <span class="c1"># we re-run exact match agains one of the matches to</span>
                 <span class="c1"># make sure we were not catching partial matches not belonging</span>
                 <span class="c1"># to the stack</span>
-                <span class="n">nstack</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ObjectDB</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_objs_with_key_or_alias</span><span class="p">(</span>
-                    <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
-                    <span class="n">exact</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                    <span class="n">candidates</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">),</span>
-                    <span class="n">typeclasses</span><span class="o">=</span><span class="p">[</span><span class="n">typeclass</span><span class="p">]</span> <span class="k">if</span> <span class="n">typeclass</span> <span class="k">else</span> <span class="kc">None</span>
-                <span class="p">))</span>
+                <span class="n">nstack</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span>
+                    <span class="n">ObjectDB</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_objs_with_key_or_alias</span><span class="p">(</span>
+                        <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
+                        <span class="n">exact</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">candidates</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">),</span>
+                        <span class="n">typeclasses</span><span class="o">=</span><span class="p">[</span><span class="n">typeclass</span><span class="p">]</span> <span class="k">if</span> <span class="n">typeclass</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
             <span class="k">if</span> <span class="n">nstack</span> <span class="o">==</span> <span class="n">nresults</span><span class="p">:</span>
                 <span class="c1"># a valid stack, return multiple results</span>
                 <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">results</span><span class="p">)[:</span><span class="n">stacked</span><span class="p">]</span>
@@ -677,9 +680,7 @@
         <span class="n">raw_string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nicks</span><span class="o">.</span><span class="n">nickreplace</span><span class="p">(</span>
             <span class="n">raw_string</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;inputline&quot;</span><span class="p">,</span> <span class="s2">&quot;channel&quot;</span><span class="p">),</span> <span class="n">include_account</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">_CMDHANDLER</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">raw_string</span><span class="p">,</span> <span class="n">callertype</span><span class="o">=</span><span class="s2">&quot;object&quot;</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">_CMDHANDLER</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_string</span><span class="p">,</span> <span class="n">callertype</span><span class="o">=</span><span class="s2">&quot;object&quot;</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DefaultObject.msg"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.msg">[docs]</a>    <span class="k">def</span> <span class="nf">msg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">from_obj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -771,8 +772,9 @@
 <span class="sd">                on the valid OOB outmessage form `(message, {kwargs})`,</span>
 <span class="sd">                where kwargs are optional data passed to the `text`</span>
 <span class="sd">                outputfunc. The message will be parsed for `{key}` formatting and</span>
-<span class="sd">                `$You/$you()/$You(key)` and `$conj(verb)` inline function callables.</span>
-<span class="sd">                The `key` is taken from the `mapping` kwarg {&quot;key&quot;: object, ...}`.</span>
+<span class="sd">                `$You/$you()/$You()`, `$obj(name)`, `$conj(verb)` and `$pron(pronoun, option)`</span>
+<span class="sd">                inline function callables.</span>
+<span class="sd">                The `name` is taken from the `mapping` kwarg {&quot;name&quot;: object, ...}`.</span>
 <span class="sd">                The `mapping[key].get_display_name(looker=recipient)` will be called</span>
 <span class="sd">                for that key for every recipient of the string.</span>
 <span class="sd">            exclude (list, optional): A list of objects not to send to.</span>
@@ -836,7 +838,7 @@
         <span class="n">mapping</span> <span class="o">=</span> <span class="n">mapping</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="n">you</span> <span class="o">=</span> <span class="n">from_obj</span> <span class="ow">or</span> <span class="bp">self</span>
 
-        <span class="k">if</span> <span class="s1">&#39;you&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mapping</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;you&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mapping</span><span class="p">:</span>
             <span class="n">mapping</span><span class="p">[</span><span class="n">you</span><span class="p">]</span> <span class="o">=</span> <span class="n">you</span>
 
         <span class="n">contents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span>
@@ -848,14 +850,23 @@
 
             <span class="c1"># actor-stance replacements</span>
             <span class="n">inmessage</span> <span class="o">=</span> <span class="n">_MSG_CONTENTS_PARSER</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
-                <span class="n">inmessage</span><span class="p">,</span> <span class="n">raise_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_string</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                <span class="n">caller</span><span class="o">=</span><span class="n">you</span><span class="p">,</span> <span class="n">receiver</span><span class="o">=</span><span class="n">receiver</span><span class="p">,</span> <span class="n">mapping</span><span class="o">=</span><span class="n">mapping</span><span class="p">)</span>
+                <span class="n">inmessage</span><span class="p">,</span>
+                <span class="n">raise_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">return_string</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">caller</span><span class="o">=</span><span class="n">you</span><span class="p">,</span>
+                <span class="n">receiver</span><span class="o">=</span><span class="n">receiver</span><span class="p">,</span>
+                <span class="n">mapping</span><span class="o">=</span><span class="n">mapping</span><span class="p">,</span>
+            <span class="p">)</span>
 
             <span class="c1"># director-stance replacements</span>
             <span class="n">outmessage</span> <span class="o">=</span> <span class="n">inmessage</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="o">**</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">looker</span><span class="o">=</span><span class="n">receiver</span><span class="p">)</span>
-                   <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;get_display_name&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-                   <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">mapping</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+                <span class="o">**</span><span class="p">{</span>
+                    <span class="n">key</span><span class="p">:</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">looker</span><span class="o">=</span><span class="n">receiver</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;get_display_name&quot;</span><span class="p">)</span>
+                    <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">mapping</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
 
             <span class="n">receiver</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="p">(</span><span class="n">outmessage</span><span class="p">,</span> <span class="n">outkwargs</span><span class="p">),</span> <span class="n">from_obj</span><span class="o">=</span><span class="n">from_obj</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
@@ -886,7 +897,7 @@
 <span class="sd">                 moving to a None location. If you want to run hooks, run them manually</span>
 <span class="sd">                 (and make sure they can manage None locations).</span>
 <span class="sd">            move_hooks (bool): If False, turn off the calling of move-related hooks</span>
-<span class="sd">                (at_before/after_move etc) with quiet=True, this is as quiet a move</span>
+<span class="sd">                (at_pre/post_move etc) with quiet=True, this is as quiet a move</span>
 <span class="sd">                as can be done.</span>
 
 <span class="sd">        Keyword Args:</span>
@@ -903,15 +914,16 @@
 
 <span class="sd">            The `DefaultObject` hooks called (if `move_hooks=True`) are, in order:</span>
 
-<span class="sd">             1. `self.at_before_move(destination)` (if this returns False, move is aborted)</span>
+<span class="sd">             1. `self.at_pre_move(destination)` (if this returns False, move is aborted)</span>
 <span class="sd">             2. `source_location.at_object_leave(self, destination)`</span>
 <span class="sd">             3. `self.announce_move_from(destination)`</span>
 <span class="sd">             4. (move happens here)</span>
 <span class="sd">             5. `self.announce_move_to(source_location)`</span>
 <span class="sd">             6. `destination.at_object_receive(self, source_location)`</span>
-<span class="sd">             7. `self.at_after_move(source_location)`</span>
+<span class="sd">             7. `self.at_post_move(source_location)`</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">def</span> <span class="nf">logerr</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">err</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;Simple log helper method&quot;&quot;&quot;</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">log_trace</span><span class="p">()</span>
@@ -936,10 +948,10 @@
         <span class="c1"># Before the move, call eventual pre-commands.</span>
         <span class="k">if</span> <span class="n">move_hooks</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">at_before_move</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">at_pre_move</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
                     <span class="k">return</span> <span class="kc">False</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-                <span class="n">logerr</span><span class="p">(</span><span class="n">errtxt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="o">=</span><span class="s2">&quot;at_before_move()&quot;</span><span class="p">),</span> <span class="n">err</span><span class="p">)</span>
+                <span class="n">logerr</span><span class="p">(</span><span class="n">errtxt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="o">=</span><span class="s2">&quot;at_pre_move()&quot;</span><span class="p">),</span> <span class="n">err</span><span class="p">)</span>
                 <span class="k">return</span> <span class="kc">False</span>
 
         <span class="c1"># Save the old location</span>
@@ -989,9 +1001,9 @@
         <span class="c1"># (usually calling &#39;look&#39;)</span>
         <span class="k">if</span> <span class="n">move_hooks</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">at_after_move</span><span class="p">(</span><span class="n">source_location</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">at_post_move</span><span class="p">(</span><span class="n">source_location</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-                <span class="n">logerr</span><span class="p">(</span><span class="n">errtxt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="o">=</span><span class="s2">&quot;at_after_move&quot;</span><span class="p">),</span> <span class="n">err</span><span class="p">)</span>
+                <span class="n">logerr</span><span class="p">(</span><span class="n">errtxt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="o">=</span><span class="s2">&quot;at_post_move&quot;</span><span class="p">),</span> <span class="n">err</span><span class="p">)</span>
                 <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
@@ -1035,8 +1047,10 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="n">home</span><span class="p">:</span>
                 <span class="n">obj</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="n">obj</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Something went wrong! You are dumped into nowhere. Contact an admin.&quot;</span><span class="p">))</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">log_err</span><span class="p">(</span><span class="s2">&quot;Missing default home - &#39;</span><span class="si">{name}</span><span class="s2">(#</span><span class="si">{dbid}</span><span class="s2">)&#39; now &quot;</span>
-                               <span class="s2">&quot;has a null location.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dbid</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">dbid</span><span class="p">))</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">log_err</span><span class="p">(</span>
+                    <span class="s2">&quot;Missing default home - &#39;</span><span class="si">{name}</span><span class="s2">(#</span><span class="si">{dbid}</span><span class="s2">)&#39; now &quot;</span>
+                    <span class="s2">&quot;has a null location.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dbid</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">dbid</span><span class="p">)</span>
+                <span class="p">)</span>
                 <span class="k">return</span>
 
             <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">has_account</span><span class="p">:</span>
@@ -1290,7 +1304,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">aliases</span><span class="o">.</span><span class="n">batch_add</span><span class="p">(</span><span class="o">*</span><span class="n">cdict</span><span class="p">[</span><span class="s2">&quot;aliases&quot;</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">cdict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">):</span>
                 <span class="n">cdict</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">at_object_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">at_after_move</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">at_post_move</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">cdict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tags&quot;</span><span class="p">):</span>
                 <span class="c1"># this should be a list of tags, tuples (key, category) or (key, category, data)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">batch_add</span><span class="p">(</span><span class="o">*</span><span class="n">cdict</span><span class="p">[</span><span class="s2">&quot;tags&quot;</span><span class="p">])</span>
@@ -1498,7 +1512,7 @@
 
     <span class="c1"># hooks called when moving the object</span>
 
-<div class="viewcode-block" id="DefaultObject.at_before_move"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_before_move">[docs]</a>    <span class="k">def</span> <span class="nf">at_before_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DefaultObject.at_pre_move"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_pre_move">[docs]</a>    <span class="k">def</span> <span class="nf">at_pre_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called just before starting to move this object to</span>
 <span class="sd">        destination.</span>
@@ -1518,6 +1532,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># return has_perm(self, destination, &quot;can_move&quot;)</span>
         <span class="k">return</span> <span class="kc">True</span></div>
+
+    <span class="c1"># deprecated alias</span>
+    <span class="n">at_before_move</span> <span class="o">=</span> <span class="n">at_pre_move</span>
 
 <div class="viewcode-block" id="DefaultObject.announce_move_from"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.announce_move_from">[docs]</a>    <span class="k">def</span> <span class="nf">announce_move_from</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mapping</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1593,7 +1610,8 @@
             <span class="c1"># This was created from nowhere and added to an account&#39;s</span>
             <span class="c1"># inventory; it&#39;s probably the result of a create command.</span>
             <span class="n">string</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s2">&quot;You now have </span><span class="si">{name}</span><span class="s2"> in your possession.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">))</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">)</span>
+            <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
             <span class="k">return</span>
 
@@ -1629,7 +1647,7 @@
 
         <span class="n">destination</span><span class="o">.</span><span class="n">msg_contents</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="p">,),</span> <span class="n">from_obj</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapping</span><span class="o">=</span><span class="n">mapping</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DefaultObject.at_after_move"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_after_move">[docs]</a>    <span class="k">def</span> <span class="nf">at_after_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_location</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DefaultObject.at_post_move"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_post_move">[docs]</a>    <span class="k">def</span> <span class="nf">at_post_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_location</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called after move has completed, regardless of quiet mode or</span>
 <span class="sd">        not.  Allows changes to the object due to the location it is</span>
@@ -1642,6 +1660,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
+
+    <span class="c1"># deprecated</span>
+    <span class="n">at_after_move</span> <span class="o">=</span> <span class="n">at_post_move</span>
 
 <div class="viewcode-block" id="DefaultObject.at_object_leave"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_object_leave">[docs]</a>    <span class="k">def</span> <span class="nf">at_object_leave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">moved_obj</span><span class="p">,</span> <span class="n">target_location</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1676,7 +1697,7 @@
 <span class="sd">        normally by calling</span>
 <span class="sd">        `traversing_object.move_to(target_location)`. It is normally</span>
 <span class="sd">        only implemented by Exit objects. If it returns False (usually</span>
-<span class="sd">        because `move_to` returned False), `at_after_traverse` below</span>
+<span class="sd">        because `move_to` returned False), `at_post_traverse` below</span>
 <span class="sd">        should not be called and instead `at_failed_traverse` should be</span>
 <span class="sd">        called.</span>
 
@@ -1689,7 +1710,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="DefaultObject.at_after_traverse"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_after_traverse">[docs]</a>    <span class="k">def</span> <span class="nf">at_after_traverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">traversing_object</span><span class="p">,</span> <span class="n">source_location</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DefaultObject.at_post_traverse"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_post_traverse">[docs]</a>    <span class="k">def</span> <span class="nf">at_post_traverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">traversing_object</span><span class="p">,</span> <span class="n">source_location</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called just after an object successfully used this object to</span>
 <span class="sd">        traverse to another object (i.e. this object is a type of</span>
@@ -1705,6 +1726,9 @@
 <span class="sd">            The target location should normally be available as `self.destination`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
+
+    <span class="c1"># deprecated</span>
+    <span class="n">at_after_traverse</span> <span class="o">=</span> <span class="n">at_post_traverse</span>
 
 <div class="viewcode-block" id="DefaultObject.at_failed_traverse"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_failed_traverse">[docs]</a>    <span class="k">def</span> <span class="nf">at_failed_traverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">traversing_object</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1791,13 +1815,14 @@
 <span class="sd">                lists are the actual objects.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">def</span> <span class="nf">filter_visible</span><span class="p">(</span><span class="n">obj_list</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">obj</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">obj_list</span> <span class="k">if</span> <span class="n">obj</span> <span class="o">!=</span> <span class="n">looker</span> <span class="ow">and</span> <span class="n">obj</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">looker</span><span class="p">,</span> <span class="s2">&quot;view&quot;</span><span class="p">)]</span>
 
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="n">filter_visible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents_get</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;exit&quot;</span><span class="p">)),</span>
             <span class="s2">&quot;characters&quot;</span><span class="p">:</span> <span class="n">filter_visible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents_get</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;character&quot;</span><span class="p">)),</span>
-            <span class="s2">&quot;things&quot;</span><span class="p">:</span> <span class="n">filter_visible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents_get</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;object&quot;</span><span class="p">))</span>
+            <span class="s2">&quot;things&quot;</span><span class="p">:</span> <span class="n">filter_visible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents_get</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;object&quot;</span><span class="p">)),</span>
         <span class="p">}</span></div>
 
 <div class="viewcode-block" id="DefaultObject.get_content_names"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.get_content_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_content_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">looker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1826,13 +1851,14 @@
         <span class="c1"># a mapping {&#39;exits&#39;: [...], &#39;characters&#39;: [...], &#39;things&#39;: [...]}</span>
         <span class="n">contents_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_visible_contents</span><span class="p">(</span><span class="n">looker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="n">character_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">char</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">looker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-                           <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">contents_map</span><span class="p">[</span><span class="s1">&#39;characters&#39;</span><span class="p">]]</span>
-        <span class="n">exit_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">exi</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">looker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">exi</span> <span class="ow">in</span> <span class="n">contents_map</span><span class="p">[</span><span class="s1">&#39;exits&#39;</span><span class="p">]]</span>
+        <span class="n">character_names</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">char</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">looker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">contents_map</span><span class="p">[</span><span class="s2">&quot;characters&quot;</span><span class="p">]</span>
+        <span class="p">]</span>
+        <span class="n">exit_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">exi</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">looker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">exi</span> <span class="ow">in</span> <span class="n">contents_map</span><span class="p">[</span><span class="s2">&quot;exits&quot;</span><span class="p">]]</span>
 
         <span class="c1"># group all same-named things under one name</span>
         <span class="n">things</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">thing</span> <span class="ow">in</span> <span class="n">contents_map</span><span class="p">[</span><span class="s1">&#39;things&#39;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">thing</span> <span class="ow">in</span> <span class="n">contents_map</span><span class="p">[</span><span class="s2">&quot;things&quot;</span><span class="p">]:</span>
             <span class="n">things</span><span class="p">[</span><span class="n">thing</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">looker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thing</span><span class="p">)</span>
 
         <span class="c1"># pluralize same-named things</span>
@@ -1843,11 +1869,7 @@
             <span class="n">singular</span><span class="p">,</span> <span class="n">plural</span> <span class="o">=</span> <span class="n">thing</span><span class="o">.</span><span class="n">get_numbered_name</span><span class="p">(</span><span class="n">nthings</span><span class="p">,</span> <span class="n">looker</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">thingname</span><span class="p">)</span>
             <span class="n">thing_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">singular</span> <span class="k">if</span> <span class="n">nthings</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">plural</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="n">exit_names</span><span class="p">,</span>
-            <span class="s2">&quot;characters&quot;</span><span class="p">:</span> <span class="n">character_names</span><span class="p">,</span>
-            <span class="s2">&quot;things&quot;</span><span class="p">:</span> <span class="n">thing_names</span>
-        <span class="p">}</span></div>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;exits&quot;</span><span class="p">:</span> <span class="n">exit_names</span><span class="p">,</span> <span class="s2">&quot;characters&quot;</span><span class="p">:</span> <span class="n">character_names</span><span class="p">,</span> <span class="s2">&quot;things&quot;</span><span class="p">:</span> <span class="n">thing_names</span><span class="p">}</span></div>
 
 <div class="viewcode-block" id="DefaultObject.return_appearance"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.return_appearance">[docs]</a>    <span class="k">def</span> <span class="nf">return_appearance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">looker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1877,7 +1899,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">looker</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
         <span class="c1"># ourselves</span>
         <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">looker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1885,20 +1907,20 @@
 
         <span class="c1"># contents</span>
         <span class="n">content_names_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_content_names</span><span class="p">(</span><span class="n">looker</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">exits</span> <span class="o">=</span> <span class="n">list_to_string</span><span class="p">(</span><span class="n">content_names_map</span><span class="p">[</span><span class="s1">&#39;exits&#39;</span><span class="p">])</span>
-        <span class="n">characters</span> <span class="o">=</span> <span class="n">list_to_string</span><span class="p">(</span><span class="n">content_names_map</span><span class="p">[</span><span class="s1">&#39;characters&#39;</span><span class="p">])</span>
-        <span class="n">things</span> <span class="o">=</span> <span class="n">list_to_string</span><span class="p">(</span><span class="n">content_names_map</span><span class="p">[</span><span class="s1">&#39;things&#39;</span><span class="p">])</span>
+        <span class="n">exits</span> <span class="o">=</span> <span class="n">list_to_string</span><span class="p">(</span><span class="n">content_names_map</span><span class="p">[</span><span class="s2">&quot;exits&quot;</span><span class="p">])</span>
+        <span class="n">characters</span> <span class="o">=</span> <span class="n">list_to_string</span><span class="p">(</span><span class="n">content_names_map</span><span class="p">[</span><span class="s2">&quot;characters&quot;</span><span class="p">])</span>
+        <span class="n">things</span> <span class="o">=</span> <span class="n">list_to_string</span><span class="p">(</span><span class="n">content_names_map</span><span class="p">[</span><span class="s2">&quot;things&quot;</span><span class="p">])</span>
 
         <span class="c1"># populate the appearance_template string. It&#39;s a good idea to strip it and</span>
         <span class="c1"># let the client add any extra spaces instead.</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">appearance_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="n">header</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">header</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="n">desc</span><span class="o">=</span><span class="n">desc</span><span class="p">,</span>
-            <span class="n">exits</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;|wExits:|n </span><span class="si">{</span><span class="n">exits</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">exits</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-            <span class="n">characters</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">|wCharacters:|n </span><span class="si">{</span><span class="n">characters</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">characters</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-            <span class="n">things</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">|wYou see:|n </span><span class="si">{</span><span class="n">things</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">things</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-            <span class="n">footer</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+            <span class="n">exits</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;|wExits:|n </span><span class="si">{</span><span class="n">exits</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">exits</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">characters</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">|wCharacters:|n </span><span class="si">{</span><span class="n">characters</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">characters</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">things</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">|wYou see:|n </span><span class="si">{</span><span class="n">things</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">things</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">footer</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="DefaultObject.at_look"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_look">[docs]</a>    <span class="k">def</span> <span class="nf">at_look</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1947,7 +1969,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="DefaultObject.at_before_get"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_before_get">[docs]</a>    <span class="k">def</span> <span class="nf">at_before_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">getter</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DefaultObject.at_pre_get"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_pre_get">[docs]</a>    <span class="k">def</span> <span class="nf">at_pre_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">getter</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by the default `get` command before this object has been</span>
 <span class="sd">        picked up.</span>
@@ -1966,6 +1988,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
+    <span class="c1"># deprecated</span>
+    <span class="n">at_before_get</span> <span class="o">=</span> <span class="n">at_pre_get</span>
+
 <div class="viewcode-block" id="DefaultObject.at_get"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_get">[docs]</a>    <span class="k">def</span> <span class="nf">at_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">getter</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by the default `get` command when this object has been</span>
@@ -1978,12 +2003,12 @@
 
 <span class="sd">        Notes:</span>
 <span class="sd">            This hook cannot stop the pickup from happening. Use</span>
-<span class="sd">            permissions or the at_before_get() hook for that.</span>
+<span class="sd">            permissions or the at_pre_get() hook for that.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="DefaultObject.at_before_give"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_before_give">[docs]</a>    <span class="k">def</span> <span class="nf">at_before_give</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">giver</span><span class="p">,</span> <span class="n">getter</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DefaultObject.at_pre_give"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_pre_give">[docs]</a>    <span class="k">def</span> <span class="nf">at_pre_give</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">giver</span><span class="p">,</span> <span class="n">getter</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by the default `give` command before this object has been</span>
 <span class="sd">        given.</span>
@@ -2004,6 +2029,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
+    <span class="c1"># deprecated</span>
+    <span class="n">at_before_give</span> <span class="o">=</span> <span class="n">at_pre_give</span>
+
 <div class="viewcode-block" id="DefaultObject.at_give"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_give">[docs]</a>    <span class="k">def</span> <span class="nf">at_give</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">giver</span><span class="p">,</span> <span class="n">getter</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by the default `give` command when this object has been</span>
@@ -2017,12 +2045,12 @@
 
 <span class="sd">        Notes:</span>
 <span class="sd">            This hook cannot stop the give from happening. Use</span>
-<span class="sd">            permissions or the at_before_give() hook for that.</span>
+<span class="sd">            permissions or the at_pre_give() hook for that.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="DefaultObject.at_before_drop"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_before_drop">[docs]</a>    <span class="k">def</span> <span class="nf">at_before_drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dropper</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DefaultObject.at_pre_drop"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_pre_drop">[docs]</a>    <span class="k">def</span> <span class="nf">at_pre_drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dropper</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by the default `drop` command before this object has been</span>
 <span class="sd">        dropped.</span>
@@ -2048,6 +2076,9 @@
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
+    <span class="c1"># deprecated</span>
+    <span class="n">at_before_drop</span> <span class="o">=</span> <span class="n">at_pre_drop</span>
+
 <div class="viewcode-block" id="DefaultObject.at_drop"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_drop">[docs]</a>    <span class="k">def</span> <span class="nf">at_drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dropper</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called by the default `drop` command when this object has been</span>
@@ -2060,12 +2091,12 @@
 
 <span class="sd">        Notes:</span>
 <span class="sd">            This hook cannot stop the drop from happening. Use</span>
-<span class="sd">            permissions or the at_before_drop() hook for that.</span>
+<span class="sd">            permissions or the at_pre_drop() hook for that.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="DefaultObject.at_before_say"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_before_say">[docs]</a>    <span class="k">def</span> <span class="nf">at_before_say</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DefaultObject.at_pre_say"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_pre_say">[docs]</a>    <span class="k">def</span> <span class="nf">at_pre_say</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Before the object says something.</span>
 
@@ -2089,6 +2120,9 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">message</span></div>
+
+    <span class="c1"># deprecated</span>
+    <span class="n">at_before_say</span> <span class="o">=</span> <span class="n">at_pre_say</span>
 
 <div class="viewcode-block" id="DefaultObject.at_say"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultObject.at_say">[docs]</a>    <span class="k">def</span> <span class="nf">at_say</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -2149,7 +2183,8 @@
             <span class="n">msg_type</span> <span class="o">=</span> <span class="s2">&quot;whisper&quot;</span>
             <span class="n">msg_self</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="s1">&#39;</span><span class="si">{self}</span><span class="s1"> whisper to </span><span class="si">{all_receivers}</span><span class="s1">, &quot;|n</span><span class="si">{speech}</span><span class="s1">|n&quot;&#39;</span>
-                <span class="k">if</span> <span class="n">msg_self</span> <span class="ow">is</span> <span class="kc">True</span> <span class="k">else</span> <span class="n">msg_self</span>
+                <span class="k">if</span> <span class="n">msg_self</span> <span class="ow">is</span> <span class="kc">True</span>
+                <span class="k">else</span> <span class="n">msg_self</span>
             <span class="p">)</span>
             <span class="n">msg_receivers</span> <span class="o">=</span> <span class="n">msg_receivers</span> <span class="ow">or</span> <span class="s1">&#39;</span><span class="si">{object}</span><span class="s1"> whispers: &quot;|n</span><span class="si">{speech}</span><span class="s1">|n&quot;&#39;</span>
             <span class="n">msg_location</span> <span class="o">=</span> <span class="kc">None</span>
@@ -2357,7 +2392,7 @@
 
 <div class="viewcode-block" id="DefaultCharacter.validate_name"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultCharacter.validate_name">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">validate_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Validate the character name prior to creating. Overload this function to add custom validators</span>
+        <span class="sd">&quot;&quot;&quot;Validate the character name prior to creating. Overload this function to add custom validators</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (str) : The name of the character</span>
@@ -2385,13 +2420,16 @@
         <span class="c1"># add the default cmdset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cmdset</span><span class="o">.</span><span class="n">add_default</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">CMDSET_CHARACTER</span><span class="p">,</span> <span class="n">persistent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DefaultCharacter.at_after_move"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultCharacter.at_after_move">[docs]</a>    <span class="k">def</span> <span class="nf">at_after_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_location</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DefaultCharacter.at_post_move"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultCharacter.at_post_move">[docs]</a>    <span class="k">def</span> <span class="nf">at_post_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_location</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        We make sure to look around after a move.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;view&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">at_look</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">),</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;look&quot;</span><span class="p">}))</span></div>
+
+    <span class="c1"># deprecated</span>
+    <span class="n">at_after_move</span> <span class="o">=</span> <span class="n">at_post_move</span>
 
 <div class="viewcode-block" id="DefaultCharacter.at_pre_puppet"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultCharacter.at_pre_puppet">[docs]</a>    <span class="k">def</span> <span class="nf">at_pre_puppet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -2413,8 +2451,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">prelogout_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span>  <span class="c1"># save location again to be sure.</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">account</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span>
-                <span class="n">_</span><span class="p">(</span><span class="s2">&quot;|r</span><span class="si">{obj}</span><span class="s2"> has no location and no home is set.|n&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="p">),</span>
-                <span class="n">session</span><span class="o">=</span><span class="n">session</span>
+                <span class="n">_</span><span class="p">(</span><span class="s2">&quot;|r</span><span class="si">{obj}</span><span class="s2"> has no location and no home is set.|n&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="p">),</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span>
             <span class="p">)</span>  <span class="c1"># Note to set home.</span></div>
 
 <div class="viewcode-block" id="DefaultCharacter.at_post_puppet"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.DefaultCharacter.at_post_puppet">[docs]</a>    <span class="k">def</span> <span class="nf">at_post_puppet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2436,8 +2473,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">at_look</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">),</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;look&quot;</span><span class="p">}),</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">from_obj</span><span class="p">):</span>
-            <span class="n">obj</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{name}</span><span class="s2"> has entered the game.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">obj</span><span class="p">)),</span>
-                    <span class="n">from_obj</span><span class="o">=</span><span class="n">from_obj</span><span class="p">)</span>
+            <span class="n">obj</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span>
+                <span class="n">_</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{name}</span><span class="s2"> has entered the game.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">obj</span><span class="p">)),</span>
+                <span class="n">from_obj</span><span class="o">=</span><span class="n">from_obj</span><span class="p">,</span>
+            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">for_contents</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="p">],</span> <span class="n">from_obj</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span></div>
 
@@ -2460,8 +2499,10 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">:</span>
 
                 <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">from_obj</span><span class="p">):</span>
-                    <span class="n">obj</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{name}</span><span class="s2"> has left the game.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">obj</span><span class="p">)),</span>
-                            <span class="n">from_obj</span><span class="o">=</span><span class="n">from_obj</span><span class="p">)</span>
+                    <span class="n">obj</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span>
+                        <span class="n">_</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{name}</span><span class="s2"> has left the game.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_display_name</span><span class="p">(</span><span class="n">obj</span><span class="p">)),</span>
+                        <span class="n">from_obj</span><span class="o">=</span><span class="n">from_obj</span><span class="p">,</span>
+                    <span class="p">)</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">for_contents</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="p">],</span> <span class="n">from_obj</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">prelogout_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span>
@@ -2603,6 +2644,7 @@
 <span class="c1">#</span>
 <span class="c1"># Default Exit command, used by the base exit object</span>
 <span class="c1">#</span>
+
 
 <div class="viewcode-block" id="ExitCommand"><a class="viewcode-back" href="../../../api/evennia.objects.objects.html#evennia.objects.objects.ExitCommand">[docs]</a><span class="k">class</span> <span class="nc">ExitCommand</span><span class="p">(</span><span class="n">_COMMAND_DEFAULT_CLASS</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -2857,7 +2899,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">source_location</span> <span class="o">=</span> <span class="n">traversing_object</span><span class="o">.</span><span class="n">location</span>
         <span class="k">if</span> <span class="n">traversing_object</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">target_location</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">at_after_traverse</span><span class="p">(</span><span class="n">traversing_object</span><span class="p">,</span> <span class="n">source_location</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">at_post_traverse</span><span class="p">(</span><span class="n">traversing_object</span><span class="p">,</span> <span class="n">source_location</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">err_traverse</span><span class="p">:</span>
                 <span class="c1"># if exit has a better error message, let&#39;s use it.</span>
@@ -2916,7 +2958,6 @@
 <h3>Versions</h3>
 <ul>
   <li><a href="objects.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>

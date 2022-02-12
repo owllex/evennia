@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="evennia.commands.default.system" href="evennia.commands.default.system.html" />
+    <link rel="prev" title="evennia.commands.default.muxcommand" href="evennia.commands.default.muxcommand.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,7 +29,18 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.commands.default.system.html" title="evennia.commands.default.system"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="evennia.commands.default.muxcommand.html" title="evennia.commands.default.muxcommand"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.commands.html" >evennia.commands</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="evennia.commands.default.html" accesskey="U">evennia.commands.default</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.commands.default.syscommands</a></li> 
       </ul>
         <div class="develop">develop branch</div>
@@ -92,7 +105,7 @@ the line is just added to the editor buffer).</p>
 
 <dl class="py attribute">
 <dt id="evennia.commands.default.syscommands.SystemNoInput.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '', 'category': 'general', 'key': '__noinput_command', 'tags': '', 'text': '\n    This is called when there is no input given\n    '}</em><a class="headerlink" href="#evennia.commands.default.syscommands.SystemNoInput.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '', 'category': 'general', 'key': '__noinput_command', 'no_prefix': ' ', 'tags': '', 'text': '\n    This is called when there is no input given\n    '}</em><a class="headerlink" href="#evennia.commands.default.syscommands.SystemNoInput.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -135,7 +148,7 @@ the line is just added to the editor buffer).</p>
 
 <dl class="py attribute">
 <dt id="evennia.commands.default.syscommands.SystemNoMatch.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '', 'category': 'general', 'key': '__nomatch_command', 'tags': '', 'text': '\n    No command was found matching the given input.\n    '}</em><a class="headerlink" href="#evennia.commands.default.syscommands.SystemNoMatch.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '', 'category': 'general', 'key': '__nomatch_command', 'no_prefix': ' ', 'tags': '', 'text': '\n    No command was found matching the given input.\n    '}</em><a class="headerlink" href="#evennia.commands.default.syscommands.SystemNoMatch.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -188,7 +201,7 @@ the <strong>raw_cmdname</strong> is the cmdname unmodified by eventual prefix-st
 
 <dl class="py attribute">
 <dt id="evennia.commands.default.syscommands.SystemMultimatch.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '', 'category': 'general', 'key': '__multimatch_command', 'tags': '', 'text': &quot;\n    Multiple command matches.\n\n    The cmdhandler adds a special attribute 'matches' to this\n    system command.\n\n      matches = [(cmdname, args, cmdobj, cmdlen, mratio, raw_cmdname) , (cmdname, ...), ...]\n\n    Here, `cmdname` is the command's name and `args` the rest of the incoming string,\n    without said command name. `cmdobj` is the Command instance, the cmdlen is\n    the same as len(cmdname) and mratio is a measure of how big a part of the\n    full input string the cmdname takes up - an exact match would be 1.0. Finally,\n    the `raw_cmdname` is the cmdname unmodified by eventual prefix-stripping.\n\n    &quot;}</em><a class="headerlink" href="#evennia.commands.default.syscommands.SystemMultimatch.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '', 'category': 'general', 'key': '__multimatch_command', 'no_prefix': ' ', 'tags': '', 'text': &quot;\n    Multiple command matches.\n\n    The cmdhandler adds a special attribute 'matches' to this\n    system command.\n\n      matches = [(cmdname, args, cmdobj, cmdlen, mratio, raw_cmdname) , (cmdname, ...), ...]\n\n    Here, `cmdname` is the command's name and `args` the rest of the incoming string,\n    without said command name. `cmdobj` is the Command instance, the cmdlen is\n    the same as len(cmdname) and mratio is a measure of how big a part of the\n    full input string the cmdname takes up - an exact match would be 1.0. Finally,\n    the `raw_cmdname` is the cmdname unmodified by eventual prefix-stripping.\n\n    &quot;}</em><a class="headerlink" href="#evennia.commands.default.syscommands.SystemMultimatch.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -215,10 +228,16 @@ the <strong>raw_cmdname</strong> is the cmdname unmodified by eventual prefix-st
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.commands.default.muxcommand.html"
+                        title="previous chapter">evennia.commands.default.muxcommand</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.commands.default.system.html"
+                        title="next chapter">evennia.commands.default.system</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.commands.default.syscommands.rst.txt"
+      <li><a href="../_sources/api/evennia.commands.default.syscommands.md.txt"
             rel="nofollow">Show Page Source</a></li>
     </ul>
    </div><h3>Links</h3>
@@ -235,7 +254,6 @@ the <strong>raw_cmdname</strong> is the cmdname unmodified by eventual prefix-st
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.commands.default.syscommands.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/api/evennia.commands.default.syscommands.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -251,7 +269,18 @@ the <strong>raw_cmdname</strong> is the cmdname unmodified by eventual prefix-st
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.commands.default.system.html" title="evennia.commands.default.system"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="evennia.commands.default.muxcommand.html" title="evennia.commands.default.muxcommand"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.commands.html" >evennia.commands</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="evennia.commands.default.html" >evennia.commands.default</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.commands.default.syscommands</a></li> 
       </ul>
         <div class="develop">develop branch</div>

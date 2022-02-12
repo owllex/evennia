@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="evennia.web.utils.middleware" href="evennia.web.utils.middleware.html" />
+    <link rel="prev" title="evennia.web.utils.backends" href="evennia.web.utils.backends.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,7 +29,18 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.web.utils.middleware.html" title="evennia.web.utils.middleware"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="evennia.web.utils.backends.html" title="evennia.web.utils.backends"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.web.html" >evennia.web</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="evennia.web.utils.html" accesskey="U">evennia.web.utils</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.web.utils.general_context</a></li> 
       </ul>
         <div class="develop">develop branch</div>
@@ -45,21 +58,9 @@ context without having to repeatedly include it.</p>
 <p>For this to work, this file is included in the settings file, in the
 TEMPLATES[“OPTIONS”][“context_processors”] list.</p>
 <dl class="py function">
-<dt id="evennia.web.utils.general_context.set_game_name_and_slogan">
-<code class="sig-prename descclassname">evennia.web.utils.general_context.</code><code class="sig-name descname">set_game_name_and_slogan</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/web/utils/general_context.html#set_game_name_and_slogan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.web.utils.general_context.set_game_name_and_slogan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets global variables GAME_NAME and GAME_SLOGAN which are used by
-general_context.</p>
-<p class="rubric">Notes</p>
-<p>This function is used for unit testing the values of the globals.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="evennia.web.utils.general_context.set_webclient_settings">
-<code class="sig-prename descclassname">evennia.web.utils.general_context.</code><code class="sig-name descname">set_webclient_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/web/utils/general_context.html#set_webclient_settings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.web.utils.general_context.set_webclient_settings" title="Permalink to this definition">¶</a></dt>
-<dd><p>As with set_game_name_and_slogan above, this sets global variables pertaining
-to webclient settings.</p>
-<p class="rubric">Notes</p>
-<p>Used for unit testing.</p>
+<dt id="evennia.web.utils.general_context.load_game_settings">
+<code class="sig-prename descclassname">evennia.web.utils.general_context.</code><code class="sig-name descname">load_game_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/web/utils/general_context.html#load_game_settings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.web.utils.general_context.load_game_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load and cache game settings.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -91,10 +92,16 @@ to context of all views.</p>
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.web.utils.backends.html"
+                        title="previous chapter">evennia.web.utils.backends</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.web.utils.middleware.html"
+                        title="next chapter">evennia.web.utils.middleware</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.web.utils.general_context.rst.txt"
+      <li><a href="../_sources/api/evennia.web.utils.general_context.md.txt"
             rel="nofollow">Show Page Source</a></li>
     </ul>
    </div><h3>Links</h3>
@@ -111,7 +118,6 @@ to context of all views.</p>
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.web.utils.general_context.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/api/evennia.web.utils.general_context.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -127,7 +133,18 @@ to context of all views.</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.web.utils.middleware.html" title="evennia.web.utils.middleware"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="evennia.web.utils.backends.html" title="evennia.web.utils.backends"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.web.html" >evennia.web</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="evennia.web.utils.html" >evennia.web.utils</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.web.utils.general_context</a></li> 
       </ul>
         <div class="develop">develop branch</div>

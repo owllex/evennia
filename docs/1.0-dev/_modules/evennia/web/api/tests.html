@@ -44,23 +44,22 @@
 <span class="sd">Tests for the REST API.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">evennia.utils.test_resources</span> <span class="kn">import</span> <span class="n">EvenniaTest</span>
+<span class="kn">from</span> <span class="nn">evennia.utils.test_resources</span> <span class="kn">import</span> <span class="n">BaseEvenniaTest</span>
 <span class="kn">from</span> <span class="nn">evennia.web.api</span> <span class="kn">import</span> <span class="n">serializers</span>
 <span class="kn">from</span> <span class="nn">rest_framework.test</span> <span class="kn">import</span> <span class="n">APIClient</span>
-<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">include</span>
 <span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">override_settings</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">url</span><span class="p">,</span> <span class="n">include</span>
 <span class="kn">from</span> <span class="nn">django.core.exceptions</span> <span class="kn">import</span> <span class="n">ObjectDoesNotExist</span>
 
 <span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^&quot;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;evennia.web.website.urls&quot;</span><span class="p">)),</span>
-    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^api/&quot;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;evennia.web.api.urls&quot;</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s2">&quot;api&quot;</span><span class="p">)),</span>
+    <span class="n">path</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^&quot;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;evennia.web.website.urls&quot;</span><span class="p">)),</span>
+    <span class="n">path</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^api/&quot;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;evennia.web.api.urls&quot;</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s2">&quot;api&quot;</span><span class="p">)),</span>
 <span class="p">]</span>
 
 
 <div class="viewcode-block" id="TestEvenniaRESTApi"><a class="viewcode-back" href="../../../../api/evennia.web.api.tests.html#evennia.web.api.tests.TestEvenniaRESTApi">[docs]</a><span class="nd">@override_settings</span><span class="p">(</span><span class="n">REST_API_ENABLED</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ROOT_URLCONF</span><span class="o">=</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">AUTH_USERNAME_VALIDATORS</span><span class="o">=</span><span class="p">[])</span>
-<span class="k">class</span> <span class="nc">TestEvenniaRESTApi</span><span class="p">(</span><span class="n">EvenniaTest</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">TestEvenniaRESTApi</span><span class="p">(</span><span class="n">BaseEvenniaTest</span><span class="p">):</span>
     <span class="n">client_class</span> <span class="o">=</span> <span class="n">APIClient</span>
     <span class="n">maxDiff</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -81,7 +80,16 @@
 <div class="viewcode-block" id="TestEvenniaRESTApi.get_view_details"><a class="viewcode-back" href="../../../../api/evennia.web.api.tests.html#evennia.web.api.tests.TestEvenniaRESTApi.get_view_details">[docs]</a>    <span class="k">def</span> <span class="nf">get_view_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Helper function for generating list of named tuples&quot;&quot;&quot;</span>
         <span class="n">View</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span>
-            <span class="s2">&quot;View&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;view_name&quot;</span><span class="p">,</span> <span class="s2">&quot;obj&quot;</span><span class="p">,</span> <span class="s2">&quot;list&quot;</span><span class="p">,</span> <span class="s2">&quot;serializer&quot;</span><span class="p">,</span> <span class="s2">&quot;list_serializer&quot;</span><span class="p">,</span> <span class="s2">&quot;create_data&quot;</span><span class="p">,</span> <span class="s2">&quot;retrieve_data&quot;</span><span class="p">]</span>
+            <span class="s2">&quot;View&quot;</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="s2">&quot;view_name&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;obj&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;list&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;serializer&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;list_serializer&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;create_data&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;retrieve_data&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
         <span class="p">)</span>
         <span class="n">views</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">View</span><span class="p">(</span>
@@ -253,7 +261,6 @@
 <h3>Versions</h3>
 <ul>
   <li><a href="tests.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../../../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>

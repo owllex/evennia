@@ -90,7 +90,7 @@ line quite pointless for processing any data from the function. Instead one has 
 - `at_err_kwargs` - an optional dictionary that will be fed as keyword arguments to the `at_err`
   errback.
 
-An example of making an asynchronous call from inside a [Command](../Components/Commands) definition:
+An example of making an asynchronous call from inside a [Command](../Components/Commands.md) definition:
 
 ```python
     from evennia import utils, Command
@@ -106,10 +106,10 @@ An example of making an asynchronous call from inside a [Command](../Components/
                return final_value
            
            def at_return_function(r):
-               self.caller.msg("The final value is %s" % r)
+               self.caller.msg(f"The final value is {r}")
     
            def at_err_function(e):
-               self.caller.msg("There was an error: %s" % e)
+               self.caller.msg(f"There was an error: {e}")
 
            # do the async call, setting all callbacks
            utils.run_async(long_running_function, at_return=at_return_function,
@@ -139,7 +139,7 @@ sleep.
 ```
 
 This will delay the execution of the callback for 10 seconds. This function is explored much more in
-the [Command Duration Tutorial](../Howto/Command-Duration).
+the [Command Duration Tutorial](../Howtos/Command-Duration.md).
 
 You can also try the following snippet just see how it works:
 

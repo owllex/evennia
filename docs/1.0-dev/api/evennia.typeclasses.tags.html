@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="evennia.utils" href="evennia.utils.html" />
+    <link rel="prev" title="evennia.typeclasses.models" href="evennia.typeclasses.models.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,7 +29,17 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.html" title="evennia.utils"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="evennia.typeclasses.models.html" title="evennia.typeclasses.models"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.typeclasses.html" accesskey="U">evennia.typeclasses</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.typeclasses.tags</a></li> 
       </ul>
         <div class="develop">develop branch</div>
@@ -251,12 +263,12 @@ stored on and with a tagtype given by self.handlertype</p>
 
 <dl class="py method">
 <dt id="evennia.typeclasses.tags.TagHandler.add">
-<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#TagHandler.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.TagHandler.add" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#TagHandler.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.TagHandler.add" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a new tag to the handler.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tag</strong> (<em>str</em><em> or </em><em>list</em>) – The name of the tag to add. If a list,
+<li><p><strong>key</strong> (<em>str</em><em> or </em><em>list</em>) – The name of the tag to add. If a list,
 add several Tags.</p></li>
 <li><p><strong>category</strong> (<em>str</em><em>, </em><em>optional</em>) – Category of Tag. <strong>None</strong> is the default category.</p></li>
 <li><p><strong>data</strong> (<em>str</em><em>, </em><em>optional</em>) – Info text about the tag(s) added.
@@ -273,12 +285,12 @@ will be created.</p>
 
 <dl class="py method">
 <dt id="evennia.typeclasses.tags.TagHandler.has">
-<code class="sig-name descname">has</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_list</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#TagHandler.has"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.TagHandler.has" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">has</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_list</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#TagHandler.has"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.TagHandler.has" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if the given Tag (or list of Tags) exists on the object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tag</strong> (<em>str</em><em> or </em><em>iterable</em>) – The Tag key or tags to check for.
+<li><p><strong>key</strong> (<em>str</em><em> or </em><em>iterable</em>) – The Tag key or tags to check for.
 If <strong>None</strong>, search by category.</p></li>
 <li><p><strong>category</strong> (<em>str</em><em>, </em><em>optional</em>) – Limit the check to Tags with this
 category (note, that <strong>None</strong> is the default category).</p></li>
@@ -487,10 +499,16 @@ replicated with a lock check against the lockstring</p>
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.typeclasses.models.html"
+                        title="previous chapter">evennia.typeclasses.models</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.utils.html"
+                        title="next chapter">evennia.utils</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.typeclasses.tags.rst.txt"
+      <li><a href="../_sources/api/evennia.typeclasses.tags.md.txt"
             rel="nofollow">Show Page Source</a></li>
     </ul>
    </div><h3>Links</h3>
@@ -507,7 +525,6 @@ replicated with a lock check against the lockstring</p>
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.typeclasses.tags.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/api/evennia.typeclasses.tags.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -523,7 +540,17 @@ replicated with a lock check against the lockstring</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.html" title="evennia.utils"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="evennia.typeclasses.models.html" title="evennia.typeclasses.models"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.typeclasses.html" >evennia.typeclasses</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.typeclasses.tags</a></li> 
       </ul>
         <div class="develop">develop branch</div>

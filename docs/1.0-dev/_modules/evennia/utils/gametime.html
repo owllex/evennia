@@ -46,6 +46,7 @@
 <span class="sd">It also supplies some useful methods to convert between</span>
 <span class="sd">in-mud time and real-world time as well allows to get the</span>
 <span class="sd">total runtime of the server and the current uptime.</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">time</span>
@@ -260,8 +261,16 @@
 
 
 <div class="viewcode-block" id="schedule"><a class="viewcode-back" href="../../../api/evennia.utils.gametime.html#evennia.utils.gametime.schedule">[docs]</a><span class="k">def</span> <span class="nf">schedule</span><span class="p">(</span>
-    <span class="n">callback</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="n">callback</span><span class="p">,</span>
+    <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">sec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">hour</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">day</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">month</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Call a callback at a given in-game time.</span>
@@ -283,11 +292,14 @@
 <span class="sd">            to store in Attributes on the generated scheduling Script.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        script (Script): The created Script handling the sceduling.</span>
+<span class="sd">        Script: The created Script handling the scheduling.</span>
 
 <span class="sd">    Examples:</span>
-<span class="sd">        schedule(func, min=5, sec=0) # Will call 5 minutes past the next (in-game) hour.</span>
-<span class="sd">        schedule(func, hour=2, min=30, sec=0) # Will call the next (in-game) day at 02:30.</span>
+<span class="sd">        ::</span>
+
+<span class="sd">            schedule(func, min=5, sec=0)  # Will call 5 minutes past the next (in-game) hour.</span>
+<span class="sd">            schedule(func, hour=2, min=30, sec=0)  # Will call the next (in-game) day at 02:30.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">seconds</span> <span class="o">=</span> <span class="n">real_seconds_until</span><span class="p">(</span><span class="n">sec</span><span class="o">=</span><span class="n">sec</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="nb">min</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="n">hour</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="n">day</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="n">month</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">)</span>
     <span class="n">script</span> <span class="o">=</span> <span class="n">create_script</span><span class="p">(</span>
@@ -355,7 +367,6 @@
 <h3>Versions</h3>
 <ul>
   <li><a href="gametime.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>

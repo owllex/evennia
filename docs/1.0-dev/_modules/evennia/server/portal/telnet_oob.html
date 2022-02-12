@@ -89,14 +89,14 @@
 <span class="c1"># pre-compiled regexes</span>
 <span class="c1"># returns 2-tuple</span>
 <span class="n">msdp_regex_table</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="sa">br</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">\s*(\w*?)\s*</span><span class="si">%s</span><span class="s2">\s*</span><span class="si">%s</span><span class="s2">(.*?)</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">MSDP_VAR</span><span class="p">,</span> <span class="n">MSDP_VAL</span><span class="p">,</span> <span class="n">MSDP_TABLE_OPEN</span><span class="p">,</span> <span class="n">MSDP_TABLE_CLOSE</span><span class="p">)</span>
+    <span class="sa">rb</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">\s*(\w*?)\s*</span><span class="si">%s</span><span class="s2">\s*</span><span class="si">%s</span><span class="s2">(.*?)</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">MSDP_VAR</span><span class="p">,</span> <span class="n">MSDP_VAL</span><span class="p">,</span> <span class="n">MSDP_TABLE_OPEN</span><span class="p">,</span> <span class="n">MSDP_TABLE_CLOSE</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="c1"># returns 2-tuple</span>
 <span class="n">msdp_regex_array</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-    <span class="sa">br</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">\s*(\w*?)\s*</span><span class="si">%s</span><span class="s2">\s*</span><span class="si">%s</span><span class="s2">(.*?)</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">MSDP_VAR</span><span class="p">,</span> <span class="n">MSDP_VAL</span><span class="p">,</span> <span class="n">MSDP_ARRAY_OPEN</span><span class="p">,</span> <span class="n">MSDP_ARRAY_CLOSE</span><span class="p">)</span>
+    <span class="sa">rb</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">\s*(\w*?)\s*</span><span class="si">%s</span><span class="s2">\s*</span><span class="si">%s</span><span class="s2">(.*?)</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">MSDP_VAR</span><span class="p">,</span> <span class="n">MSDP_VAL</span><span class="p">,</span> <span class="n">MSDP_ARRAY_OPEN</span><span class="p">,</span> <span class="n">MSDP_ARRAY_CLOSE</span><span class="p">)</span>
 <span class="p">)</span>
-<span class="n">msdp_regex_var</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">br</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">MSDP_VAR</span><span class="p">)</span>
-<span class="n">msdp_regex_val</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">br</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">MSDP_VAL</span><span class="p">)</span>
+<span class="n">msdp_regex_var</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">rb</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">MSDP_VAR</span><span class="p">)</span>
+<span class="n">msdp_regex_val</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">rb</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">MSDP_VAL</span><span class="p">)</span>
 
 <span class="n">EVENNIA_TO_GMCP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;client_options&quot;</span><span class="p">:</span> <span class="s2">&quot;Core.Supports.Get&quot;</span><span class="p">,</span>
@@ -521,7 +521,6 @@
 <h3>Versions</h3>
 <ul>
   <li><a href="telnet_oob.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../../../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>

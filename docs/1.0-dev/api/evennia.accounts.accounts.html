@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="evennia.accounts.bots" href="evennia.accounts.bots.html" />
+    <link rel="prev" title="evennia.accounts" href="evennia.accounts.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,7 +29,17 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.accounts.bots.html" title="evennia.accounts.bots"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="evennia.accounts.html" title="evennia.accounts"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.accounts.html" accesskey="U">evennia.accounts</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.accounts.accounts</a></li> 
       </ul>
         <div class="develop">develop branch</div>
@@ -517,6 +529,18 @@ errors (list): List of error messages in string form</p>
 <p class="rubric">Notes</p>
 <dl class="simple">
 <dt><strong>*args</strong> and <strong>**kwargs</strong> are passed on to the base delete</dt><dd><p>mechanism (these are usually not used).</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p><em>bool</em> –</p>
+<dl class="simple">
+<dt>If deletion was successful. Only time it fails would be</dt><dd><p>if the Account was already deleted. Note that even on a failure,
+connected resources (nicks/aliases etc) will still have been
+deleted.</p>
+</dd>
+</dl>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1145,10 +1169,16 @@ overriding the call (unused by default).</p>
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.accounts.html"
+                        title="previous chapter">evennia.accounts</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.accounts.bots.html"
+                        title="next chapter">evennia.accounts.bots</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.accounts.accounts.rst.txt"
+      <li><a href="../_sources/api/evennia.accounts.accounts.md.txt"
             rel="nofollow">Show Page Source</a></li>
     </ul>
    </div><h3>Links</h3>
@@ -1165,7 +1195,6 @@ overriding the call (unused by default).</p>
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.accounts.accounts.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/api/evennia.accounts.accounts.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -1181,7 +1210,17 @@ overriding the call (unused by default).</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.accounts.bots.html" title="evennia.accounts.bots"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="evennia.accounts.html" title="evennia.accounts"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.accounts.html" >evennia.accounts</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.accounts.accounts</a></li> 
       </ul>
         <div class="develop">develop branch</div>

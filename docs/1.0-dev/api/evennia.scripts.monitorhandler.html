@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="evennia.scripts.scripthandler" href="evennia.scripts.scripthandler.html" />
+    <link rel="prev" title="evennia.scripts.models" href="evennia.scripts.models.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,7 +29,17 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.scripts.scripthandler.html" title="evennia.scripts.scripthandler"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="evennia.scripts.models.html" title="evennia.scripts.models"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.scripts.html" accesskey="U">evennia.scripts</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.scripts.monitorhandler</a></li> 
       </ul>
         <div class="develop">develop branch</div>
@@ -98,7 +110,7 @@ non-persistent tickers must be killed.</p>
 
 <dl class="py method">
 <dt id="evennia.scripts.monitorhandler.MonitorHandler.add">
-<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">fieldname</span></em>, <em class="sig-param"><span class="n">callback</span></em>, <em class="sig-param"><span class="n">idstring</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">persistent</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/scripts/monitorhandler.html#MonitorHandler.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.scripts.monitorhandler.MonitorHandler.add" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">fieldname</span></em>, <em class="sig-param"><span class="n">callback</span></em>, <em class="sig-param"><span class="n">idstring</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">persistent</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/scripts/monitorhandler.html#MonitorHandler.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.scripts.monitorhandler.MonitorHandler.add" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add monitoring to a given field or Attribute. A field must
 be specified with the full db_* name or it will be assumed
 to be an Attribute (so <strong>db_key</strong>, not just <strong>key</strong>).</p>
@@ -114,6 +126,9 @@ where kwargs holds keys fieldname and obj.</p></li>
 of the same field and object.</p></li>
 <li><p><strong>persistent</strong> (<em>bool</em><em>, </em><em>optional</em>) – If False, the monitor will survive
 a server reload but not a cold restart. This is default.</p></li>
+<li><p><strong>category</strong> (<em>str</em><em>, </em><em>optional</em>) – This is only used if <strong>fieldname</strong> refers to
+an Attribute (i.e. it does not start with <strong>db_</strong>). You must specify this
+if you want to target an Attribute with a category.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Keyword Arguments</dt>
@@ -130,7 +145,7 @@ all kwargs must be possible to pickle!</p></li>
 
 <dl class="py method">
 <dt id="evennia.scripts.monitorhandler.MonitorHandler.remove">
-<code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">fieldname</span></em>, <em class="sig-param"><span class="n">idstring</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/scripts/monitorhandler.html#MonitorHandler.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.scripts.monitorhandler.MonitorHandler.remove" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">fieldname</span></em>, <em class="sig-param"><span class="n">idstring</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/scripts/monitorhandler.html#MonitorHandler.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.scripts.monitorhandler.MonitorHandler.remove" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove a monitor.</p>
 </dd></dl>
 
@@ -178,10 +193,16 @@ all kwargs must be possible to pickle!</p></li>
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.scripts.models.html"
+                        title="previous chapter">evennia.scripts.models</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.scripts.scripthandler.html"
+                        title="next chapter">evennia.scripts.scripthandler</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.scripts.monitorhandler.rst.txt"
+      <li><a href="../_sources/api/evennia.scripts.monitorhandler.md.txt"
             rel="nofollow">Show Page Source</a></li>
     </ul>
    </div><h3>Links</h3>
@@ -198,7 +219,6 @@ all kwargs must be possible to pickle!</p></li>
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.scripts.monitorhandler.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/api/evennia.scripts.monitorhandler.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -214,7 +234,17 @@ all kwargs must be possible to pickle!</p></li>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.scripts.scripthandler.html" title="evennia.scripts.scripthandler"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="evennia.scripts.models.html" title="evennia.scripts.models"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.scripts.html" >evennia.scripts</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.scripts.monitorhandler</a></li> 
       </ul>
         <div class="develop">develop branch</div>

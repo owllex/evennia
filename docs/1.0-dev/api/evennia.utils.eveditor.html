@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="evennia.utils.evform" href="evennia.utils.evform.html" />
+    <link rel="prev" title="evennia.utils.dbserialize" href="evennia.utils.dbserialize.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,7 +29,17 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.evform.html" title="evennia.utils.evform"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.dbserialize.html" title="evennia.utils.dbserialize"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.utils.html" accesskey="U">evennia.utils</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.utils.eveditor</a></li> 
       </ul>
         <div class="develop">develop branch</div>
@@ -119,7 +131,7 @@ command was given specifically as “no” or “n”.</p>
 
 <dl class="py attribute">
 <dt id="evennia.utils.eveditor.CmdSaveYesNo.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '__noinput_command', 'category': 'general', 'key': '__nomatch_command', 'tags': '', 'text': '\n    Save the editor state on quit. This catches\n    nomatches (defaults to Yes), and avoid saves only if\n    command was given specifically as &quot;no&quot; or &quot;n&quot;.\n    '}</em><a class="headerlink" href="#evennia.utils.eveditor.CmdSaveYesNo.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '__noinput_command', 'category': 'general', 'key': '__nomatch_command', 'no_prefix': ' __noinput_command', 'tags': '', 'text': '\n    Save the editor state on quit. This catches\n    nomatches (defaults to Yes), and avoid saves only if\n    command was given specifically as &quot;no&quot; or &quot;n&quot;.\n    '}</em><a class="headerlink" href="#evennia.utils.eveditor.CmdSaveYesNo.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -218,7 +230,7 @@ command was given specifically as “no” or “n”.</p>
 
 <dl class="py attribute">
 <dt id="evennia.utils.eveditor.CmdEditorBase.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '', 'category': 'general', 'key': 'command', 'tags': '', 'text': '\n    Base parent for editor commands\n    '}</em><a class="headerlink" href="#evennia.utils.eveditor.CmdEditorBase.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '', 'category': 'general', 'key': 'command', 'no_prefix': ' ', 'tags': '', 'text': '\n    Base parent for editor commands\n    '}</em><a class="headerlink" href="#evennia.utils.eveditor.CmdEditorBase.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -258,7 +270,7 @@ indentation.</p>
 
 <dl class="py attribute">
 <dt id="evennia.utils.eveditor.CmdLineInput.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '__noinput_command', 'category': 'general', 'key': '__nomatch_command', 'tags': '', 'text': '\n    No command match - Inputs line of text into buffer.\n\n    '}</em><a class="headerlink" href="#evennia.utils.eveditor.CmdLineInput.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '__noinput_command', 'category': 'general', 'key': '__nomatch_command', 'no_prefix': ' __noinput_command', 'tags': '', 'text': '\n    No command match - Inputs line of text into buffer.\n\n    '}</em><a class="headerlink" href="#evennia.utils.eveditor.CmdLineInput.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -275,7 +287,7 @@ indentation.</p>
 
 <dl class="py attribute">
 <dt id="evennia.utils.eveditor.CmdEditorGroup.aliases">
-<code class="sig-name descname">aliases</code><em class="property"> = [':uu', ':f', ':&lt;', ':u', ':dw', ':fi', ':I', ':x', ':q', ':S', ':s', ':y', ':i', ':!', ':p', ':&gt;', ':r', ':echo', ':j', ':::', ':wq', ':A', ':UU', ':dd', '::', ':w', ':', ':h', ':DD', ':q!', ':fd', ':=']</em><a class="headerlink" href="#evennia.utils.eveditor.CmdEditorGroup.aliases" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">aliases</code><em class="property"> = [':p', ':DD', ':::', ':dd', ':f', ':I', ':echo', ':q', ':w', ':&gt;', ':wq', ':u', '::', ':r', ':A', ':', ':y', ':i', ':s', ':h', ':UU', ':fi', ':!', ':uu', ':j', ':=', ':S', ':fd', ':dw', ':x', ':q!', ':&lt;']</em><a class="headerlink" href="#evennia.utils.eveditor.CmdEditorGroup.aliases" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -303,7 +315,7 @@ efficient presentation.</p>
 
 <dl class="py attribute">
 <dt id="evennia.utils.eveditor.CmdEditorGroup.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': ':uu :f :&lt; :u :dw :fi :I :x :q :S :s :y :i :! :p :&gt; :r :echo :j ::: :wq :A :UU :dd :: :w : :h :DD :q! :fd :=', 'category': 'general', 'key': ':editor_command_group', 'tags': '', 'text': '\n    Commands for the editor\n    '}</em><a class="headerlink" href="#evennia.utils.eveditor.CmdEditorGroup.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': ':p :DD ::: :dd :f :I :echo :q :w :&gt; :wq :u :: :r :A : :y :i :s :h :UU :fi :! :uu :j := :S :fd :dw :x :q! :&lt;', 'category': 'general', 'key': ':editor_command_group', 'no_prefix': ' :p :DD ::: :dd :f :I :echo :q :w :&gt; :wq :u :: :r :A : :y :i :s :h :UU :fi :! :uu :j := :S :fd :dw :x :q! :&lt;', 'tags': '', 'text': '\n    Commands for the editor\n    '}</em><a class="headerlink" href="#evennia.utils.eveditor.CmdEditorGroup.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -511,10 +523,16 @@ formatting information.</p></li>
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.utils.dbserialize.html"
+                        title="previous chapter">evennia.utils.dbserialize</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.utils.evform.html"
+                        title="next chapter">evennia.utils.evform</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.utils.eveditor.rst.txt"
+      <li><a href="../_sources/api/evennia.utils.eveditor.md.txt"
             rel="nofollow">Show Page Source</a></li>
     </ul>
    </div><h3>Links</h3>
@@ -531,7 +549,6 @@ formatting information.</p></li>
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.utils.eveditor.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/api/evennia.utils.eveditor.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -547,7 +564,17 @@ formatting information.</p></li>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.evform.html" title="evennia.utils.evform"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="evennia.utils.dbserialize.html" title="evennia.utils.dbserialize"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.utils.html" >evennia.utils</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.utils.eveditor</a></li> 
       </ul>
         <div class="develop">develop branch</div>

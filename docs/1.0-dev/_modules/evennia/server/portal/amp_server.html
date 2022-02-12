@@ -137,7 +137,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># wipe broadcast and data memory</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AMPServerProtocol</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">connectionLost</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">connectionLost</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">server_connection</span> <span class="o">==</span> <span class="bp">self</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">server_connection</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">portal</span><span class="o">.</span><span class="n">server_info_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -559,7 +559,6 @@
 <h3>Versions</h3>
 <ul>
   <li><a href="amp_server.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../../../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>

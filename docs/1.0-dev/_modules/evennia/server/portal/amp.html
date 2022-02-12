@@ -89,12 +89,12 @@
 <span class="n">AMP_MAXLEN</span> <span class="o">=</span> <span class="n">amp</span><span class="o">.</span><span class="n">MAX_VALUE_LENGTH</span>  <span class="c1"># max allowed data length in AMP protocol (cannot be changed)</span>
 
 <span class="c1"># amp internal</span>
-<span class="n">ASK</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;_ask&#39;</span>
-<span class="n">ANSWER</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;_answer&#39;</span>
-<span class="n">ERROR</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;_error&#39;</span>
-<span class="n">ERROR_CODE</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;_error_code&#39;</span>
-<span class="n">ERROR_DESCRIPTION</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;_error_description&#39;</span>
-<span class="n">UNKNOWN_ERROR_CODE</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;UNKNOWN&#39;</span>
+<span class="n">ASK</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;_ask&quot;</span>
+<span class="n">ANSWER</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;_answer&quot;</span>
+<span class="n">ERROR</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;_error&quot;</span>
+<span class="n">ERROR_CODE</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;_error_code&quot;</span>
+<span class="n">ERROR_DESCRIPTION</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;_error_description&quot;</span>
+<span class="n">UNKNOWN_ERROR_CODE</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;UNKNOWN&quot;</span>
 
 <span class="c1"># buffers</span>
 <span class="n">_SENDBATCH</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
@@ -219,14 +219,14 @@
 <span class="sd">        Note: In Py3 this is really a byte stream.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="nb">super</span><span class="p">(</span><span class="n">Compressed</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="n">inObject</span><span class="p">),</span> <span class="mi">9</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="n">inObject</span><span class="p">),</span> <span class="mi">9</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Compressed.fromString"><a class="viewcode-back" href="../../../../api/evennia.server.portal.amp.html#evennia.server.amp_client.Compressed.fromString">[docs]</a>    <span class="k">def</span> <span class="nf">fromString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inString</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert (decompress) from the string-representation on the wire to Python.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Compressed</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fromString</span><span class="p">(</span><span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">inString</span><span class="p">))</span></div></div>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">fromString</span><span class="p">(</span><span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">inString</span><span class="p">))</span></div></div>
 
 
 <div class="viewcode-block" id="MsgLauncher2Portal"><a class="viewcode-back" href="../../../../api/evennia.server.portal.amp.html#evennia.server.amp_client.MsgLauncher2Portal">[docs]</a><span class="k">class</span> <span class="nc">MsgLauncher2Portal</span><span class="p">(</span><span class="n">amp</span><span class="o">.</span><span class="n">Command</span><span class="p">):</span>
@@ -355,7 +355,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">send_task</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">multibatches</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="c1"># later twisted amp has its own __init__</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AMPMultiConnectionProtocol</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_commandReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">box</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -364,6 +364,7 @@
 <span class="sd">        add a specific log of the problem on the erroring side.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">def</span> <span class="nf">formatAnswer</span><span class="p">(</span><span class="n">answerBox</span><span class="p">):</span>
             <span class="n">answerBox</span><span class="p">[</span><span class="n">ANSWER</span><span class="p">]</span> <span class="o">=</span> <span class="n">box</span><span class="p">[</span><span class="n">ASK</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">answerBox</span>
@@ -392,6 +393,7 @@
             <span class="n">errorBox</span><span class="p">[</span><span class="n">ERROR_DESCRIPTION</span><span class="p">]</span> <span class="o">=</span> <span class="n">desc</span>
             <span class="n">errorBox</span><span class="p">[</span><span class="n">ERROR_CODE</span><span class="p">]</span> <span class="o">=</span> <span class="n">code</span>
             <span class="k">return</span> <span class="n">errorBox</span>
+
         <span class="n">deferred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatchCommand</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ASK</span> <span class="ow">in</span> <span class="n">box</span><span class="p">:</span>
             <span class="n">deferred</span><span class="o">.</span><span class="n">addCallbacks</span><span class="p">(</span><span class="n">formatAnswer</span><span class="p">,</span> <span class="n">formatError</span><span class="p">)</span>
@@ -410,7 +412,7 @@
                 <span class="c1"># an incomplete AMP box means more batches are forthcoming.</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">multibatches</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="nb">super</span><span class="p">(</span><span class="n">AMPMultiConnectionProtocol</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dataReceived</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dataReceived</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                 <span class="n">_get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">log_trace</span><span class="p">(</span>
                     <span class="s2">&quot;Discarded incoming partial (packed) data (len </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
@@ -421,7 +423,7 @@
                 <span class="c1"># end of existing multibatch</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">multibatches</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">multibatches</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="nb">super</span><span class="p">(</span><span class="n">AMPMultiConnectionProtocol</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dataReceived</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dataReceived</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                 <span class="n">_get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">log_trace</span><span class="p">(</span>
                     <span class="s2">&quot;Discarded incoming multi-batch (packed) data (len </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
@@ -622,7 +624,6 @@
 <h3>Versions</h3>
 <ul>
   <li><a href="amp.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../../../../0.9.5/index.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>

@@ -16,7 +16,9 @@
     <script src="../_static/language_data.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="evennia.commands.default.muxcommand" href="evennia.commands.default.muxcommand.html" />
+    <link rel="prev" title="evennia.commands.default.general" href="evennia.commands.default.general.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -27,7 +29,18 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.commands.default.muxcommand.html" title="evennia.commands.default.muxcommand"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="evennia.commands.default.general.html" title="evennia.commands.default.general"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.commands.html" >evennia.commands</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="evennia.commands.default.html" accesskey="U">evennia.commands.default</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.commands.default.help</a></li> 
       </ul>
         <div class="develop">develop branch</div>
@@ -295,6 +308,25 @@ always matched before assuming the space begins a subtopic.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="evennia.commands.default.help.CmdHelp.strip_cmd_prefix">
+<code class="sig-name descname">strip_cmd_prefix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">all_keys</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/commands/default/help.html#CmdHelp.strip_cmd_prefix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.commands.default.help.CmdHelp.strip_cmd_prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conditional strip of a command prefix, such as &#64; in &#64;desc. By default
+this will be hidden unless there is a duplicate without the prefix
+in the full command set (such as &#64;open and open).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – Command key to analyze.</p></li>
+<li><p><strong>all_cmds</strong> (<em>list</em>) – All command-keys (and potentially aliases).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>str</em> – Potentially modified key to use in help display.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="evennia.commands.default.help.CmdHelp.func">
 <code class="sig-name descname">func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/commands/default/help.html#CmdHelp.func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.commands.default.help.CmdHelp.func" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the dynamic help entry creator.</p>
@@ -312,7 +344,7 @@ always matched before assuming the space begins a subtopic.</p>
 
 <dl class="py attribute">
 <dt id="evennia.commands.default.help.CmdHelp.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '?', 'category': 'general', 'key': 'help', 'tags': '', 'text': &quot;\n    Get help.\n\n    Usage:\n      help\n      help &lt;topic, command or category&gt;\n      help &lt;topic&gt;/&lt;subtopic&gt;\n      help &lt;topic&gt;/&lt;subtopic&gt;/&lt;subsubtopic&gt; ...\n\n    Use the 'help' command alone to see an index of all help topics, organized\n    by category.eSome big topics may offer additional sub-topics.\n\n    &quot;}</em><a class="headerlink" href="#evennia.commands.default.help.CmdHelp.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '?', 'category': 'general', 'key': 'help', 'no_prefix': ' ?', 'tags': '', 'text': &quot;\n    Get help.\n\n    Usage:\n      help\n      help &lt;topic, command or category&gt;\n      help &lt;topic&gt;/&lt;subtopic&gt;\n      help &lt;topic&gt;/&lt;subtopic&gt;/&lt;subsubtopic&gt; ...\n\n    Use the 'help' command alone to see an index of all help topics, organized\n    by category.eSome big topics may offer additional sub-topics.\n\n    &quot;}</em><a class="headerlink" href="#evennia.commands.default.help.CmdHelp.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -323,7 +355,7 @@ always matched before assuming the space begins a subtopic.</p>
 <dd><p>Bases: <a class="reference internal" href="#evennia.commands.default.help.CmdHelp" title="evennia.commands.default.help.CmdHelp"><code class="xref py py-class docutils literal notranslate"><span class="pre">evennia.commands.default.help.CmdHelp</span></code></a></p>
 <p>Edit the help database.</p>
 <dl class="simple">
-<dt>Usage:</dt><dd><p>help[/switches] &lt;topic&gt;[[;alias;alias][,category[,locks]] [= &lt;text&gt;]</p>
+<dt>Usage:</dt><dd><p>sethelp[/switches] &lt;topic&gt;[[;alias;alias][,category[,locks]] [= &lt;text&gt;]</p>
 </dd>
 <dt>Switches:</dt><dd><p>edit - open a line editor to edit the topic’s help text.
 replace - overwrite existing help topic.
@@ -419,7 +451,7 @@ the user will be able to enter a partial match to access it.</p>
 
 <dl class="py attribute">
 <dt id="evennia.commands.default.help.CmdSetHelp.search_index_entry">
-<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '', 'category': 'building', 'key': 'sethelp', 'tags': '', 'text': &quot;\n    Edit the help database.\n\n    Usage:\n      help[/switches] &lt;topic&gt;[[;alias;alias][,category[,locks]] [= &lt;text&gt;]\n\n    Switches:\n      edit - open a line editor to edit the topic's help text.\n      replace - overwrite existing help topic.\n      append - add text to the end of existing topic with a newline between.\n      extend - as append, but don't add a newline.\n      delete - remove help topic.\n\n    Examples:\n      sethelp lore = In the beginning was ...\n      sethelp/append pickpocketing,Thievery = This steals ...\n      sethelp/replace pickpocketing, ,attr(is_thief) = This steals ...\n      sethelp/edit thievery\n\n    If not assigning a category, the `settings.DEFAULT_HELP_CATEGORY` category\n    will be used. If no lockstring is specified, everyone will be able to read\n    the help entry.  Sub-topics are embedded in the help text.\n\n    Note that this cannot modify command-help entries - these are modified\n    in-code, outside the game.\n\n    # SUBTOPICS\n\n    ## Adding subtopics\n\n    Subtopics helps to break up a long help entry into sub-sections. Users can\n    access subtopics with |whelp topic/subtopic/...|n Subtopics are created and\n    stored together with the main topic.\n\n    To start adding subtopics, add the text '# SUBTOPICS' on a new line at the\n    end of your help text. After this you can now add any number of subtopics,\n    each starting with '## &lt;subtopic-name&gt;' on a line, followed by the\n    help-text of that subtopic.\n    Use '### &lt;subsub-name&gt;' to add a sub-subtopic and so on. Max depth is 5. A\n    subtopic's title is case-insensitive and can consist of multiple words -\n    the user will be able to enter a partial match to access it.\n\n    For example:\n\n    | Main help text for &lt;topic&gt;\n    |\n    | # SUBTOPICS\n    |\n    | ## about\n    |\n    | Text for the '&lt;topic&gt;/about' subtopic'\n    |\n    | ### more about-info\n    |\n    | Text for the '&lt;topic&gt;/about/more about-info sub-subtopic\n    |\n    | ## extra\n    |\n    | Text for the '&lt;topic&gt;/extra' subtopic\n\n    &quot;}</em><a class="headerlink" href="#evennia.commands.default.help.CmdSetHelp.search_index_entry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_index_entry</code><em class="property"> = {'aliases': '', 'category': 'building', 'key': 'sethelp', 'no_prefix': ' ', 'tags': '', 'text': &quot;\n    Edit the help database.\n\n    Usage:\n      sethelp[/switches] &lt;topic&gt;[[;alias;alias][,category[,locks]] [= &lt;text&gt;]\n\n    Switches:\n      edit - open a line editor to edit the topic's help text.\n      replace - overwrite existing help topic.\n      append - add text to the end of existing topic with a newline between.\n      extend - as append, but don't add a newline.\n      delete - remove help topic.\n\n    Examples:\n      sethelp lore = In the beginning was ...\n      sethelp/append pickpocketing,Thievery = This steals ...\n      sethelp/replace pickpocketing, ,attr(is_thief) = This steals ...\n      sethelp/edit thievery\n\n    If not assigning a category, the `settings.DEFAULT_HELP_CATEGORY` category\n    will be used. If no lockstring is specified, everyone will be able to read\n    the help entry.  Sub-topics are embedded in the help text.\n\n    Note that this cannot modify command-help entries - these are modified\n    in-code, outside the game.\n\n    # SUBTOPICS\n\n    ## Adding subtopics\n\n    Subtopics helps to break up a long help entry into sub-sections. Users can\n    access subtopics with |whelp topic/subtopic/...|n Subtopics are created and\n    stored together with the main topic.\n\n    To start adding subtopics, add the text '# SUBTOPICS' on a new line at the\n    end of your help text. After this you can now add any number of subtopics,\n    each starting with '## &lt;subtopic-name&gt;' on a line, followed by the\n    help-text of that subtopic.\n    Use '### &lt;subsub-name&gt;' to add a sub-subtopic and so on. Max depth is 5. A\n    subtopic's title is case-insensitive and can consist of multiple words -\n    the user will be able to enter a partial match to access it.\n\n    For example:\n\n    | Main help text for &lt;topic&gt;\n    |\n    | # SUBTOPICS\n    |\n    | ## about\n    |\n    | Text for the '&lt;topic&gt;/about' subtopic'\n    |\n    | ### more about-info\n    |\n    | Text for the '&lt;topic&gt;/about/more about-info sub-subtopic\n    |\n    | ## extra\n    |\n    | Text for the '&lt;topic&gt;/extra' subtopic\n\n    &quot;}</em><a class="headerlink" href="#evennia.commands.default.help.CmdSetHelp.search_index_entry" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -446,10 +478,16 @@ the user will be able to enter a partial match to access it.</p>
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.commands.default.general.html"
+                        title="previous chapter">evennia.commands.default.general</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.commands.default.muxcommand.html"
+                        title="next chapter">evennia.commands.default.muxcommand</a></p>
   <div role="note" aria-label="source link">
     <!--h3>This Page</h3-->
     <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.commands.default.help.rst.txt"
+      <li><a href="../_sources/api/evennia.commands.default.help.md.txt"
             rel="nofollow">Show Page Source</a></li>
     </ul>
    </div><h3>Links</h3>
@@ -466,7 +504,6 @@ the user will be able to enter a partial match to access it.</p>
 <h3>Versions</h3>
 <ul>
   <li><a href="evennia.commands.default.help.html">1.0-dev (develop branch)</a></li>
-  <li><a href="../../0.9.5/api/evennia.commands.default.help.html">0.9.5 (v0.9.5 branch)</a></li>
 </ul>
 
         </div>
@@ -482,7 +519,18 @@ the user will be able to enter a partial match to access it.</p>
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="evennia.commands.default.muxcommand.html" title="evennia.commands.default.muxcommand"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="evennia.commands.default.general.html" title="evennia.commands.default.general"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Evennia 1.0-dev</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Evennia-API.html" >API Summary</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="evennia-api.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="evennia.html" >evennia</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="evennia.commands.html" >evennia.commands</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="evennia.commands.default.html" >evennia.commands.default</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evennia.commands.default.help</a></li> 
       </ul>
         <div class="develop">develop branch</div>
