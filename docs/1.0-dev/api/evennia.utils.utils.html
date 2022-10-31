@@ -46,7 +46,53 @@
     </div>  
 
     <div class="document">
+
       <div class="documentwrapper">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/evennia_logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.utils.text2html.html"
+                        title="previous chapter">evennia.utils.text2html</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.utils.validatorfuncs.html"
+                        title="next chapter">evennia.utils.validatorfuncs</a></p>
+  <div role="note" aria-label="source link">
+    <!--h3>This Page</h3-->
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/evennia.utils.utils.md.txt"
+            rel="nofollow">Show Page Source</a></li>
+    </ul>
+   </div><h3>Links</h3>
+<ul>
+  <li><a href="https://www.evennia.com">Home page</a> </li>
+  <li><a href="https://github.com/evennia/evennia">Evennia Github</a> </li>
+  <li><a href="http://games.evennia.com">Game Index</a> </li>
+  <li>
+    <a href="https://discord.gg/AJJpcRUhtF">Discord</a> -
+     <a href="https://github.com/evennia/evennia/discussions">Discussions</a> -
+      <a href="https://evennia.blogspot.com/">Blog</a>
+  </li>
+</ul>
+<h3>Versions</h3>
+<ul>
+  <li><a href="evennia.utils.utils.html">1.0-dev (develop branch)</a></li>
+</ul>
+
+        </div>
+      </div>
         <div class="bodywrapper">
           <div class="body" role="main">
             
@@ -247,7 +293,7 @@ Defaults to client’s default width.</p></li>
 
 <dl class="py function">
 <dt id="evennia.utils.utils.iter_to_str">
-<code class="sig-prename descclassname">evennia.utils.utils.</code><code class="sig-name descname">iter_to_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span></em>, <em class="sig-param"><span class="n">endsep</span><span class="o">=</span><span class="default_value">', and'</span></em>, <em class="sig-param"><span class="n">addquote</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/utils/utils.html#iter_to_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.utils.utils.iter_to_str" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">evennia.utils.utils.</code><code class="sig-name descname">iter_to_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">','</span></em>, <em class="sig-param"><span class="n">endsep</span><span class="o">=</span><span class="default_value">', and'</span></em>, <em class="sig-param"><span class="n">addquote</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/utils/utils.html#iter_to_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.utils.utils.iter_to_str" title="Permalink to this definition">¶</a></dt>
 <dd><p>This pretty-formats an iterable list as string output, adding an optional
 alternative separator to the second to last entry.  If <strong>addquote</strong>
 is <strong>True</strong>, the outgoing strings will be surrounded by quotes.</p>
@@ -257,8 +303,8 @@ is <strong>True</strong>, the outgoing strings will be surrounded by quotes.</p>
 <li><p><strong>iterable</strong> (<em>any</em>) – Usually an iterable to print. Each element must be possible to
 present with a string. Note that if this is a generator, it will be
 consumed by this operation.</p></li>
-<li><p><strong>endsep</strong> (<em>str</em><em>, </em><em>optional</em>) – If set, the last item separator will
-be replaced with this value.</p></li>
+<li><p><strong>sep</strong> (<em>str</em><em>, </em><em>optional</em>) – The string to use as a separator for each item in the iterable.</p></li>
+<li><p><strong>endsep</strong> (<em>str</em><em>, </em><em>optional</em>) – The last item separator will be replaced with this value.</p></li>
 <li><p><strong>addquote</strong> (<em>bool</em><em>, </em><em>optional</em>) – This will surround all outgoing
 values with double quotes.</p></li>
 </ul>
@@ -268,14 +314,17 @@ values with double quotes.</p></li>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>Default is to use ‘Oxford comma’, like 1, 2, 3, and 4. To remove, give
-<strong>endsep</strong> as just <strong>and</strong>.</p>
+<p>Default is to use ‘Oxford comma’, like 1, 2, 3, and 4.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 <span class="go">&#39;1, 2, 3&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">list_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">ensdep</span><span class="o">=</span><span class="s1">&#39;and&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="go">&#39;1, 2 3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">ensdep</span><span class="o">=</span><span class="s1">&#39;and&#39;</span><span class="p">)</span>
 <span class="go">&#39;1, 2 and 3&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">list_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;, and&#39;</span><span class="p">,</span> <span class="n">addquote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="go">&#39;1; 2; 3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">addquote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">&#39;&quot;1&quot;, &quot;2&quot;, and &quot;3&quot;&#39;</span>
 </pre></div>
 </div>
@@ -283,7 +332,7 @@ values with double quotes.</p></li>
 
 <dl class="py function">
 <dt id="evennia.utils.utils.list_to_string">
-<code class="sig-prename descclassname">evennia.utils.utils.</code><code class="sig-name descname">list_to_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span></em>, <em class="sig-param"><span class="n">endsep</span><span class="o">=</span><span class="default_value">', and'</span></em>, <em class="sig-param"><span class="n">addquote</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evennia.utils.utils.list_to_string" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">evennia.utils.utils.</code><code class="sig-name descname">list_to_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">','</span></em>, <em class="sig-param"><span class="n">endsep</span><span class="o">=</span><span class="default_value">', and'</span></em>, <em class="sig-param"><span class="n">addquote</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evennia.utils.utils.list_to_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>This pretty-formats an iterable list as string output, adding an optional
 alternative separator to the second to last entry.  If <strong>addquote</strong>
 is <strong>True</strong>, the outgoing strings will be surrounded by quotes.</p>
@@ -293,8 +342,8 @@ is <strong>True</strong>, the outgoing strings will be surrounded by quotes.</p>
 <li><p><strong>iterable</strong> (<em>any</em>) – Usually an iterable to print. Each element must be possible to
 present with a string. Note that if this is a generator, it will be
 consumed by this operation.</p></li>
-<li><p><strong>endsep</strong> (<em>str</em><em>, </em><em>optional</em>) – If set, the last item separator will
-be replaced with this value.</p></li>
+<li><p><strong>sep</strong> (<em>str</em><em>, </em><em>optional</em>) – The string to use as a separator for each item in the iterable.</p></li>
+<li><p><strong>endsep</strong> (<em>str</em><em>, </em><em>optional</em>) – The last item separator will be replaced with this value.</p></li>
 <li><p><strong>addquote</strong> (<em>bool</em><em>, </em><em>optional</em>) – This will surround all outgoing
 values with double quotes.</p></li>
 </ul>
@@ -304,14 +353,17 @@ values with double quotes.</p></li>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>Default is to use ‘Oxford comma’, like 1, 2, 3, and 4. To remove, give
-<strong>endsep</strong> as just <strong>and</strong>.</p>
+<p>Default is to use ‘Oxford comma’, like 1, 2, 3, and 4.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 <span class="go">&#39;1, 2, 3&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">list_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">ensdep</span><span class="o">=</span><span class="s1">&#39;and&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="go">&#39;1, 2 3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">ensdep</span><span class="o">=</span><span class="s1">&#39;and&#39;</span><span class="p">)</span>
 <span class="go">&#39;1, 2 and 3&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">list_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;, and&#39;</span><span class="p">,</span> <span class="n">addquote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="go">&#39;1; 2; 3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">addquote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">&#39;&quot;1&quot;, &quot;2&quot;, and &quot;3&quot;&#39;</span>
 </pre></div>
 </div>
@@ -319,7 +371,7 @@ values with double quotes.</p></li>
 
 <dl class="py function">
 <dt id="evennia.utils.utils.iter_to_string">
-<code class="sig-prename descclassname">evennia.utils.utils.</code><code class="sig-name descname">iter_to_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span></em>, <em class="sig-param"><span class="n">endsep</span><span class="o">=</span><span class="default_value">', and'</span></em>, <em class="sig-param"><span class="n">addquote</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evennia.utils.utils.iter_to_string" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">evennia.utils.utils.</code><code class="sig-name descname">iter_to_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">','</span></em>, <em class="sig-param"><span class="n">endsep</span><span class="o">=</span><span class="default_value">', and'</span></em>, <em class="sig-param"><span class="n">addquote</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evennia.utils.utils.iter_to_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>This pretty-formats an iterable list as string output, adding an optional
 alternative separator to the second to last entry.  If <strong>addquote</strong>
 is <strong>True</strong>, the outgoing strings will be surrounded by quotes.</p>
@@ -329,8 +381,8 @@ is <strong>True</strong>, the outgoing strings will be surrounded by quotes.</p>
 <li><p><strong>iterable</strong> (<em>any</em>) – Usually an iterable to print. Each element must be possible to
 present with a string. Note that if this is a generator, it will be
 consumed by this operation.</p></li>
-<li><p><strong>endsep</strong> (<em>str</em><em>, </em><em>optional</em>) – If set, the last item separator will
-be replaced with this value.</p></li>
+<li><p><strong>sep</strong> (<em>str</em><em>, </em><em>optional</em>) – The string to use as a separator for each item in the iterable.</p></li>
+<li><p><strong>endsep</strong> (<em>str</em><em>, </em><em>optional</em>) – The last item separator will be replaced with this value.</p></li>
 <li><p><strong>addquote</strong> (<em>bool</em><em>, </em><em>optional</em>) – This will surround all outgoing
 values with double quotes.</p></li>
 </ul>
@@ -340,14 +392,17 @@ values with double quotes.</p></li>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>Default is to use ‘Oxford comma’, like 1, 2, 3, and 4. To remove, give
-<strong>endsep</strong> as just <strong>and</strong>.</p>
+<p>Default is to use ‘Oxford comma’, like 1, 2, 3, and 4.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 <span class="go">&#39;1, 2, 3&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">list_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">ensdep</span><span class="o">=</span><span class="s1">&#39;and&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="go">&#39;1, 2 3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">ensdep</span><span class="o">=</span><span class="s1">&#39;and&#39;</span><span class="p">)</span>
 <span class="go">&#39;1, 2 and 3&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">list_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;, and&#39;</span><span class="p">,</span> <span class="n">addquote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">endsep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="go">&#39;1; 2; 3&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iter_to_string</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">addquote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">&#39;&quot;1&quot;, &quot;2&quot;, and &quot;3&quot;&#39;</span>
 </pre></div>
 </div>
@@ -559,7 +614,7 @@ This is used as a last resort when normal encoding does not work.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>string</strong> (<em>str</em>) – A string to convert to ‘safe characters’ convertable
+<li><p><strong>string</strong> (<em>str</em>) – A string to convert to ‘safe characters’ convertible
 to an latin-1 bytestring later.</p></li>
 <li><p><strong>default</strong> (<em>str</em><em>, </em><em>optional</em>) – Characters resisting mapping will be replaced
 with this character or string. The intent is to apply an encode operation
@@ -739,7 +794,7 @@ a server restart/reload, taking into account the specified delay
 Keep in mind that persistent tasks arguments and callback should not
 use memory references.
 If persistent is set to True the delay function will return an int
-which is the task’s id itended for use with TASK_HANDLER’s do_task
+which is the task’s id intended for use with TASK_HANDLER’s do_task
 and remove methods.
 All persistent tasks whose time delays have passed will be called on server startup.</p>
 </dd></dl>
@@ -1056,13 +1111,13 @@ primarily used to convert db_typeclass_path:s to classes.</p>
 <li><p><strong>defaultpaths</strong> (<em>iterable</em><em>, </em><em>optional</em>) – If a direct import from <strong>path</strong> fails,
 try subsequent imports by prepending those paths to <strong>path</strong>.</p></li>
 <li><p><strong>fallback</strong> (<em>str</em>) – If all other attempts fail, use this path as a fallback.
-This is intended as a last-resport. In the example of Evennia
+This is intended as a last-resort. In the example of Evennia
 loading, this would be a path to a default parent class in the
 evennia repo itself.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><em>class (Class)</em> – An uninstatiated class recovered from path.</p>
+<dd class="field-even"><p><em>class (Class)</em> – An uninstantiated class recovered from path.</p>
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>ImportError</strong> – If all loading failed.</p>
@@ -1082,13 +1137,13 @@ primarily used to convert db_typeclass_path:s to classes.</p>
 <li><p><strong>defaultpaths</strong> (<em>iterable</em><em>, </em><em>optional</em>) – If a direct import from <strong>path</strong> fails,
 try subsequent imports by prepending those paths to <strong>path</strong>.</p></li>
 <li><p><strong>fallback</strong> (<em>str</em>) – If all other attempts fail, use this path as a fallback.
-This is intended as a last-resport. In the example of Evennia
+This is intended as a last-resort. In the example of Evennia
 loading, this would be a path to a default parent class in the
 evennia repo itself.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><em>class (Class)</em> – An uninstatiated class recovered from path.</p>
+<dd class="field-even"><p><em>class (Class)</em> – An uninstantiated class recovered from path.</p>
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>ImportError</strong> – If all loading failed.</p>
@@ -1158,7 +1213,7 @@ Could be empty if there are no matches.</p>
 Matching is made from the start of each subword in each
 alternative. Case is not important. So e.g. “bi sh sw” or just
 “big” or “shiny” or “sw” will match “Big shiny sword”. Scoring is
-done to allow to separate by most common demoninator. You will get
+done to allow to separate by most common denominator. You will get
 multiple matches returned if appropriate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1205,7 +1260,7 @@ unknown and must be calculated on the fly.</p>
 <p>Examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ftable</span> <span class="o">=</span> <span class="n">format_table</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
 <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="k">for</span> <span class="n">ir</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">enumarate</span><span class="p">(</span><span class="n">ftable</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">ir</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ftable</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">ir</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="c1"># make first row white</span>
         <span class="n">string</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">|w&quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;|n&quot;</span>
@@ -1271,7 +1326,7 @@ boundary, so the result will be 0% or 100%, respectively.</p></li>
 
 <dl class="py function">
 <dt id="evennia.utils.utils.format_grid">
-<code class="sig-prename descclassname">evennia.utils.utils.</code><code class="sig-name descname">format_grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">elements</span></em>, <em class="sig-param"><span class="n">width</span><span class="o">=</span><span class="default_value">78</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">'  '</span></em>, <em class="sig-param"><span class="n">verbatim_elements</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/utils/utils.html#format_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.utils.utils.format_grid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">evennia.utils.utils.</code><code class="sig-name descname">format_grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">elements</span></em>, <em class="sig-param"><span class="n">width</span><span class="o">=</span><span class="default_value">78</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">'  '</span></em>, <em class="sig-param"><span class="n">verbatim_elements</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">line_prefix</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/utils/utils.html#format_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.utils.utils.format_grid" title="Permalink to this definition">¶</a></dt>
 <dd><p>This helper function makes a ‘grid’ output, where it distributes the given
 string-elements as evenly as possible to fill out the given width.
 will not work well if the variation of length is very big!</p>
@@ -1289,6 +1344,8 @@ be inserted into the grid at the correct position and may be surrounded
 by padding unless filling the entire line. This is useful for embedding
 decorations in the grid, such as horizontal bars.</p></li>
 <li><p><strong>ignore_ansi</strong> (<em>bool</em><em>, </em><em>optional</em>) – Ignore ansi markups when calculating white spacing.</p></li>
+<li><p><strong>line_prefix</strong> (<em>str</em><em>, </em><em>optional</em>) – A prefix to add at the beginning of each line.
+This can e.g. be used to preserve line color across line breaks.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1713,59 +1770,46 @@ to avoid race conditions.</p>
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt id="evennia.utils.utils.int2str">
+<code class="sig-prename descclassname">evennia.utils.utils.</code><code class="sig-name descname">int2str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">number</span></em>, <em class="sig-param"><span class="n">adjective</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/utils/utils.html#int2str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.utils.utils.int2str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a number to an English string for better display; so 1 -&gt; one, 2 -&gt; two etc
+up until 12, after which it will be ‘13’, ‘14’ etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>number</strong> (<em>int</em>) – The number to convert. Floats will be converted to ints.</p></li>
+<li><p><strong>adjective</strong> (<em>int</em>) – If set, map 1-&gt;1st, 2-&gt;2nd etc. If unset, map 1-&gt;one, 2-&gt;two etc.
+up to twelve.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>str</em> – The number expressed as a string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="evennia.utils.utils.str2int">
+<code class="sig-prename descclassname">evennia.utils.utils.</code><code class="sig-name descname">str2int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">number</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/utils/utils.html#str2int"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.utils.utils.str2int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a string to an integer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>number</strong> (<em>str</em>) – The string to convert. It can be a digit such as “1”, or a number word such as “one”.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>int</em> – The string represented as an integer.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="../index.html">
-              <img class="logo" src="../_static/evennia_logo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="evennia.utils.text2html.html"
-                        title="previous chapter">evennia.utils.text2html</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="evennia.utils.validatorfuncs.html"
-                        title="next chapter">evennia.utils.validatorfuncs</a></p>
-  <div role="note" aria-label="source link">
-    <!--h3>This Page</h3-->
-    <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.utils.utils.md.txt"
-            rel="nofollow">Show Page Source</a></li>
-    </ul>
-   </div><h3>Links</h3>
-<ul>
-  <li><a href="https://www.evennia.com">Home page</a> </li>
-  <li><a href="https://github.com/evennia/evennia">Evennia Github</a> </li>
-  <li><a href="http://games.evennia.com">Game Index</a> </li>
-  <li>
-    <a href="https://discord.gg/AJJpcRUhtF">Discord</a> -
-     <a href="https://github.com/evennia/evennia/discussions">Discussions</a> -
-      <a href="https://evennia.blogspot.com/">Blog</a>
-  </li>
-</ul>
-<h3>Versions</h3>
-<ul>
-  <li><a href="evennia.utils.utils.html">1.0-dev (develop branch)</a></li>
-</ul>
 
-        </div>
-      </div>
-      <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>

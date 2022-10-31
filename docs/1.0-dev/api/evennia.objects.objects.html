@@ -46,7 +46,53 @@
     </div>  
 
     <div class="document">
+
       <div class="documentwrapper">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/evennia_logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.objects.models.html"
+                        title="previous chapter">evennia.objects.models</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.prototypes.html"
+                        title="next chapter">evennia.prototypes</a></p>
+  <div role="note" aria-label="source link">
+    <!--h3>This Page</h3-->
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/evennia.objects.objects.md.txt"
+            rel="nofollow">Show Page Source</a></li>
+    </ul>
+   </div><h3>Links</h3>
+<ul>
+  <li><a href="https://www.evennia.com">Home page</a> </li>
+  <li><a href="https://github.com/evennia/evennia">Evennia Github</a> </li>
+  <li><a href="http://games.evennia.com">Game Index</a> </li>
+  <li>
+    <a href="https://discord.gg/AJJpcRUhtF">Discord</a> -
+     <a href="https://github.com/evennia/evennia/discussions">Discussions</a> -
+      <a href="https://evennia.blogspot.com/">Blog</a>
+  </li>
+</ul>
+<h3>Versions</h3>
+<ul>
+  <li><a href="evennia.objects.objects.html">1.0-dev (develop branch)</a></li>
+</ul>
+
+        </div>
+      </div>
         <div class="bodywrapper">
           <div class="body" role="main">
             
@@ -276,60 +322,8 @@ location having the property destination != <strong>None</strong>.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="evennia.objects.objects.DefaultObject.get_display_name">
-<code class="sig-name descname">get_display_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">looker</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.get_display_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.get_display_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Displays the name of the object in a viewer-aware manner.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>looker</strong> (<a class="reference internal" href="evennia.typeclasses.models.html#evennia.typeclasses.models.TypedObject" title="evennia.typeclasses.models.TypedObject"><em>TypedObject</em></a>) – The object or account that is looking
-at/getting inforamtion for this object.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><p><em>name (str)</em> –</p>
-<dl class="simple">
-<dt>A string containing the name of the object,</dt><dd><p>including the DBREF if this user is privileged to control
-said object.</p>
-</dd>
-</dl>
-</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>This function could be extended to change how object names
-appear to users in character, but be wary. This function
-does not change an object’s keys or aliases when
-searching, and is expected to produce something useful for
-builders.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="evennia.objects.objects.DefaultObject.get_numbered_name">
-<code class="sig-name descname">get_numbered_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">count</span></em>, <em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.get_numbered_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.get_numbered_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the numbered (singular, plural) forms of this object’s key. This is by default called
-by return_appearance and is used for grouping multiple same-named of this object. Note that
-this will be called on <em>every</em> member of a group even though the plural name will be only
-shown once. Also the singular display version, such as ‘an apple’, ‘a tree’ is determined
-from this method.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>count</strong> (<em>int</em>) – Number of objects of this type</p></li>
-<li><p><strong>looker</strong> (<em>Object</em>) – Onlooker. Not used by default.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Keyword Arguments</dt>
-<dd class="field-even"><p><strong>key</strong> (<em>str</em>) – Optional key to pluralize, if given, use this instead of the object’s key.</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><em>singular (str)</em> – The singular form to display.
-plural (str): The determined plural form of the key, including the count.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="evennia.objects.objects.DefaultObject.search">
-<code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">searchdata</span></em>, <em class="sig-param"><span class="n">global_search</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">use_nicks</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">typeclass</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">location</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">attribute_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">quiet</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">exact</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">candidates</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nofound_string</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">multimatch_string</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_dbref</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">stacked</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.search" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">searchdata</span></em>, <em class="sig-param"><span class="n">global_search</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">use_nicks</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">typeclass</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">location</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">attribute_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">quiet</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">exact</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">candidates</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_locks</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">nofound_string</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">multimatch_string</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_dbref</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">stacked</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an Object matching a search string/condition</p>
 <p>Perform a standard object search in the database, handling
 multiple results and lack thereof gracefully. By default, only
@@ -384,6 +378,8 @@ to search (filter) between. It is ignored if <strong>global_search</strong>
 is given. If not set, this list will automatically be defined
 to include the location, the contents of location and the
 caller’s contents (inventory).</p></li>
+<li><p><strong>use_locks</strong> (<em>bool</em>) – If True (default) - removes search results which
+fail the “search” lock.</p></li>
 <li><p><strong>nofound_string</strong> (<em>str</em>) – optional custom string for not-found error message.</p></li>
 <li><p><strong>multimatch_string</strong> (<em>str</em>) – optional custom string for multimatch error header.</p></li>
 <li><p><strong>use_dbref</strong> (<em>bool</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – If <strong>True</strong>, allow to enter e.g. a query “#123”
@@ -548,7 +544,7 @@ function on.</p></li>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultObject.msg_contents">
-<code class="sig-name descname">msg_contents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">from_obj</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mapping</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.msg_contents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.msg_contents" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">msg_contents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">from_obj</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mapping</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">raise_funcparse_errors</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.msg_contents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.msg_contents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Emits a message to all objects inside this object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -565,13 +561,16 @@ for that key for every recipient of the string.</p></li>
 <li><p><strong>exclude</strong> (<em>list</em><em>, </em><em>optional</em>) – A list of objects not to send to.</p></li>
 <li><p><strong>from_obj</strong> (<em>Object</em><em>, </em><em>optional</em>) – An object designated as the
 “sender” of the message. See <strong>DefaultObject.msg()</strong> for
-more info.</p></li>
+more info. This will be used for <strong>$You/you</strong> if using funcparser inlines.</p></li>
 <li><p><strong>mapping</strong> (<em>dict</em><em>, </em><em>optional</em>) – A mapping of formatting keys
 <strong>{“key”:&lt;object&gt;, “key2”:&lt;object2&gt;,…}.
 The keys must either match **{key}</strong> or <strong>$You(key)/$you(key)</strong> markers
 in the <strong>text</strong> string. If <strong>&lt;object&gt;</strong> doesn’t have a <strong>get_display_name</strong>
-method, it will be returned as a string. If not set, a key <strong>you</strong> will
-be auto-added to point to <strong>from_obj</strong> if given, otherwise to <strong>self</strong>.</p></li>
+method, it will be returned as a string. Pass “you” to represent the caller,
+this can be skipped if <strong>from_obj</strong> is provided (that will then act as ‘you’).</p></li>
+<li><p><strong>raise_funcparse_errors</strong> (<em>bool</em><em>, </em><em>optional</em>) – If set, a failing <strong>$func()</strong> will
+lead to an outright error. If unset (default), the failing <strong>$func()</strong>
+will instead appear in output unparsed.</p></li>
 <li><p><strong>**kwargs</strong> – Keyword arguments will be passed on to <strong>obj.msg()</strong> for all
 messaged objects.</p></li>
 </ul>
@@ -600,6 +599,7 @@ depending on who the recipient is.</p>
 <p>Actor-stance:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">msg_contents</span><span class="p">(</span>
     <span class="s2">&quot;$You() $conj(attack) $you(defender).&quot;</span><span class="p">,</span>
+    <span class="n">from_obj</span><span class="o">=</span><span class="n">player1</span><span class="p">,</span>
     <span class="n">mapping</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;defender&quot;</span><span class="p">:</span> <span class="n">player2</span><span class="p">})</span>
 </pre></div>
 </div>
@@ -610,7 +610,7 @@ depending on who the recipient is.</p>
 <p>Director-stance:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">msg_contents</span><span class="p">(</span>
     <span class="s2">&quot;</span><span class="si">{attacker}</span><span class="s2"> attacks </span><span class="si">{defender}</span><span class="s2">.&quot;</span><span class="p">,</span>
-    <span class="n">mapping</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;attacker:player1, &quot;</span><span class="n">defender</span><span class="s2">&quot;:player2})</span>
+    <span class="n">mapping</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;attacker&quot;</span><span class="p">:</span><span class="n">player1</span><span class="p">,</span> <span class="s2">&quot;defender&quot;</span><span class="p">:</span><span class="n">player2</span><span class="p">})</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -621,7 +621,7 @@ depending on who the recipient is.</p>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultObject.move_to">
-<code class="sig-name descname">move_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">destination</span></em>, <em class="sig-param"><span class="n">quiet</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">emit_to_obj</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_destination</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">to_none</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">move_hooks</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.move_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.move_to" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">move_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">destination</span></em>, <em class="sig-param"><span class="n">quiet</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">emit_to_obj</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_destination</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">to_none</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">move_hooks</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">move_type</span><span class="o">=</span><span class="default_value">'move'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.move_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.move_to" title="Permalink to this definition">¶</a></dt>
 <dd><p>Moves this object to a new location.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -641,10 +641,18 @@ moving to a None location. If you want to run hooks, run them manually
 <li><p><strong>move_hooks</strong> (<em>bool</em>) – If False, turn off the calling of move-related hooks
 (at_pre/post_move etc) with quiet=True, this is as quiet a move
 as can be done.</p></li>
+<li><p><strong>move_type</strong> (<em>str</em>) – The “kind of move” being performed, such as “teleport”, “traverse”,
+“get”, “give”, or “drop”. The value can be arbitrary. By default, it only affects
+the text message generated by announce_move_to and announce_move_from by defining
+their {“type”: move_type} for outgoing text. This can be used for altering
+messages and/or overloaded hook behaviors.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Keyword Arguments</dt>
-<dd class="field-even"><p><strong>on to announce_move_to and announce_move_from hooks.</strong> (<em>Passed</em>) – </p>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>on to announce_move_to and announce_move_from hooks.</strong> (<em>Passed</em>) – </p></li>
+<li><p><strong>will set the &quot;exit_obj&quot; kwarg to themselves.</strong> (<em>Exits</em>) – </p></li>
+</ul>
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><p><em>result (bool)</em> –</p>
@@ -662,7 +670,9 @@ calling <strong>move_to</strong>.</p>
 <p>The <strong>DefaultObject</strong> hooks called (if <strong>move_hooks=True</strong>) are, in order:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p><strong>self.at_pre_move(destination)</strong> (if this returns False, move is aborted)</p></li>
+<li><p><strong>self.at_pre_move(destination)</strong> (abort if return False)</p></li>
+<li><p><strong>source_location.at_pre_object_leave(self, destination)</strong> (abort if return False)</p></li>
+<li><p><strong>destination.at_pre_object_receive(self, source_location)</strong> (abort if return False)</p></li>
 <li><p><strong>source_location.at_object_leave(self, destination)</strong></p></li>
 <li><p><strong>self.announce_move_from(destination)</strong></p></li>
 <li><p>(move happens here)</p></li>
@@ -783,6 +793,223 @@ lock check for superuser (be careful with this one).</p></li>
 <dd class="field-even"><p><strong>on to the at_access hook along with the result of the access check.</strong> (<em>Passed</em>) – </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.get_display_name">
+<code class="sig-name descname">get_display_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">looker</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.get_display_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.get_display_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the name of the object in a viewer-aware manner.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>looker</strong> (<a class="reference internal" href="evennia.typeclasses.models.html#evennia.typeclasses.models.TypedObject" title="evennia.typeclasses.models.TypedObject"><em>TypedObject</em></a>) – The object or account that is looking
+at/getting inforamtion for this object. If not given, <strong>.name</strong> will be
+returned, which can in turn be used to display colored data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><em>str</em> –</p>
+<dl class="simple">
+<dt>A name to display for this object. This can contain color codes and may</dt><dd><p>be customized based on <strong>looker</strong>. By default this contains the <strong>.key</strong> of the object,
+followed by the DBREF if this user is privileged to control said object.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function could be extended to change how object names appear to users in character,
+but be wary. This function does not change an object’s keys or aliases when searching,
+and is expected to produce something useful for builders.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.get_numbered_name">
+<code class="sig-name descname">get_numbered_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">count</span></em>, <em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.get_numbered_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.get_numbered_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the numbered (singular, plural) forms of this object’s key. This is by default called
+by return_appearance and is used for grouping multiple same-named of this object. Note that
+this will be called on <em>every</em> member of a group even though the plural name will be only
+shown once. Also the singular display version, such as ‘an apple’, ‘a tree’ is determined
+from this method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>count</strong> (<em>int</em>) – Number of objects of this type</p></li>
+<li><p><strong>looker</strong> (<em>Object</em>) – Onlooker. Not used by default.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><p><strong>key</strong> (<em>str</em>) – Optional key to pluralize, if given, use this instead of the object’s key.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><p><em>tuple</em> –</p>
+<dl class="simple">
+<dt>This is a tuple <strong>(str, str)</strong> with the singular and plural forms of the key</dt><dd><p>including the count.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<dl class="simple">
+<dt>::</dt><dd><p>obj.get_numbered_name(3, looker, key=”foo”) -&gt; (“a foo”, “three foos”)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.get_display_header">
+<code class="sig-name descname">get_display_header</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.get_display_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.get_display_header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ‘header’ component of the object description. Called by <strong>return_appearance</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>looker</strong> (<em>Object</em>) – Object doing the looking.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary data for use when overriding.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>str</em> – The header display string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.get_display_desc">
+<code class="sig-name descname">get_display_desc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.get_display_desc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.get_display_desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ‘desc’ component of the object description. Called by <strong>return_appearance</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>looker</strong> (<em>Object</em>) – Object doing the looking.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary data for use when overriding.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>str</em> – The desc display string..</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.get_display_exits">
+<code class="sig-name descname">get_display_exits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.get_display_exits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.get_display_exits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ‘exits’ component of the object description. Called by <strong>return_appearance</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>looker</strong> (<em>Object</em>) – Object doing the looking.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary data for use when overriding.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>str</em> – The exits display data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.get_display_characters">
+<code class="sig-name descname">get_display_characters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.get_display_characters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.get_display_characters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ‘characters’ component of the object description. Called by <strong>return_appearance</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>looker</strong> (<em>Object</em>) – Object doing the looking.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary data for use when overriding.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>str</em> – The character display data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.get_display_things">
+<code class="sig-name descname">get_display_things</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.get_display_things"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.get_display_things" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ‘things’ component of the object description. Called by <strong>return_appearance</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>looker</strong> (<em>Object</em>) – Object doing the looking.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary data for use when overriding.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>str</em> – The things display data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.get_display_footer">
+<code class="sig-name descname">get_display_footer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.get_display_footer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.get_display_footer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ‘footer’ component of the object description. Called by <strong>return_appearance</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>looker</strong> (<em>Object</em>) – Object doing the looking.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary data for use when overriding.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>str</em> – The footer display string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.format_appearance">
+<code class="sig-name descname">format_appearance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">appearance</span></em>, <em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.format_appearance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.format_appearance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Final processing of the entire appearance string. Called by <strong>return_appearance</strong>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>appearance</strong> (<em>str</em>) – The compiled appearance string.</p></li>
+<li><p><strong>looker</strong> (<em>Object</em>) – Object doing the looking.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary data for use when overriding.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>str</em> – The final formatted output.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.return_appearance">
+<code class="sig-name descname">return_appearance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.return_appearance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.return_appearance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main callback used by ‘look’ for the object to describe itself.
+This formats a description. By default, this looks for the <strong>appearance_template</strong>
+string set on this class and populates it with formatting keys</p>
+<blockquote>
+<div><p>‘name’, ‘desc’, ‘exits’, ‘characters’, ‘things’ as well as
+(currently empty) ‘header’/’footer’. Each of these values are
+retrieved by a matching method <strong>.get_display_*</strong>, such as <strong>get_display_name</strong>,
+<strong>get_display_footer</strong> etc.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>looker</strong> (<em>Object</em>) – Object doing the looking. Passed into all helper methods.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
+overriding the call. This is passed into all helper methods.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><em>str</em> –</p>
+<dl class="simple">
+<dt>The description of this entity. By default this includes</dt><dd><p>the entity’s name, description and any contents inside it.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>To simply change the layout of how the object displays itself (like
+adding some line decorations or change colors of different sections),
+you can simply edit <strong>.appearance_template</strong>. You only need to override
+this method (and/or its helpers) if you want to change what is passed
+into the template or want the most control over output.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -915,14 +1142,15 @@ puppeting this Object.</p>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultObject.at_post_unpuppet">
-<code class="sig-name descname">at_post_unpuppet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">account</span></em>, <em class="sig-param"><span class="n">session</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_post_unpuppet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_post_unpuppet" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">at_post_unpuppet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">account</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">session</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_post_unpuppet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_post_unpuppet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called just after the Account successfully disconnected from
 this object, severing all connections.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>account</strong> (<em>Account</em>) – The account object that just disconnected
-from this object.</p></li>
+from this object. This can be <strong>None</strong> if this is called
+automatically (such as after a cleanup operation).</p></li>
 <li><p><strong>session</strong> (<a class="reference internal" href="evennia.server.session.html#evennia.server.session.Session" title="evennia.server.session.Session"><em>Session</em></a>) – Session id controlling the connection that
 just disconnected.</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
@@ -964,29 +1192,30 @@ based on the access result.</p>
 </ul>
 </dd>
 <dt class="field-even">Keyword Arguments</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>used by default</strong><strong>, </strong><strong>added for possible expandability in a</strong> (<em>Not</em>) – </p></li>
-<li><p><strong>game.</strong> – </p></li>
-</ul>
+<dd class="field-even"><p><strong>by default</strong><strong>, </strong><strong>added for possible expandability in a game.</strong> (<em>Unused</em>) – </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultObject.at_pre_move">
-<code class="sig-name descname">at_pre_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">destination</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_pre_move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_pre_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">at_pre_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">destination</span></em>, <em class="sig-param"><span class="n">move_type</span><span class="o">=</span><span class="default_value">'move'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_pre_move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_pre_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called just before starting to move this object to
-destination.</p>
+destination. Return False to abort move.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>destination</strong> (<em>Object</em>) – The object we are moving to</p></li>
+<li><p><strong>move_type</strong> (<em>str</em>) – The type of move. “give”, “traverse”, etc.
+This is an arbitrary string provided to obj.move_to().
+Useful for altering messages or altering logic depending
+on the kind of movement.</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
 overriding the call (unused by default).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><em>shouldmove (bool)</em> – If we should move or not.</p>
+<dd class="field-even"><p><em>bool</em> – If we should move or not.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -995,20 +1224,74 @@ before it is even started.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="evennia.objects.objects.DefaultObject.at_before_move">
-<code class="sig-name descname">at_before_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">destination</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_before_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called just before starting to move this object to
-destination.</p>
+<dt id="evennia.objects.objects.DefaultObject.at_pre_object_leave">
+<code class="sig-name descname">at_pre_object_leave</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">leaving_object</span></em>, <em class="sig-param"><span class="n">destination</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_pre_object_leave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_pre_object_leave" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called just before this object is about lose an object that was
+previously ‘inside’ it. Return False to abort move.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>destination</strong> (<em>Object</em>) – The object we are moving to</p></li>
+<li><p><strong>leaving_object</strong> (<em>Object</em>) – The object that is about to leave.</p></li>
+<li><p><strong>destination</strong> (<em>Object</em>) – Where object is going to.</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
 overriding the call (unused by default).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><em>shouldmove (bool)</em> – If we should move or not.</p>
+<dd class="field-even"><p><em>bool</em> – If <strong>leaving_object</strong> should be allowed to leave or not.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Notes: If this method returns False, None, the move is canceled before</dt><dd><p>it even started.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.at_pre_object_receive">
+<code class="sig-name descname">at_pre_object_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arriving_object</span></em>, <em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_pre_object_receive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_pre_object_receive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called just before this object received another object. If this
+method returns <strong>False</strong>, the move is aborted and the moved entity
+remains where it was.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arriving_object</strong> (<em>Object</em>) – The object moved into this one</p></li>
+<li><p><strong>source_location</strong> (<em>Object</em>) – Where <strong>moved_object</strong> came from.
+Note that this could be <strong>None</strong>.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
+overriding the call (unused by default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>bool</em> – If False, abort move and <strong>moved_obj</strong> remains where it was.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Notes: If this method returns False, None, the move is canceled before</dt><dd><p>it even started.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultObject.at_before_move">
+<code class="sig-name descname">at_before_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">destination</span></em>, <em class="sig-param"><span class="n">move_type</span><span class="o">=</span><span class="default_value">'move'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_before_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called just before starting to move this object to
+destination. Return False to abort move.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>destination</strong> (<em>Object</em>) – The object we are moving to</p></li>
+<li><p><strong>move_type</strong> (<em>str</em>) – The type of move. “give”, “traverse”, etc.
+This is an arbitrary string provided to obj.move_to().
+Useful for altering messages or altering logic depending
+on the kind of movement.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
+overriding the call (unused by default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>bool</em> – If we should move or not.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -1018,7 +1301,7 @@ before it is even started.</p>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultObject.announce_move_from">
-<code class="sig-name descname">announce_move_from</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">destination</span></em>, <em class="sig-param"><span class="n">msg</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mapping</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.announce_move_from"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.announce_move_from" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">announce_move_from</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">destination</span></em>, <em class="sig-param"><span class="n">msg</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mapping</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">move_type</span><span class="o">=</span><span class="default_value">'move'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.announce_move_from"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.announce_move_from" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called if the move is to be announced. This is
 called while we are still standing in the old
 location.</p>
@@ -1028,6 +1311,10 @@ location.</p>
 <li><p><strong>destination</strong> (<em>Object</em>) – The place we are going to.</p></li>
 <li><p><strong>msg</strong> (<em>str</em><em>, </em><em>optional</em>) – a replacement message.</p></li>
 <li><p><strong>mapping</strong> (<em>dict</em><em>, </em><em>optional</em>) – additional mapping objects.</p></li>
+<li><p><strong>move_type</strong> (<em>str</em>) – The type of move. “give”, “traverse”, etc.
+This is an arbitrary string provided to obj.move_to().
+Useful for altering messages or altering logic depending
+on the kind of movement.</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
 overriding the call (unused by default).</p></li>
 </ul>
@@ -1046,7 +1333,7 @@ destination: the location of the object after moving.</p>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultObject.announce_move_to">
-<code class="sig-name descname">announce_move_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="n">msg</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mapping</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.announce_move_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.announce_move_to" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">announce_move_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="n">msg</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mapping</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">move_type</span><span class="o">=</span><span class="default_value">'move'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.announce_move_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.announce_move_to" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called after the move if the move was not quiet. At this point
 we are standing in the new location.</p>
 <dl class="field-list simple">
@@ -1055,6 +1342,10 @@ we are standing in the new location.</p>
 <li><p><strong>source_location</strong> (<em>Object</em>) – The place we came from</p></li>
 <li><p><strong>msg</strong> (<em>str</em><em>, </em><em>optional</em>) – the replacement message if location.</p></li>
 <li><p><strong>mapping</strong> (<em>dict</em><em>, </em><em>optional</em>) – additional mapping objects.</p></li>
+<li><p><strong>move_type</strong> (<em>str</em>) – The type of move. “give”, “traverse”, etc.
+This is an arbitrary string provided to obj.move_to().
+Useful for altering messages or altering logic depending
+on the kind of movement.</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
 overriding the call (unused by default).</p></li>
 </ul>
@@ -1074,14 +1365,18 @@ destination: the location of the object after moving.</p>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultObject.at_post_move">
-<code class="sig-name descname">at_post_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_post_move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_post_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">at_post_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="n">move_type</span><span class="o">=</span><span class="default_value">'move'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_post_move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_post_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called after move has completed, regardless of quiet mode or
 not.  Allows changes to the object due to the location it is
 now in.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source_location</strong> (<em>Object</em>) – Wwhere we came from. This may be <strong>None</strong>.</p></li>
+<li><p><strong>source_location</strong> (<em>Object</em>) – Where we came from. This may be <strong>None</strong>.</p></li>
+<li><p><strong>move_type</strong> (<em>str</em>) – The type of move. “give”, “traverse”, etc.
+This is an arbitrary string provided to obj.move_to().
+Useful for altering messages or altering logic depending
+on the kind of movement.</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
 overriding the call (unused by default).</p></li>
 </ul>
@@ -1091,14 +1386,18 @@ overriding the call (unused by default).</p></li>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultObject.at_after_move">
-<code class="sig-name descname">at_after_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_after_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">at_after_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="n">move_type</span><span class="o">=</span><span class="default_value">'move'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_after_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called after move has completed, regardless of quiet mode or
 not.  Allows changes to the object due to the location it is
 now in.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source_location</strong> (<em>Object</em>) – Wwhere we came from. This may be <strong>None</strong>.</p></li>
+<li><p><strong>source_location</strong> (<em>Object</em>) – Where we came from. This may be <strong>None</strong>.</p></li>
+<li><p><strong>move_type</strong> (<em>str</em>) – The type of move. “give”, “traverse”, etc.
+This is an arbitrary string provided to obj.move_to().
+Useful for altering messages or altering logic depending
+on the kind of movement.</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
 overriding the call (unused by default).</p></li>
 </ul>
@@ -1108,13 +1407,17 @@ overriding the call (unused by default).</p></li>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultObject.at_object_leave">
-<code class="sig-name descname">at_object_leave</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">moved_obj</span></em>, <em class="sig-param"><span class="n">target_location</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_object_leave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_object_leave" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">at_object_leave</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">moved_obj</span></em>, <em class="sig-param"><span class="n">target_location</span></em>, <em class="sig-param"><span class="n">move_type</span><span class="o">=</span><span class="default_value">'move'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_object_leave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_object_leave" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called just before an object leaves from inside this object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>moved_obj</strong> (<em>Object</em>) – The object leaving</p></li>
 <li><p><strong>target_location</strong> (<em>Object</em>) – Where <strong>moved_obj</strong> is going.</p></li>
+<li><p><strong>move_type</strong> (<em>str</em>) – The type of move. “give”, “traverse”, etc.
+This is an arbitrary string provided to obj.move_to().
+Useful for altering messages or altering logic depending
+on the kind of movement.</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
 overriding the call (unused by default).</p></li>
 </ul>
@@ -1124,7 +1427,7 @@ overriding the call (unused by default).</p></li>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultObject.at_object_receive">
-<code class="sig-name descname">at_object_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">moved_obj</span></em>, <em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_object_receive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_object_receive" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">at_object_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">moved_obj</span></em>, <em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="n">move_type</span><span class="o">=</span><span class="default_value">'move'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.at_object_receive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.at_object_receive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called after an object has been moved into this object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1132,6 +1435,10 @@ overriding the call (unused by default).</p></li>
 <li><p><strong>moved_obj</strong> (<em>Object</em>) – The object moved into this one</p></li>
 <li><p><strong>source_location</strong> (<em>Object</em>) – Where <strong>moved_object</strong> came from.
 Note that this could be <strong>None</strong>.</p></li>
+<li><p><strong>move_type</strong> (<em>str</em>) – The type of move. “give”, “traverse”, etc.
+This is an arbitrary string provided to obj.move_to().
+Useful for altering messages or altering logic depending
+on the kind of movement.</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
 overriding the call (unused by default).</p></li>
 </ul>
@@ -1277,7 +1584,7 @@ get called.</p>
 <dt id="evennia.objects.objects.DefaultObject.get_visible_contents">
 <code class="sig-name descname">get_visible_contents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.get_visible_contents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.get_visible_contents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get all contents of this object that a looker can see (whatever that means, by default it
-checks the ‘view’ lock), grouped by type. Helper method to return_appearance.</p>
+checks the ‘view’ and ‘search’ locks), grouped by type. Helper method to return_appearance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1326,42 +1633,6 @@ of multiple same-named things etc.</p>
 <p>This method shouldn’t add extra coloring to the names beyond what is
 already given by the .get_display_name() (and the .name field) already.
 Per-type coloring can be applied in <strong>return_apperance</strong>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="evennia.objects.objects.DefaultObject.return_appearance">
-<code class="sig-name descname">return_appearance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">looker</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultObject.return_appearance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultObject.return_appearance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Main callback used by ‘look’ for the object to describe itself.
-This formats a description. By default, this looks for the <strong>appearance_template</strong>
-string set on this class and populates it with formatting keys</p>
-<blockquote>
-<div><p>‘name’, ‘desc’, ‘exits’, ‘characters’, ‘things’ as well as
-(currently empty) ‘header’/’footer’.</p>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>looker</strong> (<em>Object</em>) – Object doing the looking.</p></li>
-<li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
-overriding the call. This is passed into the helper
-methods and into <strong>get_display_name</strong> calls.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><p><em>str</em> –</p>
-<dl class="simple">
-<dt>The description of this entity. By default this includes</dt><dd><p>the entity’s name, description and any contents inside it.</p>
-</dd>
-</dl>
-</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>To simply change the layout of how the object displays itself (like
-adding some line decorations or change colors of different sections),
-you can simply edit <strong>.appearance_template</strong>. You only need to override
-this method (and/or its helpers) if you want to change what is passed
-into the template or want the most control over output.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1769,8 +2040,8 @@ change the default lockset and skip creator attribution.</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><em>character (Object)</em> – A newly created Character of the given typeclass.
-errors (list): A list of errors in string form, if any.</p>
+<dd class="field-odd"><p><em>tuple</em> – <strong>(new_character, errors)</strong>. On error, the <strong>new_character</strong> is <strong>None</strong> and
+<strong>errors</strong> is a <strong>list</strong> of error strings (an empty list otherwise).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1818,13 +2089,13 @@ Character object works).</p>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultCharacter.at_post_move">
-<code class="sig-name descname">at_post_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultCharacter.at_post_move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultCharacter.at_post_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">at_post_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="n">move_type</span><span class="o">=</span><span class="default_value">'move'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultCharacter.at_post_move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultCharacter.at_post_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>We make sure to look around after a move.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultCharacter.at_after_move">
-<code class="sig-name descname">at_after_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evennia.objects.objects.DefaultCharacter.at_after_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">at_after_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_location</span></em>, <em class="sig-param"><span class="n">move_type</span><span class="o">=</span><span class="default_value">'move'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evennia.objects.objects.DefaultCharacter.at_after_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>We make sure to look around after a move.</p>
 </dd></dl>
 
@@ -1860,7 +2131,7 @@ puppeting this Object.</p>
 
 <dl class="py method">
 <dt id="evennia.objects.objects.DefaultCharacter.at_post_unpuppet">
-<code class="sig-name descname">at_post_unpuppet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">account</span></em>, <em class="sig-param"><span class="n">session</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultCharacter.at_post_unpuppet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultCharacter.at_post_unpuppet" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">at_post_unpuppet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">account</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">session</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultCharacter.at_post_unpuppet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultCharacter.at_post_unpuppet" title="Permalink to this definition">¶</a></dt>
 <dd><p>We stove away the character when the account goes ooc/logs off,
 otherwise the character object will remain in the room also
 after the account logged off (“headless”, so to say).</p>
@@ -1871,6 +2142,12 @@ after the account logged off (“headless”, so to say).</p>
 from this object.</p></li>
 <li><p><strong>session</strong> (<a class="reference internal" href="evennia.server.session.html#evennia.server.session.Session" title="evennia.server.session.Session"><em>Session</em></a>) – Session controlling the connection that
 just disconnected.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Keyword Arguments</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>reason</strong> (<em>str</em>) – If given, adds a reason for the unpuppet. This
+is set when the user is auto-unpuppeted due to being link-dead.</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Arbitrary, optional arguments for users
 overriding the call (unused by default).</p></li>
 </ul>
@@ -2187,6 +2464,22 @@ Attribute <strong>err_traverse</strong> is defined - this will in that case be
 read for an error string instead.</p>
 </dd></dl>
 
+<dl class="py method">
+<dt id="evennia.objects.objects.DefaultExit.get_return_exit">
+<code class="sig-name descname">get_return_exit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">return_all</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/objects/objects.html#DefaultExit.get_return_exit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.objects.objects.DefaultExit.get_return_exit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the exits that pair with this one in its destination room
+(i.e. returns to its location)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>return_all</strong> (<em>bool</em>) – Whether to return available results as a
+list or single matching exit.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>queryset or exit (Exit)</em> – The matching exit(s).</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py exception">
 <dt id="evennia.objects.objects.DefaultExit.DoesNotExist">
 <em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#evennia.objects.objects.DefaultExit.DoesNotExist" title="Permalink to this definition">¶</a></dt>
@@ -2214,56 +2507,10 @@ read for an error string instead.</p>
 </section>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="../index.html">
-              <img class="logo" src="../_static/evennia_logo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="evennia.objects.models.html"
-                        title="previous chapter">evennia.objects.models</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="evennia.prototypes.html"
-                        title="next chapter">evennia.prototypes</a></p>
-  <div role="note" aria-label="source link">
-    <!--h3>This Page</h3-->
-    <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.objects.objects.md.txt"
-            rel="nofollow">Show Page Source</a></li>
-    </ul>
-   </div><h3>Links</h3>
-<ul>
-  <li><a href="https://www.evennia.com">Home page</a> </li>
-  <li><a href="https://github.com/evennia/evennia">Evennia Github</a> </li>
-  <li><a href="http://games.evennia.com">Game Index</a> </li>
-  <li>
-    <a href="https://discord.gg/AJJpcRUhtF">Discord</a> -
-     <a href="https://github.com/evennia/evennia/discussions">Discussions</a> -
-      <a href="https://evennia.blogspot.com/">Blog</a>
-  </li>
-</ul>
-<h3>Versions</h3>
-<ul>
-  <li><a href="evennia.objects.objects.html">1.0-dev (develop branch)</a></li>
-</ul>
 
-        </div>
-      </div>
-      <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>

@@ -35,7 +35,40 @@
     </div>  
 
     <div class="document">
+
       <div class="documentwrapper">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../index.html">
+              <img class="logo" src="../../../../_static/evennia_logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script><h3>Links</h3>
+<ul>
+  <li><a href="https://www.evennia.com">Home page</a> </li>
+  <li><a href="https://github.com/evennia/evennia">Evennia Github</a> </li>
+  <li><a href="http://games.evennia.com">Game Index</a> </li>
+  <li>
+    <a href="https://discord.gg/AJJpcRUhtF">Discord</a> -
+     <a href="https://github.com/evennia/evennia/discussions">Discussions</a> -
+      <a href="https://evennia.blogspot.com/">Blog</a>
+  </li>
+</ul>
+<h3>Versions</h3>
+<ul>
+  <li><a href="comms.html">1.0-dev (develop branch)</a></li>
+</ul>
+
+        </div>
+      </div>
         <div class="bodywrapper">
           <div class="body" role="main">
             
@@ -328,7 +361,7 @@
             <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">channels</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span>
                     <span class="s2">&quot;Multiple possible channel matches/alias for &quot;</span>
-                    <span class="s2">&quot;&#39;</span><span class="si">{channelname}</span><span class="s2">&#39;:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chan</span><span class="o">.</span><span class="n">key</span> <span class="k">for</span> <span class="n">chan</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">)</span>
+                    <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">channelname</span><span class="si">}</span><span class="s2">&#39;:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chan</span><span class="o">.</span><span class="n">key</span> <span class="k">for</span> <span class="n">chan</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">)</span>
                 <span class="p">)</span>
                 <span class="k">return</span> <span class="kc">None</span>
             <span class="k">return</span> <span class="n">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -589,7 +622,7 @@
         <span class="k">if</span> <span class="n">message</span><span class="p">:</span>
             <span class="n">channel</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">senders</span><span class="o">=</span><span class="n">caller</span><span class="p">,</span> <span class="n">bypass_mute</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">channel</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">log_sec</span><span class="p">(</span><span class="s2">&quot;Channel </span><span class="si">{}</span><span class="s2"> was deleted by </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channel_key</span><span class="p">,</span> <span class="n">caller</span><span class="p">))</span></div>
+        <span class="n">logger</span><span class="o">.</span><span class="n">log_sec</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Channel </span><span class="si">{</span><span class="n">channel_key</span><span class="si">}</span><span class="s2"> was deleted by </span><span class="si">{</span><span class="n">caller</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CmdChannel.set_lock"><a class="viewcode-back" href="../../../../api/evennia.commands.default.comms.html#evennia.commands.default.comms.CmdChannel.set_lock">[docs]</a>    <span class="k">def</span> <span class="nf">set_lock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">lockstring</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1432,9 +1465,9 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Who do you want page?&quot;</span><span class="p">)</span>
                     <span class="k">return</span>
 
-            <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;|wAccount|n |c</span><span class="si">%s</span><span class="s2">|n |wpages:|n&quot;</span> <span class="o">%</span> <span class="n">caller</span><span class="o">.</span><span class="n">key</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;|wAccount|n |c</span><span class="si">{</span><span class="n">caller</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s2">|n |wpages:|n&quot;</span>
             <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">):</span>
-                <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">caller</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+                <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">caller</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span> 
 
             <span class="c1"># create the persistent message object</span>
             <span class="n">create</span><span class="o">.</span><span class="n">create_message</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">receivers</span><span class="o">=</span><span class="n">targets</span><span class="p">)</span>
@@ -1510,7 +1543,7 @@
             <span class="n">lastpages</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">listing</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">lastpages</span><span class="p">:</span>
-                <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;Your latest pages:</span><span class="se">\n</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">lastpages</span>
+                <span class="n">string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Your latest pages:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">lastpages</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;You haven&#39;t paged anyone yet.&quot;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
@@ -1607,7 +1640,7 @@
             <span class="k">return</span>
 
         <span class="k">if</span> <span class="s2">&quot;disconnect&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switches</span> <span class="ow">or</span> <span class="s2">&quot;remove&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switches</span> <span class="ow">or</span> <span class="s2">&quot;delete&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switches</span><span class="p">:</span>
-            <span class="n">botname</span> <span class="o">=</span> <span class="s2">&quot;ircbot-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">lhs</span>
+            <span class="n">botname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ircbot-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">lhs</span><span class="si">}</span><span class="s2">&quot;</span> 
             <span class="n">matches</span> <span class="o">=</span> <span class="n">AccountDB</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">db_is_bot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">botname</span><span class="p">)</span>
             <span class="n">dbref</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">dbref</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lhs</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">matches</span> <span class="ow">and</span> <span class="n">dbref</span><span class="p">:</span>
@@ -1634,7 +1667,7 @@
             <span class="n">irc_network</span><span class="p">,</span> <span class="n">irc_port</span><span class="p">,</span> <span class="n">irc_channel</span><span class="p">,</span> <span class="n">irc_botname</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="n">part</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rhs</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
             <span class="p">]</span>
-            <span class="n">irc_channel</span> <span class="o">=</span> <span class="s2">&quot;#</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">irc_channel</span>
+            <span class="n">irc_channel</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;#</span><span class="si">{</span><span class="n">irc_channel</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;IRC bot definition &#39;</span><span class="si">%s</span><span class="s2">&#39; is not valid.&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">rhs</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
@@ -1643,7 +1676,7 @@
         <span class="n">botclass</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="s2">&quot;:&quot;</span> <span class="ow">in</span> <span class="n">irc_botname</span><span class="p">:</span>
             <span class="n">irc_botname</span><span class="p">,</span> <span class="n">botclass</span> <span class="o">=</span> <span class="p">[</span><span class="n">part</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">irc_botname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
-        <span class="n">botname</span> <span class="o">=</span> <span class="s2">&quot;ircbot-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">irc_botname</span>
+        <span class="n">botname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ircbot-</span><span class="si">{</span><span class="n">irc_botname</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="c1"># If path given, use custom bot otherwise use default.</span>
         <span class="n">botclass</span> <span class="o">=</span> <span class="n">botclass</span> <span class="k">if</span> <span class="n">botclass</span> <span class="k">else</span> <span class="n">bots</span><span class="o">.</span><span class="n">IRCBot</span>
         <span class="n">irc_ssl</span> <span class="o">=</span> <span class="s2">&quot;ssl&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switches</span>
@@ -1654,13 +1687,13 @@
             <span class="c1"># re-use an existing bot</span>
             <span class="n">bot</span> <span class="o">=</span> <span class="n">bot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">bot</span><span class="o">.</span><span class="n">is_bot</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Account &#39;</span><span class="si">%s</span><span class="s2">&#39; already exists and is not a bot.&quot;</span> <span class="o">%</span> <span class="n">botname</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Account &#39;</span><span class="si">{</span><span class="n">botname</span><span class="si">}</span><span class="s2">&#39; already exists and is not a bot.&quot;</span><span class="p">)</span>
                 <span class="k">return</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">bot</span> <span class="o">=</span> <span class="n">create</span><span class="o">.</span><span class="n">create_account</span><span class="p">(</span><span class="n">botname</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">typeclass</span><span class="o">=</span><span class="n">botclass</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;|rError, could not create the bot:|n &#39;</span><span class="si">%s</span><span class="s2">&#39;.&quot;</span> <span class="o">%</span> <span class="n">err</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;|rError, could not create the bot:|n &#39;</span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
                 <span class="k">return</span>
         <span class="n">bot</span><span class="o">.</span><span class="n">start</span><span class="p">(</span>
             <span class="n">ev_channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span>
@@ -1723,26 +1756,21 @@
         <span class="n">channel</span> <span class="o">=</span> <span class="n">ircbot</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">irc_channel</span>
         <span class="n">network</span> <span class="o">=</span> <span class="n">ircbot</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">irc_network</span>
         <span class="n">port</span> <span class="o">=</span> <span class="n">ircbot</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">irc_port</span>
-        <span class="n">chtext</span> <span class="o">=</span> <span class="s2">&quot;IRC bot &#39;</span><span class="si">%s</span><span class="s2">&#39; on channel </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span>
-            <span class="n">ircbot</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">irc_botname</span><span class="p">,</span>
-            <span class="n">channel</span><span class="p">,</span>
-            <span class="n">network</span><span class="p">,</span>
-            <span class="n">port</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="n">chtext</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;IRC bot &#39;</span><span class="si">{</span><span class="n">ircbot</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">irc_botname</span><span class="si">}</span><span class="s2">&#39; on channel </span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">network</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">)&quot;</span>
         <span class="k">if</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;ping&quot;</span><span class="p">:</span>
             <span class="c1"># check connection by sending outself a ping through the server.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">caller</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Pinging through </span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="n">chtext</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">caller</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pinging through </span><span class="si">{</span><span class="n">chtext</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
             <span class="n">ircbot</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">caller</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">option</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="s2">&quot;nicklist&quot;</span><span class="p">,</span> <span class="s2">&quot;who&quot;</span><span class="p">):</span>
             <span class="c1"># retrieve user list. The bot must handles the echo since it&#39;s</span>
             <span class="c1"># an asynchronous call.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">caller</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Requesting nicklist from </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">).&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">caller</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Requesting nicklist from </span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">network</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">)</span>
             <span class="n">ircbot</span><span class="o">.</span><span class="n">get_nicklist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">caller</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">caller</span><span class="o">.</span><span class="n">locks</span><span class="o">.</span><span class="n">check_lockstring</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">caller</span><span class="p">,</span> <span class="s2">&quot;dummy:perm(ircstatus) or perm(Developer)&quot;</span>
         <span class="p">):</span>
             <span class="c1"># reboot the client</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">caller</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Forcing a disconnect + reconnect of </span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="n">chtext</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">caller</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forcing a disconnect + reconnect of </span><span class="si">{</span><span class="n">chtext</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
             <span class="n">ircbot</span><span class="o">.</span><span class="n">reconnect</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">caller</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;You don&#39;t have permission to force-reload the IRC bot.&quot;</span><span class="p">)</span></div></div>
@@ -1824,7 +1852,7 @@
             <span class="k">return</span>
 
         <span class="k">if</span> <span class="s2">&quot;disconnect&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switches</span> <span class="ow">or</span> <span class="s2">&quot;remove&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switches</span> <span class="ow">or</span> <span class="s2">&quot;delete&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switches</span><span class="p">:</span>
-            <span class="n">botname</span> <span class="o">=</span> <span class="s2">&quot;rssbot-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">lhs</span>
+            <span class="n">botname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;rssbot-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">lhs</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="n">matches</span> <span class="o">=</span> <span class="n">AccountDB</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">db_is_bot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">db_key</span><span class="o">=</span><span class="n">botname</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">matches</span><span class="p">:</span>
                 <span class="c1"># try dbref match</span>
@@ -1843,13 +1871,13 @@
         <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lhs</span>
         <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rhs</span>
 
-        <span class="n">botname</span> <span class="o">=</span> <span class="s2">&quot;rssbot-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">url</span>
+        <span class="n">botname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;rssbot-</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">bot</span> <span class="o">=</span> <span class="n">AccountDB</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">username__iexact</span><span class="o">=</span><span class="n">botname</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">bot</span><span class="p">:</span>
             <span class="c1"># re-use existing bot</span>
             <span class="n">bot</span> <span class="o">=</span> <span class="n">bot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">bot</span><span class="o">.</span><span class="n">is_bot</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Account &#39;</span><span class="si">%s</span><span class="s2">&#39; already exists and is not a bot.&quot;</span> <span class="o">%</span> <span class="n">botname</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Account &#39;</span><span class="si">{botname}</span><span class="s2">&#39; already exists and is not a bot.&quot;</span><span class="p">)</span>
                 <span class="k">return</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># create a new bot</span>
@@ -1860,7 +1888,7 @@
 
 <div class="viewcode-block" id="CmdGrapevine2Chan"><a class="viewcode-back" href="../../../../api/evennia.commands.default.comms.html#evennia.commands.default.comms.CmdGrapevine2Chan">[docs]</a><span class="k">class</span> <span class="nc">CmdGrapevine2Chan</span><span class="p">(</span><span class="n">COMMAND_DEFAULT_CLASS</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Link an Evennia channel to an exteral Grapevine channel</span>
+<span class="sd">    Link an Evennia channel to an external Grapevine channel</span>
 
 <span class="sd">    Usage:</span>
 <span class="sd">      grapevine2chan[/switches] &lt;evennia_channel&gt; = &lt;grapevine_channel&gt;</span>
@@ -1917,7 +1945,7 @@
             <span class="k">return</span>
 
         <span class="k">if</span> <span class="s2">&quot;disconnect&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switches</span> <span class="ow">or</span> <span class="s2">&quot;remove&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switches</span> <span class="ow">or</span> <span class="s2">&quot;delete&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">switches</span><span class="p">:</span>
-            <span class="n">botname</span> <span class="o">=</span> <span class="s2">&quot;grapevinebot-</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">lhs</span>
+            <span class="n">botname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;grapevinebot-</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">lhs</span><span class="si">}</span><span class="s2">&quot;</span> 
             <span class="n">matches</span> <span class="o">=</span> <span class="n">AccountDB</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">db_is_bot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">db_key</span><span class="o">=</span><span class="n">botname</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="ow">not</span> <span class="n">matches</span><span class="p">:</span>
@@ -1944,10 +1972,10 @@
             <span class="c1"># re-use existing bot</span>
             <span class="n">bot</span> <span class="o">=</span> <span class="n">bot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">bot</span><span class="o">.</span><span class="n">is_bot</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Account &#39;</span><span class="si">%s</span><span class="s2">&#39; already exists and is not a bot.&quot;</span> <span class="o">%</span> <span class="n">botname</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Account &#39;</span><span class="si">{</span><span class="n">botname</span><span class="si">}</span><span class="s2">&#39; already exists and is not a bot.&quot;</span><span class="p">)</span>
                 <span class="k">return</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s2">&quot;Reusing bot &#39;</span><span class="si">%s</span><span class="s2">&#39; (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">botname</span><span class="p">,</span> <span class="n">bot</span><span class="o">.</span><span class="n">dbref</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reusing bot &#39;</span><span class="si">{</span><span class="n">botname</span><span class="si">}</span><span class="s2">&#39; (</span><span class="si">{</span><span class="n">bot</span><span class="o">.</span><span class="n">dbref</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># create a new bot</span>
             <span class="n">bot</span> <span class="o">=</span> <span class="n">create</span><span class="o">.</span><span class="n">create_account</span><span class="p">(</span><span class="n">botname</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">typeclass</span><span class="o">=</span><span class="n">bots</span><span class="o">.</span><span class="n">GrapevineBot</span><span class="p">)</span>
@@ -1956,43 +1984,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Grapevine connection created </span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s2"> &lt;-&gt; </span><span class="si">{</span><span class="n">grapevine_channel</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div></div>
 </pre></div>
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="../../../../index.html">
-              <img class="logo" src="../../../../_static/evennia_logo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script><h3>Links</h3>
-<ul>
-  <li><a href="https://www.evennia.com">Home page</a> </li>
-  <li><a href="https://github.com/evennia/evennia">Evennia Github</a> </li>
-  <li><a href="http://games.evennia.com">Game Index</a> </li>
-  <li>
-    <a href="https://discord.gg/AJJpcRUhtF">Discord</a> -
-     <a href="https://github.com/evennia/evennia/discussions">Discussions</a> -
-      <a href="https://evennia.blogspot.com/">Blog</a>
-  </li>
-</ul>
-<h3>Versions</h3>
-<ul>
-  <li><a href="comms.html">1.0-dev (develop branch)</a></li>
-</ul>
 
-        </div>
-      </div>
-      <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>

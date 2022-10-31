@@ -46,7 +46,53 @@
     </div>  
 
     <div class="document">
+
       <div class="documentwrapper">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/evennia_logo.png" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="evennia.typeclasses.models.html"
+                        title="previous chapter">evennia.typeclasses.models</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="evennia.utils.html"
+                        title="next chapter">evennia.utils</a></p>
+  <div role="note" aria-label="source link">
+    <!--h3>This Page</h3-->
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/evennia.typeclasses.tags.md.txt"
+            rel="nofollow">Show Page Source</a></li>
+    </ul>
+   </div><h3>Links</h3>
+<ul>
+  <li><a href="https://www.evennia.com">Home page</a> </li>
+  <li><a href="https://github.com/evennia/evennia">Evennia Github</a> </li>
+  <li><a href="http://games.evennia.com">Game Index</a> </li>
+  <li>
+    <a href="https://discord.gg/AJJpcRUhtF">Discord</a> -
+     <a href="https://github.com/evennia/evennia/discussions">Discussions</a> -
+      <a href="https://evennia.blogspot.com/">Blog</a>
+  </li>
+</ul>
+<h3>Versions</h3>
+<ul>
+  <li><a href="evennia.typeclasses.tags.html">1.0-dev (develop branch)</a></li>
+</ul>
+
+        </div>
+      </div>
         <div class="bodywrapper">
           <div class="body" role="main">
             
@@ -238,6 +284,37 @@ class built by <strong>**create_forward_many_to_many_manager()**</strong> define
 </dd></dl>
 
 <dl class="py class">
+<dt id="evennia.typeclasses.tags.TagProperty">
+<em class="property">class </em><code class="sig-prename descclassname">evennia.typeclasses.tags.</code><code class="sig-name descname">TagProperty</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#TagProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.TagProperty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Tag property descriptor. Allows for setting tags on an object as Django-like ‘fields’
+on the class level. Since Tags are almost always used for querying, Tags are always
+created/assigned along with the object. Make sure the property/tagname does not collide
+with an existing method/property on the class. If it does, you must use tags.add()
+instead.</p>
+<p>Note that while you _can_ check e.g. <strong>obj.tagname,this will give an AttributeError
+if the Tag is not set. Most often you want to use **obj.tags.get(“tagname”)</strong> to check
+if a tag is set on an object.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Character</span><span class="p">(</span><span class="n">DefaultCharacter</span><span class="p">):</span>
+    <span class="n">mytag</span> <span class="o">=</span> <span class="n">TagProperty</span><span class="p">()</span>  <span class="c1"># category=None</span>
+    <span class="n">mytag2</span> <span class="o">=</span> <span class="n">TagProperty</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="s2">&quot;tagcategory&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt id="evennia.typeclasses.tags.TagProperty.taghandler_name">
+<code class="sig-name descname">taghandler_name</code><em class="property"> = 'tags'</em><a class="headerlink" href="#evennia.typeclasses.tags.TagProperty.taghandler_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="evennia.typeclasses.tags.TagProperty.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#TagProperty.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.TagProperty.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt id="evennia.typeclasses.tags.TagHandler">
 <em class="property">class </em><code class="sig-prename descclassname">evennia.typeclasses.tags.</code><code class="sig-name descname">TagHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#TagHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.TagHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -312,7 +389,7 @@ category (note, that <strong>None</strong> is the default category).</p></li>
 
 <dl class="py method">
 <dt id="evennia.typeclasses.tags.TagHandler.get">
-<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_tagobj</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">return_list</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#TagHandler.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.TagHandler.get" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_tagobj</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">return_list</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">raise_exception</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#TagHandler.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.TagHandler.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the tag for the given key, category or combination of the two.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -327,6 +404,8 @@ returned.</p></li>
 instead of a string representation of the Tag.</p></li>
 <li><p><strong>return_list</strong> (<em>bool</em><em>, </em><em>optional</em>) – Always return a list, regardless
 of number of matches.</p></li>
+<li><p><strong>raise_exception</strong> (<em>bool</em><em>, </em><em>optional</em>) – Raise AttributeError if no matches
+are found.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -338,6 +417,9 @@ will be a list with the default value as its only element.</p>
 </dd>
 </dl>
 </p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>AttributeError</strong> – If finding no matches and <strong>raise_exception</strong> is True.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -419,10 +501,47 @@ of a latter tuple with the same category).</p>
 </dd></dl>
 
 <dl class="py class">
+<dt id="evennia.typeclasses.tags.AliasProperty">
+<em class="property">class </em><code class="sig-prename descclassname">evennia.typeclasses.tags.</code><code class="sig-name descname">AliasProperty</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#AliasProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.AliasProperty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#evennia.typeclasses.tags.TagProperty" title="evennia.typeclasses.tags.TagProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">evennia.typeclasses.tags.TagProperty</span></code></a></p>
+<p>Allows for setting aliases like Django fields:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Character</span><span class="p">(</span><span class="n">DefaultCharacter</span><span class="p">):</span>
+    <span class="c1"># note that every character will get the alias bob. Make sure</span>
+    <span class="c1"># the alias property does not collide with an existing method</span>
+    <span class="c1"># or property on the class.</span>
+    <span class="n">bob</span> <span class="o">=</span> <span class="n">AliasProperty</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt id="evennia.typeclasses.tags.AliasProperty.taghandler_name">
+<code class="sig-name descname">taghandler_name</code><em class="property"> = 'aliases'</em><a class="headerlink" href="#evennia.typeclasses.tags.AliasProperty.taghandler_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt id="evennia.typeclasses.tags.AliasHandler">
 <em class="property">class </em><code class="sig-prename descclassname">evennia.typeclasses.tags.</code><code class="sig-name descname">AliasHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#AliasHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.AliasHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#evennia.typeclasses.tags.TagHandler" title="evennia.typeclasses.tags.TagHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">evennia.typeclasses.tags.TagHandler</span></code></a></p>
 <p>A handler for the Alias Tag type.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="evennia.typeclasses.tags.PermissionProperty">
+<em class="property">class </em><code class="sig-prename descclassname">evennia.typeclasses.tags.</code><code class="sig-name descname">PermissionProperty</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">category</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/evennia/typeclasses/tags.html#PermissionProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#evennia.typeclasses.tags.PermissionProperty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#evennia.typeclasses.tags.TagProperty" title="evennia.typeclasses.tags.TagProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">evennia.typeclasses.tags.TagProperty</span></code></a></p>
+<p>Allows for setting permissions like Django fields:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Character</span><span class="p">(</span><span class="n">DefaultCharacter</span><span class="p">):</span>
+    <span class="c1"># note that every character will get this permission! Make</span>
+    <span class="c1"># sure it doesn&#39;t collide with an existing method or property.</span>
+    <span class="n">myperm</span> <span class="o">=</span> <span class="n">PermissionProperty</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt id="evennia.typeclasses.tags.PermissionProperty.taghandler_name">
+<code class="sig-name descname">taghandler_name</code><em class="property"> = 'permissions'</em><a class="headerlink" href="#evennia.typeclasses.tags.PermissionProperty.taghandler_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -480,56 +599,10 @@ replicated with a lock check against the lockstring</p>
 </section>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="../index.html">
-              <img class="logo" src="../_static/evennia_logo.png" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="evennia.typeclasses.models.html"
-                        title="previous chapter">evennia.typeclasses.models</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="evennia.utils.html"
-                        title="next chapter">evennia.utils</a></p>
-  <div role="note" aria-label="source link">
-    <!--h3>This Page</h3-->
-    <ul class="this-page-menu">
-      <li><a href="../_sources/api/evennia.typeclasses.tags.md.txt"
-            rel="nofollow">Show Page Source</a></li>
-    </ul>
-   </div><h3>Links</h3>
-<ul>
-  <li><a href="https://www.evennia.com">Home page</a> </li>
-  <li><a href="https://github.com/evennia/evennia">Evennia Github</a> </li>
-  <li><a href="http://games.evennia.com">Game Index</a> </li>
-  <li>
-    <a href="https://discord.gg/AJJpcRUhtF">Discord</a> -
-     <a href="https://github.com/evennia/evennia/discussions">Discussions</a> -
-      <a href="https://evennia.blogspot.com/">Blog</a>
-  </li>
-</ul>
-<h3>Versions</h3>
-<ul>
-  <li><a href="evennia.typeclasses.tags.html">1.0-dev (develop branch)</a></li>
-</ul>
 
-        </div>
-      </div>
-      <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
